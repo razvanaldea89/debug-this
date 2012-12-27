@@ -54,7 +54,7 @@ class Debug_This{
 			add_filter('template_include', array($this, 'template_include'), 90210, 1);
 			add_filter('template_redirect', array($this, 'buffer_page'), 90210);
 			add_filter('query_vars', array($this, 'add_query_var'), 90210);
-			add_action('debug_this', array($this, 'debug'), $this->mode);
+			add_action('debug_this', array($this, 'debug'), $this->mode, 5);
 		}
 	}
 
@@ -117,6 +117,7 @@ class Debug_This{
 		if(isset($_debugger_extensions[$this->mode]) && is_array($_debugger_extensions[$this->mode])){
 			$extension = $_debugger_extensions[$this->mode];
 			$this->debug = call_user_func($extension['callback'], $this->buffer, $this->original_template);
+			$this->debug = apply_filters('debug_this_output', $this->debug, $this->mode);
 			$this->description = $extension['description'];
 			$this->_render();
 		}

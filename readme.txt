@@ -59,13 +59,21 @@ function foo_callback($buffer, $template){
 Extensions can be removed as well.
 `remove_debug_extension($mode);`
 
-You can also hook into the 'debug-this' WordPress hook:
+The 'debug_this' WordPress hook outputs the debug code sent from the extension modes. Debug output is set to priority 5. This allows you to prepend or append any output without conflict.
 
 `add_action('debug_this', 'foo_callback');
 function foo_callback($mode){
 	//Do Something
 }
 `
+
+Use the `debug_this_output` filter to alter the output of any mode before it renders.
+
+`add_filter('debug_this_output', 'foo_function', 1, 2);
+function foo_function($output, $mode){
+	return $output;
+}
+
 
 = JavaScript =
 
