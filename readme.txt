@@ -26,6 +26,8 @@ Forty-nine debug modes are included. Here is a sample of the packed-in debug goo
 * Menus, Widgets, Sidebars
 * Rendered page analysis (CSS, JS, Images)
 
+For advanced usage see the [FAQ](http://wordpress.org/extend/plugins/debug-this/faq/).
+
 == Frequently Asked Questions ==
 
 How do I extend Debug This?
