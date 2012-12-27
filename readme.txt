@@ -75,7 +75,7 @@ If you don't want your debug output to be enclosed in PRE tags, simply set the f
 
 = WP Filters =
 
-Tbere are a few filters you can use to customize Debug This to your needs:
+There are a few filters you can use to customize Debug This to your needs:
 
 * `debug_this_template` - receives $template arg - Use your own template
 * `debug_this_default_mode`  - receives $mode arg - Alters the mode for the parent DT admin bar button link.
