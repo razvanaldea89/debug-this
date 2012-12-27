@@ -1,0 +1,39 @@
+.debug-this{
+	padding:20px;
+}
+h3{
+	margin-bottom:8px;
+	color:#555;
+	font-size:14px;
+}
+.current{
+	background: yellow;
+}
+.error{
+	color:red;
+}
+.emphasize{
+	background:#2467ac;
+	color:#fff;
+	padding-left:10px;
+}
+.underline{
+	text-decoration: underline;
+}
+.escape{
+	position: absolute;
+	top:40px;
+	right:25px;
+	width:18px;
+	height:20px;
+	padding:3px;
+	background: #000;
+	color:#fff;
+	border-radius: 25px;
+	text-align: center;
+}
+.escape:hover{
+	background:#444 !important;
+	color:#fff;
+	text-decoration: none;
+}
