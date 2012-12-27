@@ -73,7 +73,7 @@ Use the `debug_this_output` filter to alter the output of any mode before it ren
 function foo_function($output, $mode){
 	return $output;
 }
-
+`
 
 = JavaScript =
 
@@ -82,7 +82,7 @@ The `debugThis` object is defined for easy access the current mode, default mode
 There are two functions available:
 
 * `isDebug()`
-* `getDebugMode()` - uses isDebug()
+* `getDebugMode()` - uses `isDebug()`
 
 A jQuery hook is also available:
 `
