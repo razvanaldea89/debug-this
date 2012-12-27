@@ -62,27 +62,27 @@ If you don't want your debug output to be enclosed in PRE tags, simply set the f
 
 = WP Actions =
 
-* debug_this - receives the $mode arg - outputs the debug code sent from the extension modes. The default action is set to priority 5. This allows you to prepend or append any output without conflict using less or greater priorities.
+* `debug_this` - receives the $mode arg - outputs the debug code sent from the extension modes. The default action is set to priority 5. This allows you to prepend or append any output without conflict using less or greater priorities.
 
 = WP Filters =
 
 Tbere are a few filters you can use to customize Debug This to your needs:
 
-* debug_this_template - receives $template arg - Use your own template
-* debug_this_default_mode  - receives $mode arg - Alters the mode for the parent DT admin bar button link.
-* debug_this_output - receives $output, $mode args - Filter debug content before it's rendered
+* `debug_this_template` - receives $template arg - Use your own template
+* `debug_this_default_mode`  - receives $mode arg - Alters the mode for the parent DT admin bar button link.
+* `debug_this_output` - receives $output, $mode args - Filter debug content before it's rendered
 
 
 = JavaScript =
 
 To access the built-in Debug This JS functionality, enqueue your custom script with the dependency set to `debug-this`. Your script will inherit a jQuery dependency.
 
-**Object:**
+**Object: debugThis**
 
-* debugThis.mode - current mode
-* debugThis.defaultMode
-* template - current included template
-* queryVar - the defined query string variable
+* `debugThis.mode` - current mode
+* `debugThis.defaultMode`
+* `debugThis.template` - current included template
+* `debugThis.queryVar` - the defined query string variable
 
 **Functions:**
 
