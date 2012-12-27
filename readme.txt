@@ -48,11 +48,11 @@ add_debug_extension(
 
 `
 add_debug_extension(
-	'actions', //Mode
-	__('Actions', 'debug-this'), //Menu Label
-	__('$wp_actions contains all active registered actions', 'debug-this'), //Description
-	'foo_callback', //Callback (accepts object methods)
-	'Filters And Actions' //Admin Bar Menu Group - default == 'General'
+	'actions',
+	__('Actions', 'debug-this'),
+	__('$wp_actions contains all active registered actions', 'debug-this'),
+	'foo_callback',
+	'Filters And Actions'
 );
 function foo_callback($buffer, $template){
 	global $wp_actions;
