@@ -12,7 +12,7 @@ This plugin gives WordPress super admins an easy way to peek under the hood of t
 == Description ==
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
 
-Forty-nine Debug modes are included. Here is a sample of the packed-in debug goodness:
+Forty-nine debug modes are included. Here is a sample of the packed-in debug goodness:
 
 * oEmbed providers
 * Post attachments
@@ -72,6 +72,7 @@ function foo_callback($mode){
 The `debugThis` object is defined for easy access the current mode, default mode, template file name, and defined debug query var.
 
 There are two functions available:
+
 * `isDebug()`
 * `getDebugMode()` - uses isDebug()
 
