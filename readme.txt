@@ -30,7 +30,7 @@ Forty-nine debug modes are included. Here is a sample of the packed-in debug goo
 
 How do I extend Debug This?
 
-= PHP =
+= Debug This Functions =
 
 New debug modes can be created easily:
 `add_debug_extension($mode, $menu_label, $description, $callback, $group = 'General');`
@@ -39,16 +39,11 @@ New debug modes can be created easily:
 
 `
 add_debug_extension(
-	//Mode
-	'actions',
-	//Menu Label
-	__('Actions', 'debug-this'),
-	//Description
-	__('$wp_actions contains all active registered actions', 'debug-this'),
-	//Callback (accepts object methods)
-	'foo_callback',
-	//Admin Bar Menu Group - default == 'General'
-	'Filters And Actions'
+	'actions', //Mode
+	__('Actions', 'debug-this'), //Menu Label
+	__('$wp_actions contains all active registered actions', 'debug-this'), //Description
+	'foo_callback', //Callback (accepts object methods)
+	'Filters And Actions' //Admin Bar Menu Group - default == 'General'
 );
 function foo_callback($buffer, $template){
 	global $wp_actions;
@@ -59,39 +54,49 @@ function foo_callback($buffer, $template){
 Extensions can be removed as well.
 `remove_debug_extension($mode);`
 
-The 'debug_this' WordPress hook outputs the debug code sent from the extension modes. Debug output is set to priority 5. This allows you to prepend or append any output without conflict.
+**No PRE Tags**
 
-`add_action('debug_this', 'foo_callback');
-function foo_callback($mode){
-	//Do Something
-}
-`
+If you don't want your debug output to be enclosed in PRE tags, simply set the following in your extension:
 
-Use the `debug_this_output` filter to alter the output of any mode before it renders.
+`Debug_This::$no_pre = true;`
 
-`add_filter('debug_this_output', 'foo_function', 1, 2);
-function foo_function($output, $mode){
-	return $output;
-}
-`
+= WP Actions =
+
+* debug_this - receives the $mode arg - outputs the debug code sent from the extension modes. The default action is set to priority 5. This allows you to prepend or append any output without conflict using less or greater priorities.
+
+= WP Filters =
+
+Tbere are a few filters you can use to customize Debug This to your needs:
+
+* debug_this_template - receives $template arg - Use your own template
+* debug_this_default_mode  - receives $mode arg - Alters the mode for the parent DT admin bar button link.
+* debug_this_output - receives $output, $mode args - Filter debug content before it's rendered
+
 
 = JavaScript =
 
-The `debugThis` object is defined for easy access the current mode, default mode, template file name, and defined debug query var.
+To access the built-in Debug This JS functionality, enqueue your custom script with the dependency set to `debug-this`. Your script will inherit a jQuery dependency.
 
-There are two functions available:
+**Object:**
+
+* debugThis.mode - current mode
+* debugThis.defaultMode
+* template - current included template
+* queryVar - the defined query string variable
+
+**Functions:**
 
 * `isDebug()`
 * `getDebugMode()` - uses `isDebug()`
 
-A jQuery hook is also available:
+**Events:**
+
+A jQuery `debug-this` event is fired from the footer. You can hook into this event with the following;
 `
 jQuery(document).bind('debug-this', function(event, debugThis){
 	console.log(debugThis);
 });
 `
-
-To use these functions enqueue your script with 'debug-this' as your dependency. Your script will inherit a jQuery dependency.
 
 == Changelog ==
 

@@ -9,7 +9,7 @@
 <div class='debug-this'>
 	<a href="/<?php global $wp; echo $wp->request;?>" class="escape">x</a>
 	<div class='debug'>
-		<?php do_action('debug_this');?>
+		<?php do_action('debug_this', Debug_This::$mode);?>
 	</div>
 	<?php wp_footer();?>
 </div>

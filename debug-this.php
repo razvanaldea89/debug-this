@@ -30,7 +30,7 @@ class Debug_This{
 	protected $buffer;
 	protected $debug;
 	protected $description;
-	protected $mode;
+	public static $mode;
 	protected $query_var = 'debug-this';
 	public static $no_pre = false;
 	protected $default_mode = 'wp_query';
@@ -54,7 +54,7 @@ class Debug_This{
 			add_filter('template_include', array($this, 'template_include'), 90210, 1);
 			add_filter('template_redirect', array($this, 'buffer_page'), 90210);
 			add_filter('query_vars', array($this, 'add_query_var'), 90210);
-			add_action('debug_this', array($this, 'debug'), $this->mode, 5);
+			add_action('debug_this', array($this, 'debug'), self::$mode, 5);
 		}
 	}
 
@@ -70,7 +70,7 @@ class Debug_This{
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('debug-this', plugins_url('_inc/js/debug-this.js', __FILE__), array('jquery'));
 		$l10n = array(
-			'mode'         => $this->mode,
+			'mode'         => self::$mode,
 			'defaultMode' => $this->default_mode,
 			'template'     => $this->original_template,
 			'queryVar'    => $this->query_var
@@ -87,7 +87,7 @@ class Debug_This{
 	public function template_include($template){
 		$this->original_template = $template;
 		$template = dirname(__FILE__).'/_inc/debug-template.php';
-		$template = apply_filters('debug-this-template', $template);
+		$template = apply_filters('debug_this_template', $template);
 		return $template;
 	}
 
@@ -99,7 +99,7 @@ class Debug_This{
 
 	protected function is_debug(){
 		if(isset($_GET[$this->query_var])){
-			$this->mode = $_GET[$this->query_var] ? $_GET[$this->query_var] : apply_filters('debug_this_default_mode', $this->default_mode);
+			self::$mode = $_GET[$this->query_var] ? $_GET[$this->query_var] : apply_filters('debug_this_default_mode', $this->default_mode);
 			return true;
 		}
 	}
@@ -114,10 +114,10 @@ class Debug_This{
 
 	public function debug(){
 		global $_debugger_extensions;
-		if(isset($_debugger_extensions[$this->mode]) && is_array($_debugger_extensions[$this->mode])){
-			$extension = $_debugger_extensions[$this->mode];
+		if(isset($_debugger_extensions[self::$mode]) && is_array($_debugger_extensions[self::$mode])){
+			$extension = $_debugger_extensions[self::$mode];
 			$this->debug = call_user_func($extension['callback'], $this->buffer, $this->original_template);
-			$this->debug = apply_filters('debug_this_output', $this->debug, $this->mode);
+			$this->debug = apply_filters('debug_this_output', $this->debug, self::$mode);
 			$this->description = $extension['description'];
 			$this->_render();
 		}
@@ -131,7 +131,7 @@ class Debug_This{
 
 	protected function _render(){
 		$description = $this->description ? ' - '. $this->description : '';
-		echo '<p>'.__('Debug This Mode', 'debug_this').': '.$this->mode.$description.'</p>';
+		echo '<p>'.__('Debug This Mode', 'debug_this').': '.self::$mode.$description.'</p>';
 		if(self::$no_pre)
 			echo $this->debug;
 		else
@@ -140,7 +140,7 @@ class Debug_This{
 
 	protected function include_example_extension(){
 		$output = file_get_contents(dirname(__FILE__).'/_inc/example-extension.txt');
-		$output = htmlentities(str_replace('$mode', $this->mode, $output));
+		$output = htmlentities(str_replace('$mode', self::$mode, $output));
 		$output = '<p>'.__('Example Debug Extension', 'debug-this').'</p>'.$output;
 		return $output;
 	}
