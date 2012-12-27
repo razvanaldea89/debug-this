@@ -33,7 +33,16 @@ How do I extend Debug This?
 = Debug This Functions =
 
 New debug modes can be created easily:
-`add_debug_extension($mode, $menu_label, $description, $callback, $group = 'General');`
+
+`
+add_debug_extension(
+	$mode,
+	$menu_label,
+	$description,
+	$callback,
+	$group = 'General'
+);
+`
 
 **Example**
 
