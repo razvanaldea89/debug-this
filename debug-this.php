@@ -35,6 +35,7 @@ class Debug_This{
 	public static $no_pre = false;
 	protected $default_mode = 'wp_query';
 	protected $original_template;
+	public static $execution_time;
 
 	public function __construct(){
 		if(
@@ -94,7 +95,11 @@ class Debug_This{
 	public function buffer_page(){
 		global $wp;
 		$url = get_bloginfo('url') . '/' . $wp->request;
+
+		$execution_time = microtime(true);
 		$this->buffer = file_get_contents($url);
+		$execution_time = microtime(true) - $execution_time;
+		self::$execution_time= $execution_time;
 	}
 
 	protected function is_debug(){
@@ -189,4 +194,19 @@ function remove_debug_extension($id){
 	global $_debugger_extensions;
 	if(isset($_debugger_extensions[$id]))
 		unset($_debugger_extensions[$id]);
+}
+
+function debug_this_get_file_ownership($file){
+	$stat = stat($file);
+	if($stat){
+		$group = posix_getgrgid($stat[5]);
+		$user = posix_getpwuid($stat[4]);
+		return compact('user', 'group');
+	}
+	else
+		return false;
+}
+
+function debug_this_get_file_perms($file){
+	return substr(sprintf('%o', fileperms($file)), -4);
 }
