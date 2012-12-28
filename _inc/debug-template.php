@@ -1,5 +1,7 @@
 <?php
 defined('ABSPATH') || die();
+
+#Render the entire page to buffer to process to log all actions and filters
 ob_start();?>
 <!doctype html>
 <head>
@@ -21,10 +23,12 @@ ob_start();?>
 $html = ob_get_contents();
 ob_get_clean();
 
-#Render the entire page to buffer to process to log all actions and filters
+#Render debug_this action buffer
 ob_start();
 do_action('debug_this', Debug_This::$mode);
 $debug = ob_get_contents();
 ob_get_clean();
+
+#Output HTML with included $debug markup
 $html = str_replace('%DEBUG%', $debug, $html);
 echo $html;
