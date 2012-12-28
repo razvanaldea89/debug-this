@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5UYFG
 Contributors: misternifty
 Tested up to: 3.5
 Requires at least: 3.5
-Stable Tag: 0.01
+Stable Tag: 0.02
 License: GPLv2 or later
 
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
@@ -109,9 +109,27 @@ jQuery(document).bind('debug-this', function(event, debugThis){
 });
 `
 
+= Helper Functions =
+
+There are three included functions to help you work with files.
+
+* `debug_this_get_file_ownership($file)` - returns `array('name' => $name, 'group' => $group)`
+* `debug_this_get_file_perms($file)` - returns string - Example: 0775
+* `debug_this_convert_perms_to_rwx($perms)` - returns string - converts permission number to RWX format - Example: 0755 folder becomes drwxr-xr-x
+
+
 == Changelog ==
 
+= 0.02 =
+
+* Added new debug modes: Apache modules, PHP loaded extensions, file permissions, php.ini, $_SERVER, and execution time.
+* Added three functions for getting file ownership and permissions
+	* `debug_this_get_file_ownership($file)`
+	* `debug_this_get_file_perms($file)`
+	* `debug_this_convert_perms_to_rwx($perms)`
+
 = 0.01 =
+
 * Debug This Creation
 
 == Installation ==
@@ -130,4 +148,4 @@ jQuery(document).bind('debug-this', function(event, debugThis){
 
 == Upgrade Notice ==
 
-Thanks for choosing the first iteration of Debug This!
+Added new debug modes: Apache modules, PHP loaded extensions, file permissions, php.ini, $_SERVER, and execution time.
