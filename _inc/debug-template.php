@@ -1,4 +1,6 @@
-<?php defined('ABSPATH') || die();?>
+<?php
+defined('ABSPATH') || die();
+ob_start();?>
 <!doctype html>
 <head>
 	<meta charset="utf-8">
@@ -9,9 +11,17 @@
 <div class='debug-this'>
 	<a href="/<?php global $wp; echo $wp->request;?>" class="escape">x</a>
 	<div class='debug'>
-		<?php do_action('debug_this', Debug_This::$mode);?>
+		%DEBUG%
 	</div>
 	<?php wp_footer();?>
 </div>
 </body>
 </html>
+<?php
+$html = ob_get_contents();
+ob_get_clean();
+
+#Render the entire page to buffer to process to log all actions and filters
+$debug = print_r(do_action('debug_this', Debug_This::$mode), true);
+$html = str_replace('%DEBUG%', $debug, $html);
+echo $html;
