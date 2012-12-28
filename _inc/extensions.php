@@ -12,7 +12,7 @@ class Debug_This_Extensions{
 		add_debug_extension('classes', __('Classes', 'debug-this'), __('Declared Classes', 'debug-this'), array($this, 'classes'), 'PHP');
 		add_debug_extension('cache', __('Object Cache', 'debug-this'), __('Object Cache stats', 'debug-this'), array($this, 'cache'), 'Cache');
 		add_debug_extension('constants', __('Constants', 'debug-this'), __('Defined Constants', 'debug-this'), array($this, 'constants'), 'PHP');
-		add_debug_extension('constants-wp', __('WordPress Constants', 'debug-this'), __('Defined WordPress Constants', 'debug-this'), array($this, 'constants_wordpress'), 'PHP');
+		add_debug_extension('constants-wp', __('Constants (WordPress)', 'debug-this'), __('Defined WordPress Constants', 'debug-this'), array($this, 'constants_wordpress'), 'PHP');
 		add_debug_extension('content-width', __('Content Width', 'debug-this'), __('global $content_width', 'debug-this'), array($this, 'content_width'), 'Themes');
 		add_debug_extension('context', __('Context', 'debug-this'), __('Conditional Context Tags', 'debug-this'), array($this, 'context'), 'Query');
 		add_debug_extension('cron-schedules', __('WP Cron Schedules', 'debug-this'), __('WP Cron Schedules', 'debug-this'), array($this, 'cron_schedules'), 'Cron');
@@ -172,7 +172,13 @@ class Debug_This_Extensions{
 	}
 
 	public function constants(){
-		$debug = print_r(get_defined_constants(), true);
+		$constants = get_defined_constants();
+		foreach($constants as $constant => $value)
+			if($value === false)
+				$constants[$constant] = '<span class="error">'.__('false', 'debug-this').'</span>';
+			elseif($value === '')
+				$constants[$constant] = '<span class="error">'.__('empty string', 'debug-this').'</span>';
+		$debug = print_r($constants, true);
 		return $debug;
 	}
 
