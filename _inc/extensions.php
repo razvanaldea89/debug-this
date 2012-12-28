@@ -4,6 +4,7 @@ if(!defined('ABSPATH')) die();
 class Debug_This_Extensions{
 	public function __construct(){
 		add_debug_extension('actions', __('Actions', 'debug-this'), __('$wp_actions contains all active registered actions', 'debug-this'), array($this, 'actions'), 'Filters And Actions');
+		add_debug_extension('apache', __('Apache Information', 'debug-this'), __('Apache version and list of modules', 'debug-this'), array($this, 'apache'), 'Server');
 		add_debug_extension('attachments', __('Attachments', 'debug-this'), __('List of post attachments', 'debug-this'), array($this, 'attachments'), 'Media');
 		add_debug_extension('author', __('Post Author', 'debug-this'), __('Current author data', 'debug-this'), array($this, 'author'), 'Users');
 		add_debug_extension('backtrace', __('Backtrace', 'debug-this'), __('PHP Backtrace', 'debug-this'), array($this, 'backtrace'), 'PHP');
@@ -17,17 +18,21 @@ class Debug_This_Extensions{
 		add_debug_extension('cron-jobs', __('WP Cron Jobs', 'debug-this'), __('WP Cron Jobs', 'debug-this'), array($this, 'cron_jobs'), 'Cron');
 		add_debug_extension('css', __('CSS', 'debug-this'), __('Rendered CSS', 'debug-this'), array($this, 'css'), 'Rendered HTML');
 		add_debug_extension('dropins', __('Dropins', 'debug-this'), __('List of all dropins that replace core WP functionality', 'debug-this'), array($this, 'dropins'), 'Plugins');
+		add_debug_extension('php-extensions', __('Extensions', 'debug-this'), __('List of all loaded PHP extensions', 'debug-this'), array($this, 'extensions'), 'PHP');
+		add_debug_extension('file-permissions', __('File Permissions', 'debug-this'), __('Info about WP root, plugins and theme directories.', 'debug-this'), array($this, 'file_permissions'), 'Server');
 		add_debug_extension('files', __('Files', 'debug-this'), __('All required and included files', 'debug-this'), array($this, 'files'), 'PHP');
 		add_debug_extension('filters', __('Filters', 'debug-this'), __('$wp_filter contains all registered filters. Callback functions are contained in parentheses', 'debug-this'), array($this, 'filters'), 'Filters And Actions');
 		add_debug_extension('functions', __('Functions', 'debug-this'), __('All defined user functions', 'debug-this'), array($this, 'functions'), 'PHP');
 		add_debug_extension('images', __('Images', 'debug-this'), __('Rendered images on the current page/post', 'debug-this'), array($this, 'images'), 'Rendered HTML');
 		add_debug_extension('imagesizes', __('Image Sizes', 'debug-this'), __('All registered image sizes. Uses get_intermediate_image_sizes() & global $_wp_additional_image_sizes', 'debug-this'), array($this, 'imagesizes'), 'Media');
 		add_debug_extension('js', __('JavaScript', 'debug-this'), __('Rendered JS', 'debug-this'), array($this, 'js'), 'Rendered HTML');
+		add_debug_extension('load-time', __('Load Time', 'debug-this'), __('Page load time', 'debug-this'), array($this, 'load_time'), 'PHP');
 		add_debug_extension('menus', __('Registered Menus', 'debug-this'), __('All registered menus', 'debug-this'), array($this, 'menus'), 'Menus');
-		add_debug_extension('menus_dyanmic', __('Dynamic Menus', 'debug-this'), __('Dynamic Menus and Locations', 'debug-this'), array($this, 'menus_dynamic'), 'Menus');
+		add_debug_extension('menus_dynamic', __('Dynamic Menus', 'debug-this'), __('Dynamic Menus and Locations', 'debug-this'), array($this, 'menus_dynamic'), 'Menus');
 		add_debug_extension('oembed', __('oEmbed', 'debug-this'), __('Registered oEmbed providers', 'debug-this'), array($this, 'oembed'), 'Media');
 		add_debug_extension('options', __('Options', 'debug-this'), __('A list of all autoloaded options', 'debug-this'), array($this, 'options'));
-		add_debug_extension('phpinfo', __('PHP Information', 'debug-this'), __('phpinfo()', 'debug-this'), array($this, 'phpinfo'), 'PHP');
+		add_debug_extension('phpinfo', __('phpinfo()', 'debug-this'), __('phpinfo()', 'debug-this'), array($this, 'phpinfo'), 'PHP');
+		add_debug_extension('phpini', __('php.ini', 'debug-this'), __('php.ini configuration', 'debug-this'), array($this, 'phpini'), 'PHP');
 		add_debug_extension('plugins', __('Plugins', 'debug-this'), __('A list of all plugins', 'debug-this'), array($this, 'plugins'), 'Plugins');
 		add_debug_extension('post', __('Queried Object', 'debug-this'), __('Single post object', 'debug-this'), array($this, 'post'), 'Query');
 		add_debug_extension('posts', __('Post Objects', 'debug-this'), __('Archive post objects', 'debug-this'), array($this, 'posts'), 'Query');
@@ -37,6 +42,7 @@ class Debug_This_Extensions{
 		add_debug_extension('request', __('Request', 'debug-this'), __('Current request', 'debug-this'), array($this, 'request'), 'Query');
 		add_debug_extension('rewrites', __('Rewrites', 'debug-this'), __('A list of all cached rewrites. To refresh the cache, visit Settings->Permalinks', 'debug-this'), array($this, 'rewrites'), 'Query');
 		add_debug_extension('scripts', __('Scripts', 'debug-this'), __('List of registered scripts. Uses $wp_scripts', 'debug-this'), array($this, 'scripts'), 'Enqueue');
+		add_debug_extension('server', __('$_SERVER', 'debug-this'), __('$_SERVER information', 'debug-this'), array($this, 'server'), 'Server');
 		add_debug_extension('shortcodes', __('Shortcodes', 'debug-this'), __('List of all registered shortcodes', 'debug-this'), array($this, 'shortcodes'), 'Shortcodes');
 		add_debug_extension('shortcodes-regex', __('Shortcodes Regex', 'debug-this'), __('Dynamically generated shortcode regex - get_shortcode_regex()', 'debug-this'), array($this, 'shortcodes_regex'), 'Shortcodes');
 		add_debug_extension('sidebars-current', __('Current Sidebars', 'debug-this'), __('All instances of get_sidebar() and dynamic_sidebar() in the current template', 'debug-this'), array($this, 'sidebars_rendered'), 'Sidebar');
@@ -72,7 +78,8 @@ class Debug_This_Extensions{
 		$attachments = get_children($args);
 		if($attachments){
 			foreach($attachments as $attachment){
-				$debug .= "<h3 class='emphasize'>$attachment->post_title</h3><ul>";
+				$title = $attachment->post_title ? $attachment->post_title : __('No Title', 'debug-this');
+				$debug .= "<h3 class='emphasize'>$title</h3><ul>";
 				$debug .= '<li>'.sprintf(__('ID: %s', 'debug-this'), $attachment->ID).'</li>';
 				$debug .= '<li>'.sprintf(__('Mime Type: %s', 'debug-this'), $attachment->post_mime_type).'</li>';
 				$url = wp_get_attachment_url($attachment->ID);
@@ -85,6 +92,19 @@ class Debug_This_Extensions{
 		else
 			$debug = __('No attachments found.', 'debug-this');
 
+		return $debug;
+	}
+
+	public function apache(){
+		if(!preg_match('/[Aa]pache/', $_SERVER["SERVER_SOFTWARE"]))
+			return __('This extension only works on Apache.', 'debug-this');
+
+		$debug = '<h3 class="emphasize">'.__('Version', 'debug-this').'</h3>';
+		$debug .= apache_get_version();
+		$debug .= '<h3 class="emphasize">'.__('Modules', 'debug-this').'</h3>';
+		$debug .= print_r(apache_get_modules(), true);
+		if(!$debug)
+			$debug = __("No modules were found. This could be a symptom of running PHP as CGI.", 'debug-this');
 		return $debug;
 	}
 
@@ -228,6 +248,107 @@ class Debug_This_Extensions{
 		return $debug;
 	}
 
+	public function extensions(){
+		$debug = print_r(get_loaded_extensions(), true);
+		return $debug;
+	}
+
+	public function file_permissions(){
+
+		if(!preg_match('/[Aa]pache/', $_SERVER["SERVER_SOFTWARE"]))
+			return __('This extension has only been tested on Apache.', 'debug-this');
+
+		function debug_this_convert_to_rwx($perms, $file){
+			$rwx = array(
+				'---',
+				'--x',
+				'-w-',
+				'-wx',
+				'r--',
+				'r-x',
+				'rw-',
+				'rwx'
+			);
+			$type = is_dir($file) ? 'd' : '-';
+			$user = $perms[1];
+			$group = $perms[2];
+			$public = $perms[3];
+
+			return $type.$rwx[$user].$rwx[$group].$rwx[$public];
+
+		}
+
+		function debug_this_file_info($file, $recommended_perms, $current){
+			$output .= "<h3 class='emphasize'>$file</h3>";
+			$perms = debug_this_get_file_perms($file);
+			if($perms){
+				$rwx = debug_this_convert_to_rwx($perms, $file);
+				if($perms !== $recommended_perms)
+					$perms_output = '<span class="error">'.sprintf(__('%s %s Recommended: %s - To change, run: chmod %s %s', 'debug-this'), $perms, $rwx, $recommended_perms, $recommended_perms, $file)."</span>";
+				$perms .= " $rwx";
+				$output .= sprintf(__('Permissions: %s', 'debug-this'), $perms_output ? $perms_output : $perms)."\n";
+			}
+
+			$own = debug_this_get_file_ownership($file);
+			if($own){
+				$user_perm = $perms[1];
+				$group_perm = $perms[2];
+				if($current['user']['name'] === $own['user']['name'] && (int)$user_perm < 4)
+					$user = "<span class='error'>{$own['user']['name']}</span>";
+				else
+					$user = "<span class='okay'>{$own['user']['name']}</span>";
+
+				if($current['group']['name'] === $own['group']['name'] && (int)$group_perm < 4)
+					$group = "<span class='error'>{$own['group']['name']}</span>";
+				else
+					$group = "<span class='okay'>{$own['group']['name']}</span>";
+
+				if($current['group']['name'] !== $own['group']['name'] && $current['user']['name'] !== $own['user']['name'])
+					$output .= '<span class="error">'.__('The current WordPress user might not have access to this file/folder.', 'debug-this')."</span>\n";
+
+				$output .= sprintf(__('Owner/Group: %s:%s', 'debug-this'), $user, $group)."\n";
+			}
+
+			return $output;
+		}
+
+		$user = posix_getpwuid(getmyuid());
+		$group = posix_getgrgid(getmygid());
+		$current_user = compact('user', 'group');
+
+		$debug = '<h3 class="emphasize">'.__('WordPress User', 'debug-this').'</h3>';
+		$debug .= sprintf(__('User: %s', 'debug-this'), $user['name'])."\n";
+		$debug .= sprintf(__('Group: %s', 'debug-this'), $group['name']);
+
+		$debug .= debug_this_file_info(ABSPATH, '0755', $current_user);
+		if(file_exists(ABSPATH.'.htaccess'))
+			$debug .= debug_this_file_info(ABSPATH.'.htaccess', '0604', $current_user);
+
+		if(file_exists(ABSPATH.'php.ini'))
+			$debug .= debug_this_file_info(ABSPATH.'php.ini', '0600', $current_user);
+
+		if(file_exists(ABSPATH.'wp-config.php'))
+			$debug .= debug_this_file_info(ABSPATH.'wp-config.php', '0600', $current_user);
+		else{
+			$parts = explode('/', trim(ABSPATH, '/'));
+			array_pop($parts);
+			$one_below = '/'.implode('/', $parts).'/wp-config.php';
+			if(file_exists($one_below))
+				$debug .= debug_this_file_info($one_below, '0600', $current_user);
+			else{
+				$debug .= "<h3 class='emphasize error'>wp-config.php</h3>";
+				$debug .= '<span class="error">'.__("Couldn't find wp-config.php!", 'debug-this').'</span>';
+			}
+		}
+
+		$debug .= debug_this_file_info(WP_CONTENT_DIR, '0755', $current_user);
+		$debug .= debug_this_file_info(WP_PLUGIN_DIR, '0755', $current_user);
+		$debug .= debug_this_file_info(get_theme_root(), '0755', $current_user);
+		$uploads = wp_upload_dir();
+		$debug .= debug_this_file_info($uploads['basedir'], '0755', $current_user);
+		return $debug;
+	}
+
 	public function files(){
 		$debug .= '<h3>'.__('Required Files', 'debug-this').'</h3>';
 		$debug .= print_r(get_required_files(), true);
@@ -279,6 +400,14 @@ class Debug_This_Extensions{
 		return $debug;
 	}
 
+	public function load_time($buffer, $template){
+		global $wp;
+		$debug .= sprintf(__('Template: %s', 'debug-this'), $template)."\n";
+		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('home').'/'.$wp->request)."\n";
+		$debug .= sprintf(__('Execution Time: %s', 'debug-this'), Debug_This::$execution_time . ' ' .__('seconds', 'debug-this'));
+		return $debug;
+	}
+
 	public function menus(){
 		$debug .= print_r(get_registered_nav_menus(), true);
 		return $debug;
@@ -302,7 +431,7 @@ class Debug_This_Extensions{
 	}
 
 	public function options(){
-		$debug = print_r(wp_load_alloptions(), true);
+		$debug = htmlentities(print_r(wp_load_alloptions(), true));
 		return $debug;
 	}
 
@@ -312,6 +441,11 @@ class Debug_This_Extensions{
 		$debug = ob_get_contents();
 		ob_end_clean();
 		Debug_This::$no_pre = true;
+		return $debug;
+	}
+
+	public function phpini(){
+		$debug = print_r(ini_get_all(), true);
 		return $debug;
 	}
 
@@ -403,6 +537,11 @@ class Debug_This_Extensions{
 		return $debug;
 	}
 
+	public function server(){
+		$debug = print_r($_SERVER, true);
+		return $debug;
+	}
+
 	public function shortcodes(){
 		global $shortcode_tags;
 		$debug = htmlentities(print_r($shortcode_tags, true));
@@ -479,9 +618,9 @@ class Debug_This_Extensions{
 			foreach($taxonomies as $taxonomy){
 				$terms = wp_get_post_terms($post->ID, $taxonomy);
 				if($terms){
-					$debug .= "<h3>$taxonomy</h3><ul>";
+					$debug .= "<h3 class='emphasize'>$taxonomy</h3><ul>";
 					foreach($terms as $term)
-						$debug .= '<li>'.sprintf(__('Term ID #%s - %s - $s', 'debug-this'), $term->term_id, $term->slug, $term->name).'</li>';
+						$debug .= '<li>'.sprintf(__('Term ID #%s - %s - %s', 'debug-this'), $term->term_id, $term->slug, $term->name).'</li>';
 					$debug .= '</ul>';
 				}
 			}
