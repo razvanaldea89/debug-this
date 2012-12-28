@@ -258,31 +258,11 @@ class Debug_This_Extensions{
 		if(!preg_match('/[Aa]pache/', $_SERVER["SERVER_SOFTWARE"]))
 			return __('This extension has only been tested on Apache.', 'debug-this');
 
-		function debug_this_convert_to_rwx($perms, $file){
-			$rwx = array(
-				'---',
-				'--x',
-				'-w-',
-				'-wx',
-				'r--',
-				'r-x',
-				'rw-',
-				'rwx'
-			);
-			$type = is_dir($file) ? 'd' : '-';
-			$user = $perms[1];
-			$group = $perms[2];
-			$public = $perms[3];
-
-			return $type.$rwx[$user].$rwx[$group].$rwx[$public];
-
-		}
-
 		function debug_this_file_info($file, $recommended_perms, $current){
 			$output .= "<h3 class='emphasize'>$file</h3>";
 			$perms = debug_this_get_file_perms($file);
 			if($perms){
-				$rwx = debug_this_convert_to_rwx($perms, $file);
+				$rwx = debug_this_convert_perms_to_rwx($perms, $file);
 				if($perms !== $recommended_perms)
 					$perms_output = '<span class="error">'.sprintf(__('%s %s Recommended: %s - To change, run: chmod %s %s', 'debug-this'), $perms, $rwx, $recommended_perms, $recommended_perms, $file)."</span>";
 				$perms .= " $rwx";

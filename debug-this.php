@@ -210,3 +210,23 @@ function debug_this_get_file_ownership($file){
 function debug_this_get_file_perms($file){
 	return substr(sprintf('%o', fileperms($file)), -4);
 }
+
+function debug_this_convert_perms_to_rwx($perms, $file){
+	$rwx = array(
+		'---',
+		'--x',
+		'-w-',
+		'-wx',
+		'r--',
+		'r-x',
+		'rw-',
+		'rwx'
+	);
+	$type = is_dir($file) ? 'd' : '-';
+	$user = $perms[1];
+	$group = $perms[2];
+	$public = $perms[3];
+
+	return $type.$rwx[$user].$rwx[$group].$rwx[$public];
+
+}
