@@ -12,6 +12,9 @@ h3{
 .error{
 	color:red;
 }
+.okay{
+	color:green;
+}
 .emphasize{
 	background:#2467ac;
 	color:#fff;
