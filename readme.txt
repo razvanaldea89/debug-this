@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5UYFG
 Contributors: misternifty
 Tested up to: 3.5
 Requires at least: 3.5
-Stable Tag: 0.02
+Stable Tag: 0.2.1
 License: GPLv2 or later
 
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.

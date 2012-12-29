@@ -3,7 +3,7 @@
 Plugin Name: Debug This
 Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
 Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
-Version: 0.2
+Version: 0.2.1
 Author: Brian Fegter
 Author URI: http://coderrr.com
 License: GPLv2 or Later
@@ -184,7 +184,7 @@ class Debug_This{
 	}
 
 }
-add_action('init', 'debug_this_init');
+add_action('init', 'debug_this_init', 0);
 function debug_this_init(){
 	new Debug_This;
 }
@@ -235,7 +235,5 @@ function debug_this_convert_perms_to_rwx($perms, $file){
 	$user = $perms[1];
 	$group = $perms[2];
 	$public = $perms[3];
-
 	return $type.$rwx[$user].$rwx[$group].$rwx[$public];
-
 }
