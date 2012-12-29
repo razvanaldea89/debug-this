@@ -31,7 +31,7 @@ Debug This helps you minimize effort when trying to surface WP/PHP/Server data. 
 tests for small functionality, you can simply surface what you need right from the admin bar. If there's not a debug mode that addresses your need,
 create one with the functional Debug This API.
 
-To extend Debug This for your own needs, please see the [Extend section](http://wordpress.org/extend/plugins/debug-this/extend/).
+To extend Debug This for your own needs, please see the [Extend section](http://wordpress.org/extend/plugins/debug-this/other_notes/).
 
 == Frequently Asked Questions ==
 
@@ -53,7 +53,7 @@ localized for the greater good. If that is the case, I will help guide you how t
 
 **Can I alter the plugin or build my own debug modes?**
 
-Yes! Visit the [Extend section](http://wordpress.org/extend/plugins/debug-this/extend) to find out how you can thoroughly extend Debug This for your own needs.
+Yes! Visit the [Extend section](http://wordpress.org/extend/plugins/debug-this/other_notes) to find out how you can thoroughly extend Debug This for your own needs.
 
 **Why did you build Debug This?**
 
