@@ -148,4 +148,4 @@ There are three included functions to help you work with files.
 
 == Upgrade Notice ==
 
-Added new debug modes: Apache modules, PHP loaded extensions, file permissions, php.ini, $_SERVER, and execution time.
+Critical fix for PHP <= 5.2 Removed anonymous functions. Fixed undefined $debug notices for all versions.
