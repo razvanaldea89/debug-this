@@ -61,10 +61,6 @@ class Debug_This_Extensions{
 		add_debug_extension('wp-debug', __('WP Debug'), __('Displays a list of notices rendered by WP_DEBUG mode', 'debug-this'), array($this, 'wp_debug'), 'PHP');
 		add_debug_extension('wp_query', __('WP_Query'), __('Current WP_Query object - global $wp_query', 'debug-this'), array($this, 'wp_query'), 'Query');
 		add_debug_extension('help', __('Debug This Menu', 'debug-this'), __('Modes Navigation', 'debug-this'), array($this, 'help'));
-		add_action('all', function(){
-			global $debug_this_current_filter;
-			$debug_this_current_filter[] = current_filter();
-		});
 	}
 
 	public function actions(){

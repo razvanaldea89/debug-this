@@ -52,6 +52,7 @@ class Debug_This{
 			&& $this->is_debug()
 			&& !is_admin()
 		){
+			add_action('all', array($this, 'log_current_filters_and_actions'));
 			add_filter('template_include', array($this, 'template_include'), 90210, 1);
 			add_filter('template_redirect', array($this, 'buffer_page'), 90210);
 			add_filter('query_vars', array($this, 'add_query_var'), 90210);
@@ -177,8 +178,16 @@ class Debug_This{
 		return $grouped;
 	}
 
+	public function log_current_filters_and_actions(){
+		global $debug_this_current_filter;
+		$debug_this_current_filter[] = current_filter();
+	}
+
 }
-add_action('init', function(){new Debug_This;});
+add_action('init', 'debug_this_init');
+function debug_this_init(){
+	new Debug_This;
+}
 
 function add_debug_extension($id, $name, $description, $callback, $group = 'General'){
 	global $_debugger_extensions;
