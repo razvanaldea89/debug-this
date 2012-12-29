@@ -25,12 +25,43 @@ Forty-nine debug modes are included. Here is a sample of the packed-in debug goo
 * Post types
 * Menus, Widgets, Sidebars
 * Rendered page analysis (CSS, JS, Images)
+* Many more!
 
-For advanced usage see the [FAQ](http://wordpress.org/extend/plugins/debug-this/faq/).
+Debug This helps you minimize effort when trying to surface WP/PHP/Server data. Instead of hardcoding debug snippets or writing complex unit
+tests for small functionality, you can simply surface what you need right from the admin bar. If there's not a debug mode that addresses your need,
+create one with the functional Debug This API.
+
+To extend Debug This for your own needs, please see the [Extend section](http://wordpress.org/extend/plugins/debug-this/extend/).
 
 == Frequently Asked Questions ==
 
-How do I extend Debug This?
+**How do I use Debug This?**
+
+1. Make sure the admin bar is enabled in your user profile for the front-facing view of your website.
+2. Visit any page/post/archive on your website and you will see a Debug This menu item on the admin bar.
+
+
+**What PHP version is this compatible with?**
+
+We've tested on PHP >= 5.2.17
+
+**Can we request new debug modes?**
+
+Certainly! Please visit the plugin's main website and use the contact form there. I reserve the right to deny any requests that are too
+localized for the greater good. If that is the case, I will help guide you how to build your own debug mode.
+
+
+**Can I alter the plugin or build my own debug modes?**
+
+Yes! Visit the [Extend section](http://wordpress.org/extend/plugins/debug-this/extend) to find out how you can thoroughly extend Debug This for your own needs.
+
+**Why did you build Debug This?**
+
+I was working on a large collaborative project with 20+ developers and I got weary of debugging leftover debug code.
+I wanted a way to surface the data we needed without having to hardcode debugging code. Debug This keeps assurances that no debug code makes it up to a production environment.
+
+
+== Extend ==
 
 = Debug This Functions =
 
