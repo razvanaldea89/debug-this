@@ -277,7 +277,8 @@ class Debug_This_Extensions{
 	}
 
 	public function css($buffer, $template){
-		global $css;
+		//Make backwards compatible for no pretty permalinks
+		global $wp;
 		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
 		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
 		$debug .= '<h3 class="emphasize">'.__('Stylesheets', 'debug-this').'</h3>';
@@ -434,6 +435,7 @@ class Debug_This_Extensions{
 	}
 
 	public function js($buffer, $template){
+		//make backwards compatible for no permalinks
 		global $wp;
 		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
 		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
@@ -444,6 +446,7 @@ class Debug_This_Extensions{
 	}
 
 	public function load_time($buffer, $template){
+		//make backwards compatible for no permalinks
 		global $wp;
 		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
 		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
