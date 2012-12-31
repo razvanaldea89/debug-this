@@ -29,7 +29,7 @@ class Debug_This_Extensions{
 		add_debug_extension('images', __('Images', 'debug-this'), __('Rendered images on the current page/post', 'debug-this'), array($this, 'images'), 'Rendered HTML');
 		add_debug_extension('imagesizes', __('Image Sizes', 'debug-this'), __('All registered image sizes. Uses get_intermediate_image_sizes() & global $_wp_additional_image_sizes', 'debug-this'), array($this, 'imagesizes'), 'Media');
 		add_debug_extension('js', __('JavaScript', 'debug-this'), __('Rendered JS', 'debug-this'), array($this, 'js'), 'Rendered HTML');
-		add_debug_extension('load-time', __('Load Time', 'debug-this'), __('Page load time', 'debug-this'), array($this, 'load_time'), 'PHP');
+		add_debug_extension('load-time', __('Load Time', 'debug-this'), __('True page load time (sans Debug This)', 'debug-this'), array($this, 'load_time'), 'Rendered HTML');
 		add_debug_extension('menus', __('Registered Menus', 'debug-this'), __('All registered menus', 'debug-this'), array($this, 'menus'), 'Menus');
 		add_debug_extension('menus_dynamic', __('Dynamic Menus', 'debug-this'), __('Dynamic Menus and Locations', 'debug-this'), array($this, 'menus_dynamic'), 'Menus');
 		add_debug_extension('oembed', __('oEmbed', 'debug-this'), __('Registered oEmbed providers', 'debug-this'), array($this, 'oembed'), 'Media');
@@ -41,7 +41,7 @@ class Debug_This_Extensions{
 		add_debug_extension('posts', __('Post Objects', 'debug-this'), __('Archive post objects', 'debug-this'), array($this, 'posts'), 'Query');
 		add_debug_extension('post-types', __('All Post Types', 'debug-this'), __('Lists all registered post types in WordPress', 'debug-this'), array($this, 'posttypes'), 'Post Types');
 		add_debug_extension('post-type-current', __('Current Post Type', 'debug-this'), __('Post type for the queried object', 'debug-this'), array($this, 'posttype_current'), 'Post Types');
-		add_debug_extension('queries', __('Saved Queries', 'debug-this'), __('All queries run on this page load', 'debug-this'), array($this, 'queries'), 'Query');
+		add_debug_extension('queries', __('Saved Queries', 'debug-this'), __('All queries run on the current page load (sans Debug This)', 'debug-this'), array($this, 'queries'), 'Query');
 		add_debug_extension('request', __('Request', 'debug-this'), __('Current request', 'debug-this'), array($this, 'request'), 'Query');
 		add_debug_extension('rewrites', __('Rewrites', 'debug-this'), __('A list of all cached rewrites. To refresh the cache, visit Settings->Permalinks', 'debug-this'), array($this, 'rewrites'), 'Query');
 		add_debug_extension('scripts', __('Scripts', 'debug-this'), __('List of registered scripts. Uses $wp_scripts', 'debug-this'), array($this, 'scripts'), 'Enqueue');
@@ -276,9 +276,13 @@ class Debug_This_Extensions{
 		return $debug;
 	}
 
-	public function css($buffer){
+	public function css($buffer, $template){
+		global $css;
+		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
+		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
+		$debug .= '<h3 class="emphasize">'.__('Stylesheets', 'debug-this').'</h3>';
 		preg_match_all('/(http.+\.css)/', $buffer, $matches);
-		$debug = print_r($matches[0], true);
+		$debug .= print_r($matches[0], true);
 		return $debug;
 	}
 
@@ -409,7 +413,7 @@ class Debug_This_Extensions{
 
 	public function functions(){
 		$functions = get_defined_functions();
-		$debug = print_r($functions['user'], true);
+		$debug     = print_r($functions['user'], true);
 		return $debug;
 	}
 
@@ -429,16 +433,20 @@ class Debug_This_Extensions{
 		return $debug;
 	}
 
-	public function js($buffer){
+	public function js($buffer, $template){
+		global $wp;
+		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
+		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
+		$debug .= '<h3 class="emphasize">'.__('JavaScript Files', 'debug-this').'</h3>';
 		preg_match_all('/(http.+\.js)/', $buffer, $matches);
-		$debug = print_r($matches[0], true);
+		$debug .= print_r($matches[0], true);
 		return $debug;
 	}
 
 	public function load_time($buffer, $template){
 		global $wp;
 		$debug = sprintf(__('Template: %s', 'debug-this'), $template)."\n";
-		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('home').'/'.$wp->request)."\n";
+		$debug .= sprintf(__('URL: %s', 'debug-this'), get_bloginfo('url').'/'.$wp->request)."\n";
 		$debug .= sprintf(__('Execution Time: %s', 'debug-this'), Debug_This::$execution_time . ' ' .__('seconds', 'debug-this'));
 		return $debug;
 	}
@@ -529,9 +537,8 @@ class Debug_This_Extensions{
 	}
 
 	public function queries(){
-		global $wpdb;
-		if($wpdb->queries)
-			$debug = htmlentities(print_r($wpdb->queries, true));
+		if(Debug_This::$queries)
+			$debug = print_r(Debug_This::$queries, true);
 		else
 			$debug = '<span class="error">'.__('Please set define("SAVEQUERIES", true); in wp-config.php to see saved queries. Please disable when completed as this can be a large performance hit.', 'debug-this').'</span>';
 		return $debug;
