@@ -135,26 +135,26 @@ class Debug_This_Extensions{
 	public function bloginfo(){
 		global $wp_version;
 		$bloginfo = array(
-			'url' => home_url(),
-			'wpurl' => site_url(),
-			'description' => get_option('blogdescription'),
-			'rdf_url' => get_feed_link('rdf'),
-			'rss_url' => get_feed_link('rss'),
-			'rss2_url' => get_feed_link('rss2'),
-			'atom_url' => get_feed_link('atom'),
-			'comments_atom_url' => get_feed_link('comments_atom'),
-			'comments_rss2_url' => get_feed_link('comments_rss2'),
-			'pingback_url' => get_option('siteurl') .'/xmlrpc.php',
-			'stylesheet_url' => get_stylesheet_uri(),
-			'stylesheet_directory' => get_stylesheet_directory_uri(),
-			'template_directory' => '',
-			'template_url' => get_template_directory_uri(),
-			'admin_email' => get_option('admin_email'),
-			'charset' => get_option('blog_charset') ? get_option('blog_charset') : 'UTF-8',
-			'html_type' => get_option('html_type'),
-			'version' => $wp_version,
-			'language' => str_replace('_', '-', get_locale()),
-			'name' => get_option('blogname')
+			'url' => get_bloginfo('url'),
+			'wpurl' => get_bloginfo('wpurl'),
+			'description' => get_bloginfo('description'),
+			'rdf_url' => get_bloginfo('rdf_url'),
+			'rss_url' => get_bloginfo('rss_url'),
+			'rss2_url' => get_bloginfo('rss2_url'),
+			'atom_url' => get_bloginfo('atom_url'),
+			'comments_atom_url' => get_bloginfo('comments_atom_url'),
+			'comments_rss2_url' => get_bloginfo('comments_rss2_url'),
+			'pingback_url' => get_bloginfo('pingback_url'),
+			'stylesheet_url' => get_bloginfo('stylesheet_url'),
+			'stylesheet_directory' => get_bloginfo('stylesheet_directory'),
+			'template_directory' => get_bloginfo('template_directory'),
+			'template_url' => get_bloginfo('template_url'),
+			'admin_email' => get_bloginfo('admin_email'),
+			'charset' => get_bloginfo('charset'),
+			'html_type' => get_bloginfo('html_type'),
+			'version' => get_bloginfo('version'),
+			'language' => get_bloginfo('language'),
+			'name' => get_bloginfo('name')
 		);
 		$debug = print_r($bloginfo, true);
 		return $debug;
