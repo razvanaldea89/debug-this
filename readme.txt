@@ -3,8 +3,8 @@ Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, de
 Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5UYFG5FV4VA42&lc=US&item_name=Debug%20This%20WordPress%20Plugin%20Development&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
 Contributors: misternifty
 Tested up to: 3.5
-Requires at least: 3.5
-Stable Tag: 0.2.1
+Requires at least: 3.3
+Stable Tag: 0.2.2
 License: GPLv2 or later
 
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
@@ -151,6 +151,15 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.2.2 =
+
+* Added backwards compatibility to 3.3.
+* Added support for no pretty permalinks.
+
+= 0.2.1 =
+
+Critical fix for PHP <= 5.2 Removed anonymous functions. Fixed undefined $debug notices for all versions.
+
 = 0.02 =
 
 * Added new debug modes: Apache modules, PHP loaded extensions, file permissions, php.ini, $_SERVER, and execution time.
@@ -179,4 +188,4 @@ There are three included functions to help you work with files.
 
 == Upgrade Notice ==
 
-Critical fix for PHP <= 5.2 Removed anonymous functions. Fixed undefined $debug notices for all versions.
+Added backwards compatibility to 3.3. Added support for no pretty permalinks.
