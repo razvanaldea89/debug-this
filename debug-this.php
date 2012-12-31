@@ -167,14 +167,18 @@ class Debug_This{
 
 		$url = get_bloginfo('url') . '/' . $wp->request . "?$query_string";
 
-		#Send auth headers for remote fetch
+		#Set auth headers for remote fetch
 		$cookie_string = '';
 		foreach($_COOKIE as $k => $v)
 			$cookie_string .= $k . '=' . urlencode($v) . '; ';
 		$cookie_string = trim($cookie_string, '; ');
-		$context = stream_context_create(array('http' => array('header'  => "Cookie: $cookie_string")));
+		$headers = array(
+			'Cookie' => $cookie_string
+		);
 
-		$buffer = file_get_contents($url, false, $context);
+		$http = new WP_Http;
+		$response = $http->request($url, array('method' => 'GET', 'headers' => $headers));
+		$buffer = $response['body'];
 
 		preg_match('/%DEBUG_TIME%(.+)%\/DEBUG_TIME%/', $buffer, $matches);
 		self::$execution_time = $matches[1];
