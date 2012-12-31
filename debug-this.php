@@ -36,16 +36,20 @@ class Debug_This{
 	protected $default_mode = 'wp_query';
 	protected $original_template;
 	public static $execution_time;
+	public static $queries;
+	protected $nonce_action = 'dEbUg-ThIs';
 
 	public function __construct(){
 		if(
 			$this->is_user_permitted()
 			&& !is_admin()
 		){
+			include_once dirname(__FILE__).'/_inc/extensions.php';
+			add_filter('query_vars', array($this, 'add_query_var'), 90210);
 			add_action('plugins_loaded', array($this, 'load_textdomain'));
 			add_action('wp_enqueue_scripts', array($this, 'enqueue'), 90210);
 			add_action('admin_bar_menu', array($this, 'admin_bar'), 90210);
-			include_once dirname(__FILE__).'/_inc/extensions.php';
+			add_action('shutdown', array($this, 'render_fetch_data'), 90210);
 		}
 		if(
 			$this->is_user_permitted()
@@ -55,7 +59,6 @@ class Debug_This{
 			add_action('all', array($this, 'log_current_filters_and_actions'));
 			add_filter('template_include', array($this, 'template_include'), 90210, 1);
 			add_filter('template_redirect', array($this, 'buffer_page'), 90210);
-			add_filter('query_vars', array($this, 'add_query_var'), 90210);
 			add_action('debug_this', array($this, 'debug'), self::$mode, 5);
 		}
 	}
@@ -72,9 +75,9 @@ class Debug_This{
 		wp_enqueue_script('jquery');
 		wp_enqueue_script('debug-this', plugins_url('_inc/js/debug-this.js', __FILE__), array('jquery'));
 		$l10n = array(
-			'mode'         => self::$mode,
+			'mode'        => self::$mode,
 			'defaultMode' => $this->default_mode,
-			'template'     => $this->original_template,
+			'template'    => $this->original_template,
 			'queryVar'    => $this->query_var
 		);
 		wp_localize_script('debug-this', 'debugThis', $l10n);
@@ -83,6 +86,10 @@ class Debug_This{
 
 	public function add_query_var($vars){
 		$vars[] = $this->query_var;
+		$vars[] = "$this->query_var-fetch";
+		$vars[] = "$this->query_var-key";
+		$vars[] = "$this->query_var-ts";
+		$vars[] = "$this->query_var-nonce";
 		return $vars;
 	}
 
@@ -93,14 +100,91 @@ class Debug_This{
 		return $template;
 	}
 
-	public function buffer_page(){
-		global $wp;
-		$url = get_bloginfo('url') . '/' . $wp->request;
+	protected function is_fetch(){
+		if(
+			get_query_var("$this->query_var-fetch") &&
+			get_query_var("$this->query_var-ts") 	&&
+			get_query_var("$this->query_var-key")   &&
+			get_query_var("$this->query_var-nonce")
+		){
+			$time  = get_query_var("$this->query_var-ts");
+			$nonce = get_query_var("$this->query_var-nonce");
+			$key   = get_query_var("$this->query_var-key");
 
-		$execution_time = microtime(true);
-		$this->buffer = file_get_contents($url);
-		$execution_time = microtime(true) - $execution_time;
-		self::$execution_time= $execution_time;
+			//Security #1 - Time range
+			if((time() - $time) > 20000)
+				return false;
+
+			//Security #2 - Verify nonce
+			if(!wp_verify_nonce($nonce, $this->nonce_action))
+				return false;
+
+			//Security #3 - Verify key with shared secret wp_salt
+			$key_to_match = md5($time . wp_salt('logged_in') . $nonce);
+			if($key === $key_to_match)
+				return true;
+		}
+		else
+			return false;
+	}
+
+	public function render_fetch_data(){
+		if(!$this->is_fetch())
+			return;
+
+		global $wpdb;
+
+		echo '%DEBUG_THIS%';
+
+		$execution_time = timer_stop(0, 10);
+		echo "%DEBUG_TIME%$execution_time%/DEBUG_TIME%";
+
+		if(defined('SAVEQUERIES') && $wpdb->queries)
+			echo '%DEBUG_QUERIES%'.json_encode($wpdb->queries).'%/DEBUG_QUERIES%';
+
+		echo '%/DEBUG_THIS%';
+	}
+
+	public function buffer_page(){
+
+		global $wp;
+
+		$time = time();
+		$nonce = wp_create_nonce($this->nonce_action);
+
+		$fetch_vars = array(
+			"$this->query_var-fetch" => true,
+			"$this->query_var-key"   => md5($time . wp_salt('logged_in') . $nonce),
+			"$this->query_var-ts"    => $time,
+			"$this->query_var-nonce" => $nonce
+		);
+
+		$query_vars = $wp->query_vars;
+		unset($query_vars[$this->query_var]);
+
+		$vars = array_merge($fetch_vars, $query_vars);
+		$query_string = http_build_query($vars);
+
+		$url = get_bloginfo('url') . '/' . $wp->request . "?$query_string";
+
+		#Send auth headers for remote fetch
+		$cookie_string = '';
+		foreach($_COOKIE as $k => $v)
+			$cookie_string .= $k . '=' . urlencode($v) . '; ';
+		$cookie_string = trim($cookie_string, '; ');
+		$context = stream_context_create(array('http' => array('header'  => "Cookie: $cookie_string")));
+
+		$buffer = file_get_contents($url, false, $context);
+
+		preg_match('/%DEBUG_TIME%(.+)%\/DEBUG_TIME%/', $buffer, $matches);
+		self::$execution_time = $matches[1];
+
+		if(preg_match('/%DEBUG_QUERIES%(.+)%\/DEBUG_QUERIES%/', $buffer, $matches))
+			if($matches[1])
+				self::$queries = json_decode($matches[1]);
+
+		$this->buffer = preg_replace('/%DEBUG_THIS%.+%\/DEBUG_THIS%/', '', $buffer);
+
 	}
 
 	protected function is_debug(){
@@ -219,10 +303,10 @@ function debug_this_init(){
 function add_debug_extension($id, $name, $description, $callback, $group = 'General'){
 	global $_debugger_extensions;
 	$_debugger_extensions[$id] = array(
-		'name' => $name,
+		'name'        => $name,
 		'description' => $description,
-		'callback' => $callback,
-		'group' => $group
+		'callback'    => $callback,
+		'group'       => $group
 	);
 }
 
@@ -236,7 +320,7 @@ function debug_this_get_file_ownership($file){
 	$stat = stat($file);
 	if($stat){
 		$group = posix_getgrgid($stat[5]);
-		$user = posix_getpwuid($stat[4]);
+		$user  = posix_getpwuid($stat[4]);
 		return compact('user', 'group');
 	}
 	else
@@ -258,9 +342,9 @@ function debug_this_convert_perms_to_rwx($perms, $file){
 		'rw-',
 		'rwx'
 	);
-	$type = is_dir($file) ? 'd' : '-';
-	$user = $perms[1];
-	$group = $perms[2];
+	$type   = is_dir($file) ? 'd' : '-';
+	$user   = $perms[1];
+	$group  = $perms[2];
 	$public = $perms[3];
 	return $type.$rwx[$user].$rwx[$group].$rwx[$public];
 }
