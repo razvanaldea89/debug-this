@@ -170,7 +170,8 @@ class Debug_This{
 		#Set auth headers for remote fetch
 		$cookie_string = '';
 		foreach($_COOKIE as $k => $v)
-			$cookie_string .= $k . '=' . urlencode($v) . '; ';
+			if(preg_match('/(wordpress_test_cookie|wordpress_logged_in_|wp-settings-1|wp-settings-time-1)/', $k))
+				$cookie_string .= $k . '=' . urlencode($v) . '; ';
 		$cookie_string = trim($cookie_string, '; ');
 		$headers = array(
 			'Cookie' => $cookie_string
