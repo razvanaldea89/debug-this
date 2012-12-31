@@ -54,7 +54,7 @@ class Debug_This_Extensions{
 		add_debug_extension('taxonomies', __('Taxonomies', 'debug-this'), __('Lists all registered taxonomies in WordPress', 'debug-this'), array($this, 'taxonomies'), 'Taxonomy');
 		add_debug_extension('template', __('Current Template', 'debug-this'), __('Current template file', 'debug-this'), array($this, 'template'), 'Themes');
 		add_debug_extension('terms', __('Post Terms', 'debug-this'), __('All terms for the current single post/page', 'debug-this'), array($this, 'terms'), 'Taxonomy');
-		add_debug_extension('terms_all', __('All Terms', 'debug-this'), __('A list of all terms', 'debug-this'), array($this, 'terms_all'), 'Taxonomy');
+		add_debug_extension('terms-all', __('All Terms', 'debug-this'), __('A list of all terms', 'debug-this'), array($this, 'terms_all'), 'Taxonomy');
 		if($version >= 3.4)
 			add_debug_extension('themes', __('Themes', 'debug-this'), __('List of all WP_Theme objects', 'debug-this'), array($this, 'themes'), 'Themes');
 		add_debug_extension('users', __('All Users', 'debug-this'), __('List of all users', 'debug-this'), array($this, 'users'), 'Users');
