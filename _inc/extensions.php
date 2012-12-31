@@ -3,6 +3,7 @@ if(!defined('ABSPATH')) die();
 
 class Debug_This_Extensions{
 	public function __construct(){
+		$version = get_bloginfo('version');
 		add_debug_extension('actions', __('Actions', 'debug-this'), __('$wp_actions contains all active registered actions', 'debug-this'), array($this, 'actions'), 'Filters And Actions');
 		add_debug_extension('apache', __('Apache Information', 'debug-this'), __('Apache version and list of modules', 'debug-this'), array($this, 'apache'), 'Server');
 		add_debug_extension('attachments', __('Attachments', 'debug-this'), __('List of post attachments', 'debug-this'), array($this, 'attachments'), 'Media');
@@ -54,7 +55,8 @@ class Debug_This_Extensions{
 		add_debug_extension('template', __('Current Template', 'debug-this'), __('Current template file', 'debug-this'), array($this, 'template'), 'Themes');
 		add_debug_extension('terms', __('Post Terms', 'debug-this'), __('All terms for the current single post/page', 'debug-this'), array($this, 'terms'), 'Taxonomy');
 		add_debug_extension('terms_all', __('All Terms', 'debug-this'), __('A list of all terms', 'debug-this'), array($this, 'terms_all'), 'Taxonomy');
-		add_debug_extension('themes', __('Themes', 'debug-this'), __('List of all WP_Theme objects', 'debug-this'), array($this, 'themes'), 'Themes');
+		if($version >= 3.4)
+			add_debug_extension('themes', __('Themes', 'debug-this'), __('List of all WP_Theme objects', 'debug-this'), array($this, 'themes'), 'Themes');
 		add_debug_extension('users', __('All Users', 'debug-this'), __('List of all users', 'debug-this'), array($this, 'users'), 'Users');
 		add_debug_extension('variables', __('Variables', 'debug-this'), __('List of all defined variables', 'debug-this'), array($this, 'variables'), 'PHP');
 		add_debug_extension('widgets', __('Widgets'), __('All registered widgets - uses $wp_widget_factor->widgets', 'debug-this'), array($this, 'widgets'), 'Sidebar');
@@ -111,14 +113,20 @@ class Debug_This_Extensions{
 	}
 
 	public function author(){
-		global $authordata;
+		if(!is_singular())
+			return __('This mode can only be used on a single post/page.', 'debug-this');
+		global $post, $authordata;
+		setup_postdata($post);
 		$debug = print_r($authordata, true);
 		return $debug;
 	}
 
 	public function backtrace(){
-		$debug = '<h3>'.__('Backtrace Summary', 'debug-this').'</h3>';
-		$debug .= print_r(explode(', ', wp_debug_backtrace_summary()),true);
+		$version = get_bloginfo('version');
+		if($version >= 3.4){
+			$debug = '<h3>'.__('Backtrace Summary', 'debug-this').'</h3>';
+			$debug .= print_r(explode(', ', wp_debug_backtrace_summary()),true);
+		}
 		$debug .= '<h3>'.__('debug_backtrace()', 'debug-this').'</h3>';
 		$debug .= htmlentities(print_r(debug_backtrace(), true));
 		return $debug;
@@ -298,6 +306,7 @@ class Debug_This_Extensions{
 			$output = "<h3 class='emphasize'>$file</h3>";
 			$perms = debug_this_get_file_perms($file);
 			if($perms){
+				$perms_output = '';
 				$rwx = debug_this_convert_perms_to_rwx($perms, $file);
 				if($perms !== $recommended_perms)
 					$perms_output = '<span class="error">'.sprintf(__('%s %s Recommended: %s - To change, run: chmod %s %s', 'debug-this'), $perms, $rwx, $recommended_perms, $recommended_perms, $file)."</span>";
@@ -369,9 +378,9 @@ class Debug_This_Extensions{
 	}
 
 	public function files(){
-		$debug = '<h3>'.__('Required Files', 'debug-this').'</h3>';
+		$debug = '<h3 class="emphasize">'.__('Required Files', 'debug-this').'</h3>';
 		$debug .= print_r(get_required_files(), true);
-		$debug .= '<h3>'.__('Included Files', 'debug-this').'</h3>';
+		$debug .= '<h3 class="emphasize">'.__('Included Files', 'debug-this').'</h3>';
 		$debug .= print_r(get_included_files(), true);
 		return $debug;
 	}
@@ -511,7 +520,9 @@ class Debug_This_Extensions{
 	}
 
 	public function posttype_current(){
-		global $post;
+		global $wp_query;
+		if($wp_query->queried_object)
+			$post = $wp_query->queried_object;
 		$post_types = get_post_types('', 'objects');
 		$debug = print_r(array($post->post_type => $post_types[$post->post_type]), true)."\n\n";
 		return $debug;
@@ -535,6 +546,10 @@ class Debug_This_Extensions{
 
 	public function rewrites(){
 		global $wp_rewrite, $wp;
+		$permalink_structure = get_option('permalink_structure');
+
+		if(!$permalink_structure)
+			return __('Pretty permalinks must be enabled to use this mode. To set a permalink structure, go to Settings->Permalinks in wp-admin.', 'debug-this');
 
 	    $debug = '<h3>'.__('Current Rewrite', 'debug-this').'</h3>';
 	    $debug .= __('Matched Rule', 'debug-this').": <span class='current'>$wp->matched_rule</span>\n";
@@ -584,6 +599,7 @@ class Debug_This_Extensions{
 		global $wp_registered_sidebars;
 		$template_contents = file_get_contents($template);
 		preg_match_all('/(get_sidebar|dynamic_sidebar).+\)/', $template_contents, $matches);
+		$sidebars = array();
 		foreach($matches[0] as $sidebar){
 			if($sidebar === 'get_sidebar()')
 				$sidebars[] = 'get_sidebar() ' . locate_template('sidebar.php');
@@ -602,7 +618,10 @@ class Debug_This_Extensions{
 			}
 		}
 		$debug = sprintf(__('Current Template: %s', 'debug-this'), $template)."\n\n";
-		$debug .= htmlentities(print_r($sidebars, true))."\n";
+		if($sidebars)
+			$debug .= htmlentities(print_r($sidebars, true))."\n";
+		else
+			$debug .= __('No sidebars were found in this template.', 'debug-this');
 		return $debug;
 	}
 
@@ -671,7 +690,8 @@ class Debug_This_Extensions{
 		$users = get_users();
 		$debug = '';
 		foreach($users as $user){
-			$debug .= "<h3 class='emphasize'>{$user->data->user_login}</h3>";
+			$login = property_exists($user, 'data') ? $user->data->user_login : $user->user_login;
+			$debug .= "<h3 class='emphasize'>{$login}</h3>";
 			$debug .= print_r($user, true);
 		}
 		return $debug;
@@ -680,15 +700,15 @@ class Debug_This_Extensions{
 	public function variables(){
 		$debug = '';
 		foreach($GLOBALS as $id => $values){
-			if($id == 'GLOBALS')
+			if($id === 'GLOBALS' || $id === 'html')
 				continue;
 			if(is_array($values) && !empty($values)){
 				$debug .= "<h3>$id</h3>";
-				$debug .= print_r(array_keys($values), true);
+				$debug .= htmlentities(print_r(array_keys($values), true));
 			}
 			elseif(is_string($values)){
 				$debug .= "<h3>$id</h3>";
-				$debug .= "$values\n\n";
+				$debug .= htmlentities("$values\n\n");
 			}
 		}
 		return $debug;
@@ -706,12 +726,15 @@ class Debug_This_Extensions{
 			return $debug;
 		}
 		$path = WP_CONTENT_DIR.'/debug.log';
+
 		if(file_exists($path) && is_writeable($path)){
 			$debug = file_get_contents($path);
 			if(!$debug)
 				$debug = __('Looking good! No notices were logged.', 'debug-this');
 			file_put_contents($path, ''); #Clear contents for next page load
 		}
+		elseif(touch($path))
+			$debug = __('Looking good! No notices were logged.', 'debug-this'); #Better reporting. If nothing was found, it's not a file perms error.
 		else
 			$debug = __('Could not open debug.log. Please make sure your wp-content folder is writeable by the web server user.', 'debug-this');
 		return $debug;

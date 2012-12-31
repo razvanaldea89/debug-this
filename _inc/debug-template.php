@@ -11,7 +11,7 @@ ob_start();?>
 </head>
 <body>
 <div class='debug-this'>
-	<a href="/<?php global $wp; echo $wp->request;?>" class="escape">x</a>
+	<a href="/<?php echo Debug_This::get_escape_link();?>" class="escape">x</a>
 	<div class='debug'>
 		%DEBUG%
 	</div>

@@ -152,17 +152,28 @@ class Debug_This{
 	}
 
 	public function admin_bar() {
-	    global $wp_admin_bar, $_debugger_extensions;
-	    if ( !is_super_admin() || !is_admin_bar_showing() )
+	    global $wp_admin_bar, $_debugger_extensions, $wp;
+	    if(!is_super_admin() || !is_admin_bar_showing())
 	        return;
-	    $wp_admin_bar->add_menu( array('id' => 'debug_this', 'title' => __( 'Debug This', 'debug-this' ), 'href' => "?$this->query_var=$this->default_mode"));
+
+	    #Build out query string
+	    $vars = $wp->query_vars;
+	    $vars[$this->query_var] = $this->default_mode;
+	    $query_string = http_build_query($vars);
+
+
+	    $wp_admin_bar->add_menu( array('id' => 'debug_this', 'title' => __( 'Debug This', 'debug-this' ), 'href' => "?$query_string"));
 	    foreach($this->get_extensions_by_group() as $group => $extensions){
 	    	if($group === 'Hide')
 	    		continue;
 	    	$group_title = ucwords(str_replace('-', ' ', $group));
 	    	$wp_admin_bar->add_menu( array('id' => $group, 'parent' => 'debug_this', 'title' => $group_title, 'href' => false));
-	    	foreach($extensions as $id => $values)
-	    		$wp_admin_bar->add_menu(array('id' => $id, 'parent' => $group, 'title' => $values['name'], 'href' => "?$this->query_var=$id"));
+	    	foreach($extensions as $id => $values){
+	    		#Update query string
+	    		$vars[$this->query_var] = $id;
+	    		$query_string = http_build_query($vars);
+	    		$wp_admin_bar->add_menu(array('id' => $id, 'parent' => $group, 'title' => $values['name'], 'href' => "?$query_string"));
+	    	}
 	   	}
 	}
 
@@ -181,6 +192,22 @@ class Debug_This{
 	public function log_current_filters_and_actions(){
 		global $debug_this_current_filter;
 		$debug_this_current_filter[] = current_filter();
+	}
+
+	public function get_escape_link(){
+		global $wp;
+
+		$permalinks = get_option('permalink_structure');
+		if($permalinks)
+			$link = $wp->request;
+		else{
+			$vars = $wp->query_vars;
+			foreach($vars as $k => $v)
+				if($v === self::$mode)
+					unset($vars[$k]);
+			$link = !empty($vars) ? '?' . http_build_query($vars) : '';
+		}
+		return $link;
 	}
 
 }
