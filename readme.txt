@@ -158,7 +158,8 @@ There are three included functions to help you work with files.
 
 = 0.2.1 =
 
-Critical fix for PHP <= 5.2 Removed anonymous functions. Fixed undefined $debug notices for all versions.
+* Critical fix for PHP <= 5.2 Removed anonymous functions.
+* Fixed undefined $debug notices for all versions.
 
 = 0.02 =
 
@@ -171,6 +172,12 @@ Critical fix for PHP <= 5.2 Removed anonymous functions. Fixed undefined $debug 
 = 0.01 =
 
 * Debug This Creation
+
+== Roadmap ==
+
+* Return more detailed data from buffered page render (execution time, saved queries, etc…)
+* Add menu item to wp-admin admin bar
+* Add administration page for default mode, query var, etc...
 
 == Installation ==
 
