@@ -37,7 +37,8 @@ class Debug_This_Extensions{
 		add_debug_extension('phpinfo', __('phpinfo()', 'debug-this'), __('phpinfo()', 'debug-this'), array($this, 'phpinfo'), 'PHP');
 		add_debug_extension('phpini', __('php.ini', 'debug-this'), __('php.ini configuration', 'debug-this'), array($this, 'phpini'), 'PHP');
 		add_debug_extension('plugins', __('Plugins', 'debug-this'), __('A list of all plugins', 'debug-this'), array($this, 'plugins'), 'Plugins');
-		add_debug_extension('post', __('Queried Object', 'debug-this'), __('Single post object', 'debug-this'), array($this, 'post'), 'Query');
+		add_debug_extension('post', __('Post', 'debug-this'), __('Single post object', 'debug-this'), array($this, 'post'), 'Queried Object');
+		add_debug_extension('post-meta', __('Post Meta', 'debug-this'), __('Post meta for the queried object.', 'debug-this'), array($this, 'post_meta'), 'Queried Object');
 		add_debug_extension('posts', __('Post Objects', 'debug-this'), __('Archive post objects', 'debug-this'), array($this, 'posts'), 'Query');
 		add_debug_extension('post-types', __('All Post Types', 'debug-this'), __('Lists all registered post types in WordPress', 'debug-this'), array($this, 'posttypes'), 'Post Types');
 		add_debug_extension('post-type-current', __('Current Post Type', 'debug-this'), __('Post type for the queried object', 'debug-this'), array($this, 'posttype_current'), 'Post Types');
@@ -520,6 +521,15 @@ class Debug_This_Extensions{
 		}
 		else
 			$debug = __('This mode only works for archive/home pages', 'debug-this');
+		return $debug;
+	}
+
+	public function post_meta(){
+		if(!is_singular())
+			return __('This mode only works for single posts/pages', 'debug-this');
+
+		global $post;
+		$debug = print_r(get_post_custom($post->ID), true);
 		return $debug;
 	}
 
