@@ -4,7 +4,7 @@ Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5UYFG
 Contributors: misternifty
 Tested up to: 3.5
 Requires at least: 3.3
-Stable Tag: 0.2.2
+Stable Tag: 0.3
 License: GPLv2 or later
 
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
@@ -151,6 +151,17 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.3 =
+
+* Added advanced remote fetch for buffer
+* Added real saved queries and execution time from original URL - can now be accessed as static properties $queries and $execution_time
+* Added `get_current_debug_url()` method - exposes current URL with debug query
+* Added post-meta debug mode. Created new menu section for queried object
+* Updated bloginfo mode to true bloginfo values
+* Updated wp-debug mode with better logic
+* Added functionality for adding header links to the debug mode screen via `add_debug_header_link($url, $label, $classes = '')`
+* Added reset debug log functionality with debug header link for wp-debug mode
+
 = 0.2.2 =
 
 * Added backwards compatibility to 3.3.
@@ -195,4 +206,4 @@ There are three included functions to help you work with files.
 
 == Upgrade Notice ==
 
-Added backwards compatibility to 3.3. Added support for no pretty permalinks.
+Non-critical updates. Added postmeta mode. Added functionality to reset WP_DEBUG log manually.
