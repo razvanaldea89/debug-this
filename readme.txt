@@ -206,7 +206,6 @@ There are three included functions to help you work with files.
 
 == Roadmap ==
 
-* Return more detailed data from buffered page render (execution time, saved queries, etc…)
 * Add menu item to wp-admin admin bar
 * Add administration page for default mode, query var, etc...
 
