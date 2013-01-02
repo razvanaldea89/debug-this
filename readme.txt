@@ -96,8 +96,6 @@ function foo_callback($buffer, $template){
 
 You can add links to the header of a debug mode page. Place this code within your debug callback function.
 
-**Example**
-
 `add_debug_header_link('http://urltolink', 'Link Label');`
 
 
