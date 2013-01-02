@@ -114,8 +114,8 @@ If you don't want your debug output to be enclosed in PRE tags, simply set the f
 
 Retrieve saved queries and execution time by using the following static properties:
 
-* Debug_This::$execution_time
-* Debug_This::$queries - SAVEQUERIES must defined as true
+* `Debug_This::$execution_time`
+* `Debug_This::$queries` - SAVEQUERIES must defined as true
 
 **URL Helpers**
 
