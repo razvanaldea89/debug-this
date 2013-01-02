@@ -93,14 +93,34 @@ function foo_callback($buffer, $template){
 	return $debug;
 }
 `
-Extensions can be removed as well.
-`remove_debug_extension($mode);`
+
+You can add links to the header of a debug mode page. Place this code within your debug callback function.
+
+**Example**
+
+`add_debug_header_link('http://urltolink', 'Link Label');`
+
+
+Extensions can be removed as well using `remove_debug_extension($mode);`
+
 
 **No PRE Tags**
 
 If you don't want your debug output to be enclosed in PRE tags, simply set the following in your extension:
 
 `Debug_This::$no_pre = true;`
+
+**Saved Queries and Execution Time**
+
+Retrieve saved queries and execution time by using the following static properties:
+
+* Debug_This::$execution_time
+* Debug_This::$queries - SAVEQUERIES must defined as true
+
+**URL Helpers**
+
+* `Debug_This::get_current_debug_url()` - current URL with the debug query
+* `Debug_This::get_escape_url()` - used for the debug escape link that links to original page URL
 
 = WP Actions =
 
