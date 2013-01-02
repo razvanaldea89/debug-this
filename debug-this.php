@@ -31,13 +31,14 @@ class Debug_This{
 	protected $debug;
 	protected $description;
 	public static $mode;
-	protected $query_var = 'debug-this';
+	public static $query_var = 'debug-this';
 	public static $no_pre = false;
 	protected $default_mode = 'wp_query';
 	protected $original_template;
 	public static $execution_time;
 	public static $queries;
 	protected $nonce_action = 'dEbUg-ThIs';
+	public static $debug_header;
 
 	public function __construct(){
 		if(
@@ -78,18 +79,18 @@ class Debug_This{
 			'mode'        => self::$mode,
 			'defaultMode' => $this->default_mode,
 			'template'    => $this->original_template,
-			'queryVar'    => $this->query_var
+			'queryVar'    => self::$query_var
 		);
 		wp_localize_script('debug-this', 'debugThis', $l10n);
 		wp_enqueue_script('debug-this-trigger', plugins_url('_inc/js/debug-this-trigger.js', __FILE__), array('debug-this'), '', true);
 	}
 
 	public function add_query_var($vars){
-		$vars[] = $this->query_var;
-		$vars[] = "$this->query_var-fetch";
-		$vars[] = "$this->query_var-key";
-		$vars[] = "$this->query_var-ts";
-		$vars[] = "$this->query_var-nonce";
+		$vars[] = self::$query_var;
+		$vars[] = self::$query_var."-fetch";
+		$vars[] = self::$query_var."-key";
+		$vars[] = self::$query_var."-ts";
+		$vars[] = self::$query_var."-nonce";
 		return $vars;
 	}
 
@@ -102,14 +103,14 @@ class Debug_This{
 
 	protected function is_fetch(){
 		if(
-			get_query_var("$this->query_var-fetch") &&
-			get_query_var("$this->query_var-ts") 	&&
-			get_query_var("$this->query_var-key")   &&
-			get_query_var("$this->query_var-nonce")
+			get_query_var(self::$query_var."-fetch") &&
+			get_query_var(self::$query_var."-ts") 	&&
+			get_query_var(self::$query_var."-key")   &&
+			get_query_var(self::$query_var."-nonce")
 		){
-			$time  = get_query_var("$this->query_var-ts");
-			$nonce = get_query_var("$this->query_var-nonce");
-			$key   = get_query_var("$this->query_var-key");
+			$time  = get_query_var(self::$query_var."-ts");
+			$nonce = get_query_var(self::$query_var."-nonce");
+			$key   = get_query_var(self::$query_var."-key");
 
 			//Security #1 - Time range
 			if((time() - $time) > 20000)
@@ -153,14 +154,14 @@ class Debug_This{
 		$nonce = wp_create_nonce($this->nonce_action);
 
 		$fetch_vars = array(
-			"$this->query_var-fetch" => true,
-			"$this->query_var-key"   => md5($time . wp_salt('logged_in') . $nonce),
-			"$this->query_var-ts"    => $time,
-			"$this->query_var-nonce" => $nonce
+			self::$query_var."-fetch" => true,
+			self::$query_var."-key"   => md5($time . wp_salt('logged_in') . $nonce),
+			self::$query_var."-ts"    => $time,
+			self::$query_var."-nonce" => $nonce
 		);
 
 		$query_vars = $wp->query_vars;
-		unset($query_vars[$this->query_var]);
+		unset($query_vars[self::$query_var]);
 
 		$vars = array_merge($fetch_vars, $query_vars);
 		$query_string = http_build_query($vars);
@@ -193,8 +194,8 @@ class Debug_This{
 	}
 
 	protected function is_debug(){
-		if(isset($_GET[$this->query_var])){
-			self::$mode = $_GET[$this->query_var] ? $_GET[$this->query_var] : apply_filters('debug_this_default_mode', $this->default_mode);
+		if(isset($_GET[self::$query_var])){
+			self::$mode = $_GET[self::$query_var] ? $_GET[self::$query_var] : apply_filters('debug_this_default_mode', $this->default_mode);
 			return true;
 		}
 	}
@@ -227,6 +228,7 @@ class Debug_This{
 	protected function _render(){
 		$description = $this->description ? ' - '. $this->description : '';
 		echo '<p>'.__('Debug This Mode', 'debug_this').': '.self::$mode.$description.'</p>';
+		echo '<ul class="header-links">'.self::$debug_header.'</ul>';
 		if(self::$no_pre)
 			echo $this->debug;
 		else
@@ -247,7 +249,7 @@ class Debug_This{
 
 	    #Build out query string
 	    $vars = $wp->query_vars;
-	    $vars[$this->query_var] = $this->default_mode;
+	    $vars[self::$query_var] = $this->default_mode;
 	    $query_string = http_build_query($vars);
 
 
@@ -259,7 +261,7 @@ class Debug_This{
 	    	$wp_admin_bar->add_menu( array('id' => $group, 'parent' => 'debug_this', 'title' => $group_title, 'href' => false));
 	    	foreach($extensions as $id => $values){
 	    		#Update query string
-	    		$vars[$this->query_var] = $id;
+	    		$vars[self::$query_var] = $id;
 	    		$query_string = http_build_query($vars);
 	    		$wp_admin_bar->add_menu(array('id' => $id, 'parent' => $group, 'title' => $values['name'], 'href' => "?$query_string"));
 	    	}
@@ -283,20 +285,26 @@ class Debug_This{
 		$debug_this_current_filter[] = current_filter();
 	}
 
-	public function get_escape_link(){
+	public function get_escape_url(){
 		global $wp;
 
 		$permalinks = get_option('permalink_structure');
 		if($permalinks)
-			$link = $wp->request;
+			$url = $wp->request;
 		else{
 			$vars = $wp->query_vars;
 			foreach($vars as $k => $v)
 				if($v === self::$mode)
 					unset($vars[$k]);
-			$link = !empty($vars) ? '?' . http_build_query($vars) : '';
+			$url = !empty($vars) ? '?' . http_build_query($vars) : '';
 		}
-		return $link;
+		return $url;
+	}
+
+	public function get_current_debug_url(){
+		$url = self::get_escape_url();
+		$url .= '&'.self::$query_var.'='.self::$mode;
+		return $url;
 	}
 
 }
@@ -319,6 +327,10 @@ function remove_debug_extension($id){
 	global $_debugger_extensions;
 	if(isset($_debugger_extensions[$id]))
 		unset($_debugger_extensions[$id]);
+}
+
+function add_debug_header_link($url, $label, $classes = ''){
+	Debug_This::$debug_header = Debug_This::$debug_header."<li><a href='$url' class='$classes'>$label</a></li>";
 }
 
 function debug_this_get_file_ownership($file){

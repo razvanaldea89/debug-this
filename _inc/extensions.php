@@ -294,7 +294,7 @@ class Debug_This_Extensions{
 		if($dropins)
 			$debug = print_r($dropins, true);
 		else
-			$debug = __("No dropins found. To learn more, please see: <a href='http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/'>http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/</a>", 'debug-this');
+			$debug = sprintf(__("No dropins found. To learn more, please see: %s", 'debug-this'), "<a href='http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/'>http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/</a>");
 		return $debug;
 	}
 
@@ -741,23 +741,31 @@ class Debug_This_Extensions{
 	}
 
 	public function wp_debug(){
-		if(defined('WP_DEBUG') && WP_DEBUG !== true && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG !== true){
+		if(defined('WP_DEBUG') && WP_DEBUG === true && defined('WP_DEBUG_LOG') && WP_DEBUG_LOG === true){
+			$path = WP_CONTENT_DIR.'/debug.log';
+			$debug = '';
+			if(file_exists($path) && is_writeable($path)){
+				add_debug_header_link(Debug_This::get_current_debug_url().'&clear-debug-log=true', __('Reset log file', 'debug-this'));
+				if(isset($_GET['clear-debug-log'])){
+					if(file_put_contents($path, '') === 0)
+						$debug .= __('Debug log was successfully cleared.', 'debug-this');
+					else
+						$debug .= __('Debug log could not be reset. Please try again', 'debug-this');
+				}
+				$debug .= file_get_contents($path);
+				if(!$debug)
+					$debug .= __('Looking good! No notices were logged.', 'debug-this');
+			}
+			elseif(touch($path))
+				$debug = __('Looking good! No notices were logged.', 'debug-this'); #Better reporting. If nothing was found, it's not a file perms error.
+			else
+				$debug = __('Could not open debug.log. Please make sure your wp-content folder is writeable by the web server user.', 'debug-this');
+			return $debug;
+		}
+		else{
 			$debug = __("Please add the following to wp-config.php to use this mode.\ndefine('WP_DEBUG', true);\ndefine('WP_DEBUG_LOG', true);\ndefine('WP_DEBUG_DISPLAY', false);", 'debug-this');
 			return $debug;
 		}
-		$path = WP_CONTENT_DIR.'/debug.log';
-
-		if(file_exists($path) && is_writeable($path)){
-			$debug = file_get_contents($path);
-			if(!$debug)
-				$debug = __('Looking good! No notices were logged.', 'debug-this');
-			file_put_contents($path, ''); #Clear contents for next page load
-		}
-		elseif(touch($path))
-			$debug = __('Looking good! No notices were logged.', 'debug-this'); #Better reporting. If nothing was found, it's not a file perms error.
-		else
-			$debug = __('Could not open debug.log. Please make sure your wp-content folder is writeable by the web server user.', 'debug-this');
-		return $debug;
 	}
 
 	public function wp_query(){

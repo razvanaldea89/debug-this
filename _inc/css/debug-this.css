@@ -40,3 +40,19 @@ h3{
 	color:#fff;
 	text-decoration: none;
 }
+
+.header-links{
+	margin-left:0;
+}
+
+.header-links li{
+	list-style: none;
+	display:inline-block;
+	margin-right:10px;
+	border-right:1px solid #777;
+	padding-right:10px;
+}
+
+.header-links li:last-child{
+	border:none;
+}
