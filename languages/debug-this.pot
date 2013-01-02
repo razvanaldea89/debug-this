@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: Debug This\n"
-"POT-Creation-Date: 2013-01-01 13:00-0600\n"
-"PO-Revision-Date: 2013-01-01 13:00-0600\n"
+"POT-Creation-Date: 2013-01-01 23:21-0600\n"
+"PO-Revision-Date: 2013-01-01 23:21-0600\n"
 "Last-Translator: Brian Fegter <Brian Fegter>\n"
 "Language-Team: Brian Fegter (misternifty) <brian@fegter.com>\n"
 "MIME-Version: 1.0\n"
@@ -14,19 +14,19 @@ msgstr ""
 "X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: ..\n"
 
-#: ../debug-this.php:220
+#: ../debug-this.php:221
 msgid "A debug extension could not be found."
 msgstr ""
 
-#: ../debug-this.php:229
+#: ../debug-this.php:230
 msgid "Debug This Mode"
 msgstr ""
 
-#: ../debug-this.php:239
+#: ../debug-this.php:241
 msgid "Example Debug Extension"
 msgstr ""
 
-#: ../debug-this.php:254 ../_inc/debug-template.php:9
+#: ../debug-this.php:256 ../_inc/debug-template.php:9
 msgid "Debug This"
 msgstr ""
 
@@ -585,10 +585,8 @@ msgid "Stylesheets"
 msgstr ""
 
 #: ../_inc/extensions.php:297
-msgid ""
-"No dropins found. To learn more, please see: <a href='http://hakre.wordpress."
-"com/2010/05/01/must-use-and-drop-ins-plugins/'>http://hakre.wordpress."
-"com/2010/05/01/must-use-and-drop-ins-plugins/</a>"
+#, php-format
+msgid "No dropins found. To learn more, please see: %s"
 msgstr ""
 
 #: ../_inc/extensions.php:309
@@ -768,20 +766,32 @@ msgstr ""
 msgid "Current Theme"
 msgstr ""
 
-#: ../_inc/extensions.php:745
+#: ../_inc/extensions.php:748
+msgid "Reset log file"
+msgstr ""
+
+#: ../_inc/extensions.php:751
+msgid "Debug log was successfully cleared."
+msgstr ""
+
+#: ../_inc/extensions.php:753
+msgid "Debug log could not be reset. Please try again"
+msgstr ""
+
+#: ../_inc/extensions.php:757 ../_inc/extensions.php:760
+msgid "Looking good! No notices were logged."
+msgstr ""
+
+#: ../_inc/extensions.php:762
+msgid ""
+"Could not open debug.log. Please make sure your wp-content folder is "
+"writeable by the web server user."
+msgstr ""
+
+#: ../_inc/extensions.php:766
 msgid ""
 "Please add the following to wp-config.php to use this mode.\n"
 "define('WP_DEBUG', true);\n"
 "define('WP_DEBUG_LOG', true);\n"
 "define('WP_DEBUG_DISPLAY', false);"
-msgstr ""
-
-#: ../_inc/extensions.php:753 ../_inc/extensions.php:757
-msgid "Looking good! No notices were logged."
-msgstr ""
-
-#: ../_inc/extensions.php:759
-msgid ""
-"Could not open debug.log. Please make sure your wp-content folder is "
-"writeable by the web server user."
 msgstr ""
