@@ -1,8 +1,7 @@
 === Debug This  ===
 Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, debug tools, debugger tool, debugger tools
-Donate link: https://www.paypal.com/cgi-bin/webscr?cmd=_donations&business=5UYFG5FV4VA42&lc=US&item_name=Debug%20This%20WordPress%20Plugin%20Development&currency_code=USD&bn=PP%2dDonationsBF%3abtn_donateCC_LG%2egif%3aNonHosted
-Contributors: misternifty
-Tested up to: 3.5
+Contributors: misternifty,cdillon27
+Tested up to: 4.1.1
 Requires at least: 3.3
 Stable Tag: 0.3
 License: GPLv2 or later
