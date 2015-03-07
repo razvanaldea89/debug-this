@@ -3,7 +3,7 @@ Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, de
 Contributors: misternifty,cdillon27
 Tested up to: 4.1.1
 Requires at least: 3.3
-Stable Tag: 0.3
+Stable Tag: trunk
 License: GPLv2 or later
 
 This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
