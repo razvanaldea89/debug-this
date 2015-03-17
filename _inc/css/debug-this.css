@@ -1,5 +1,6 @@
 .debug-this{
 	padding:20px;
+	/* position: absolute; */
 }
 h3{
 	margin-bottom:8px;
@@ -25,19 +26,11 @@ h3{
 }
 .escape{
 	position: absolute;
-	top:40px;
 	right:25px;
-	width:18px;
-	height:20px;
-	padding:3px;
-	background: #000;
-	color:#fff;
-	border-radius: 25px;
 	text-align: center;
 }
 .escape:hover{
-	background:#444 !important;
-	color:#fff;
+	color: #CD0000;
 	text-decoration: none;
 }
 
@@ -55,4 +48,9 @@ h3{
 
 .header-links li:last-child{
 	border:none;
+}
+
+/* TwentyFifteen theme */
+body:before {
+	display: none;
 }

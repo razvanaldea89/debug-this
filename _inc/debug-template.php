@@ -11,7 +11,7 @@ ob_start();?>
 </head>
 <body>
 <div class='debug-this'>
-	<a href="/<?php echo Debug_This::get_escape_url();?>" class="escape">x</a>
+	<a href="/<?php echo Debug_This::get_escape_url();?>" class="escape"><span class="dashicons dashicons-dismiss"></span></a>
 	<div class='debug'>
 		%DEBUG%
 	</div>

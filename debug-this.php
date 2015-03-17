@@ -3,25 +3,26 @@
 Plugin Name: Debug This
 Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
 Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
-Version: 0.3
-Author: Brian Fegter
-Author URI: http://coderrr.com
-License: GPLv2 or Later
+Version: 0.3.1
+Authors: Brian Fegter, Chris Dillon
+Author URI: http://www.wpmission.com
+Original Author URI: http://coderrr.com
+License: GPLv3 or Later
 
-	Copyright 2012 Brian Fegter  (email : brian@fegter.com)
+Copyright 2012-2015 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)
 
-    This program is free software; you can redistribute it and/or modify
-    it under the terms of the GNU General Public License, version 2, as
-    published by the Free Software Foundation.
+This program is free software; you can redistribute it and/or modify
+it under the terms of the GNU General Public License, version 2, as
+published by the Free Software Foundation.
 
-    This program is distributed in the hope that it will be useful,
-    but WITHOUT ANY WARRANTY; without even the implied warranty of
-    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-    GNU General Public License for more details.
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
 
-    You should have received a copy of the GNU General Public License
-    along with this program; if not, write to the Free Software
-    Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+You should have received a copy of the GNU General Public License
+along with this program; if not, write to the Free Software
+Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 defined('ABSPATH') || die();
@@ -285,7 +286,7 @@ class Debug_This{
 		$debug_this_current_filter[] = current_filter();
 	}
 
-	public function get_escape_url(){
+	public static function get_escape_url(){
 		global $wp;
 
 		$permalinks = get_option('permalink_structure');
@@ -301,7 +302,7 @@ class Debug_This{
 		return $url;
 	}
 
-	public function get_current_debug_url(){
+	public static function get_current_debug_url(){
 		$url = self::get_escape_url();
 		$url .= '&'.self::$query_var.'='.self::$mode;
 		return $url;

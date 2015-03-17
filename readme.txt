@@ -46,7 +46,7 @@ We've tested on PHP >= 5.2.17
 
 **Can we request new debug modes?**
 
-Certainly! Please visit the plugin's main website and use the contact form there. I reserve the right to deny any requests that are too
+Certainly! Contact me [here](https://www.wpmission.com/contact). I reserve the right to deny any requests that are too
 localized for the greater good. If that is the case, I will help guide you how to build your own debug mode.
 
 
@@ -168,6 +168,12 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.3.1 - March 17, 2015 =
+
+* Fix non-static method call. Thanks [Daniele "Mte90" Scasciafratte](https://wordpress.org/support/profile/mte90).
+* Fix output for TwentyFifteen theme.
+* Replace close button "X" with Dashicon.
+
 = 0.3 =
 
 * Added advanced remote fetch for buffer
@@ -210,7 +216,7 @@ There are three included functions to help you work with files.
 
 1. Upload to your plugins folder, usually `wp-content/plugins/`
 2. Activate the plugin on the plugin screen.
-3. Navigate to the front-face of your website and hover over the 'Debug This' menu item in the admin bar.
+3. Navigate to the front-end of your website and hover over the 'Debug This' menu item in the admin bar.
 
 == Screenshots ==
 
@@ -222,4 +228,8 @@ There are three included functions to help you work with files.
 
 == Upgrade Notice ==
 
+= 0.3.1 =
+Fix PHP Strict mode error. Fix display in TwentyFifteen.
+
+= 0.3 =
 Non-critical updates. Added postmeta mode. Added functionality to reset WP_DEBUG log manually.
