@@ -3,10 +3,9 @@
 Plugin Name: Debug This
 Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
 Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
-Version: 0.3.1
-Authors: Brian Fegter, Chris Dillon
-Author URI: http://www.wpmission.com
-Original Author URI: http://coderrr.com
+Version: 0.3.2
+Author: Brian Fegter, Chris Dillon
+Author URI: http://coderrr.com
 License: GPLv3 or Later
 
 Copyright 2012-2015 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)

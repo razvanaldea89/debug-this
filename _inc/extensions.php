@@ -552,8 +552,10 @@ class Debug_This_Extensions{
 	public function queries(){
 		if(Debug_This::$queries)
 			$debug = print_r(Debug_This::$queries, true);
-		else
+		elseif(!defined('SAVEQUERIES'))
 			$debug = '<span class="error">'.__('Please set define("SAVEQUERIES", true); in wp-config.php to see saved queries. Please disable when completed as this can be a large performance hit.', 'debug-this').'</span>';
+		else
+			$debug = __( 'No queries found.', 'debug-this');
 		return $debug;
 	}
 

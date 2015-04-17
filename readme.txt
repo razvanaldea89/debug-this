@@ -1,6 +1,6 @@
 === Debug This  ===
 Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, debug tools, debugger tool, debugger tools
-Contributors: misternifty,cdillon27
+Contributors: misternifty, cdillon27
 Tested up to: 4.1.1
 Requires at least: 3.3
 Stable Tag: trunk
@@ -168,6 +168,10 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.3.2 - April 17, 2015 =
+
+* Improve SAVEQUERIES check.
+
 = 0.3.1 - March 17, 2015 =
 
 * Fix non-static method call. Thanks [Daniele "Mte90" Scasciafratte](https://wordpress.org/support/profile/mte90).
@@ -225,11 +229,3 @@ There are three included functions to help you work with files.
 3. Example mode - WP_DEBUG mode
 4. Example mode - Queried Object
 5. Example mode - bloginfo()
-
-== Upgrade Notice ==
-
-= 0.3.1 =
-Fix PHP Strict mode error. Fix display in TwentyFifteen.
-
-= 0.3 =
-Non-critical updates. Added postmeta mode. Added functionality to reset WP_DEBUG log manually.
