@@ -32,6 +32,12 @@ create one with the functional Debug This API.
 
 To extend Debug This for your own needs, please see the [Extend section](http://wordpress.org/extend/plugins/debug-this/other_notes/).
 
+== Installation ==
+
+1. Upload to your plugins folder, usually `wp-content/plugins/`
+2. Activate the plugin on the plugin screen.
+3. Navigate to the front-end of your website and hover over the 'Debug This' menu item in the admin bar.
+
 == Frequently Asked Questions ==
 
 **How do I use Debug This?**
@@ -59,6 +65,13 @@ Yes! Visit the [Extend section](http://wordpress.org/extend/plugins/debug-this/o
 I was working on a large collaborative project with 20+ developers and I got weary of debugging leftover debug code.
 I wanted a way to surface the data we needed without having to hardcode debugging code. Debug This keeps assurances that no debug code makes it up to a production environment.
 
+== Screenshots ==
+
+1. This shows the modes navigation menu
+2. Example mode - Attachments
+3. Example mode - WP_DEBUG mode
+4. Example mode - Queried Object
+5. Example mode - bloginfo()
 
 == Extend ==
 
@@ -168,8 +181,12 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
-= 0.3.2 - April 17, 2015 =
+= 0.4 - August 29, 2015 = 
+* Fix display of global array variables.
+* Fix display of current template.
+* Fix use of a deprecated function.
 
+= 0.3.2 - April 17, 2015 =
 * Improve SAVEQUERIES check.
 
 = 0.3.1 - March 17, 2015 =
@@ -211,21 +228,6 @@ There are three included functions to help you work with files.
 
 * Debug This Creation
 
-== Roadmap ==
+== Upgrade notice ==
 
-* Add menu item to wp-admin admin bar
-* Add administration page for default mode, query var, etc...
-
-== Installation ==
-
-1. Upload to your plugins folder, usually `wp-content/plugins/`
-2. Activate the plugin on the plugin screen.
-3. Navigate to the front-end of your website and hover over the 'Debug This' menu item in the admin bar.
-
-== Screenshots ==
-
-1. This shows the modes navigation menu
-2. Example mode - Attachments
-3. Example mode - WP_DEBUG mode
-4. Example mode - Queried Object
-5. Example mode - bloginfo()
+Fix display of global array variables. Fix display of current template. Fix use of a deprecated function.
