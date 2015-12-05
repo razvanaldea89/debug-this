@@ -1,7 +1,7 @@
 === Debug This  ===
 Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, debug tools, debugger tool, debugger tools
 Contributors: misternifty, cdillon27
-Tested up to: 4.3
+Tested up to: 4.4
 Requires at least: 3.3
 Stable Tag: trunk
 License: GPLv2 or later
@@ -181,7 +181,7 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
-= 0.4 - August 29, 2015 = 
+= 0.4 - August 29, 2015 =
 * Fix display of global array variables.
 * Fix display of current template.
 * Fix use of a deprecated function.
