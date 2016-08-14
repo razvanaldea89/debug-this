@@ -1,7 +1,7 @@
 === Debug This  ===
 Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, debug tools, debugger tool, debugger tools
 Contributors: misternifty, cdillon27
-Tested up to: 4.5
+Tested up to: 4.6
 Requires at least: 3.3
 Stable Tag: trunk
 License: GPLv2 or later
