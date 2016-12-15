@@ -1,5 +1,5 @@
 === Debug This ===
-Tags: debug, debugger, print_r, var_dump, developer, debug tool, debugger tool
+Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hooks, filters, print_r, var_dump
 Contributors: misternifty, cdillon27
 Tested up to: 4.7
 Requires at least: 3.3
@@ -50,12 +50,16 @@ For example, when viewing a single post, you can see:
 * the terms,
 * and much more.
 
-If there's not a debug mode that addresses your need, create one with the Debug This API. To extend Debug This for your own needs, please see the [Extend section](https://wordpress.org/plugins/debug-this/other_notes/).
+If there's no debug mode that addresses your need, create one with the Debug This API. To extend Debug This for your own needs, please see the [Extend section](https://wordpress.org/plugins/debug-this/other_notes/).
 
 = Now compatible with Kint! =
 
 Don't get lost in deep arrays and objects. Organize and isolate your debugging output by installing this great plugin:
 [Kint Debugger](https://wordpress.org/plugins/kint-debugger/)
+
+= Recommended Plugins =
+
+* [What The File](https://wordpress.org/plugins/what-the-file/) - Identify template files without fail.
 
 == Installation ==
 
@@ -74,7 +78,7 @@ Don't get lost in deep arrays and objects. Organize and isolate your debugging o
 
 We've tested on PHP >= 5.2.17
 
-**Can we request new debug modes?**
+**Can I request new debug modes?**
 
 Certainly! In order to keep the plugin lightweight and performant, requests that are too localized for the greater good may be refused. If that happens, I will gladly help you build your own debug mode.
 
@@ -84,11 +88,8 @@ Yes! Visit the [Extend section](https://wordpress.org/plugins/debug-this/other_n
 
 == Screenshots ==
 
-1. This shows the modes navigation menu
-2. Example mode - Attachments
-3. Example mode - WP_DEBUG mode
-4. Example mode - Queried Object
-5. Example mode - bloginfo()
+1. The current query, for example.
+2. Enhanced display when a Kint debugger plugin is installed (see Description).
 
 == Extend ==
 
@@ -206,6 +207,7 @@ There are three included functions to help you work with files.
 * Compatible with Kint wrapper plugins.
 * Compatible with custom error logs.
 * Remove Bootstrap stylesheet.
+* Update POT file.
 
 = 0.4 - August 29, 2015 =
 * Fix display of global array variables.
