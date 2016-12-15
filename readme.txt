@@ -1,36 +1,65 @@
-=== Debug This  ===
-Tags: debug, debugger, print_r, var_dump, developer, tool, tools, debug tool, debug tools, debugger tool, debugger tools
+=== Debug This ===
+Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hooks, filters, print_r, var_dump
 Contributors: misternifty, cdillon27
 Tested up to: 4.7
 Requires at least: 3.3
-Stable Tag: 0.4
+Stable Tag: 0.5
 License: GPLv2 or later
 
-This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
+Peek under the hood with sixty debugging reports just one click away.
 
 == Description ==
-This plugin gives WordPress super admins an easy way to peek under the hood of the front-face of a WordPress installation via the admin bar.
 
-Forty-nine debug modes are included. Here is a sample of the packed-in debug goodness:
+For admins, developers, and support staff, **Debug This** provides a ton of information about your WordPress installation, all from the front-end admin bar.
 
-* oEmbed providers
+* *The current WP_Query object*
+* Blog info and options
+* Embed providers
+* Files in rendered HTML (CSS, images, JavaScript)
+* Filters and actions
+* Images sizes
+* Globals and constants
+* Menus
+* Object cache stats
+* Plugins, must-use plugins, and dropins
+* Rewrite rules
+* Queries
+* PHP and server information
 * Post attachments
-* Variety of WP_Query modes
-* Variety of PHP modes (defined functions, constants, classes, phpinfo, etc...)
-* Users (Current author, all users)
-* Cron
-* Cache
-* Registered image sizes
 * Post types
-* Menus, Widgets, Sidebars
-* Rendered page analysis (CSS, JS, Images)
-* Many more!
+* Scripts and styles enqueued
+* Shortcodes
+* Sidebars and widgets
+* Taxonomies and terms
+* Themes
+* Users
+* WP cron schedules and jobs
+* WP debug log
 
-Debug This helps you minimize effort when trying to surface WP/PHP/Server data. Instead of hardcoding debug snippets or writing complex unit
-tests for small functionality, you can simply surface what you need right from the admin bar. If there's not a debug mode that addresses your need,
-create one with the functional Debug This API.
+**Debug This** helps you save time and effort when trying to figure out what's going on. Instead of hardcoding debug snippets or writing complex unit
+tests for small functionality, you can simply bring to the surface what you need right from the admin bar.
 
-To extend Debug This for your own needs, please see the [Extend section](http://wordpress.org/extend/plugins/debug-this/other_notes/).
+For example, when viewing a single post, you can see:
+
+* a list of post attachments,
+* which menus and sidebars are being displayed,
+* the post type, post fields, and meta data,
+* the current query variables and query string,
+* the rewrite rules applied,
+* the author,
+* the terms,
+* and much more.
+
+If there's no debug mode that addresses your need, create one with the Debug This API. To extend Debug This for your own needs, please see the [Extend section](https://wordpress.org/plugins/debug-this/other_notes/).
+
+= Now compatible with Kint! =
+
+Don't get lost in deep arrays and objects. Organize and isolate your debugging output by installing this great plugin:
+[Kint Debugger](https://wordpress.org/plugins/kint-debugger/)
+
+= Recommended Plugins =
+
+* [What The File](https://wordpress.org/plugins/what-the-file/) - Identify template files without fail.
 
 == Installation ==
 
@@ -42,36 +71,25 @@ To extend Debug This for your own needs, please see the [Extend section](http://
 
 **How do I use Debug This?**
 
-1. Make sure the admin bar is enabled in your user profile for the front-facing view of your website.
+1. Make sure the admin bar is enabled in your user profile.
 2. Visit any page/post/archive on your website and you will see a Debug This menu item on the admin bar.
-
 
 **What PHP version is this compatible with?**
 
 We've tested on PHP >= 5.2.17
 
-**Can we request new debug modes?**
+**Can I request new debug modes?**
 
-Certainly! Contact me [here](https://www.wpmission.com/contact). I reserve the right to deny any requests that are too
-localized for the greater good. If that is the case, I will help guide you how to build your own debug mode.
-
+Certainly! In order to keep the plugin lightweight and performant, requests that are too localized for the greater good may be refused. If that happens, I will gladly help you build your own debug mode.
 
 **Can I alter the plugin or build my own debug modes?**
 
-Yes! Visit the [Extend section](http://wordpress.org/extend/plugins/debug-this/other_notes) to find out how you can thoroughly extend Debug This for your own needs.
-
-**Why did you build Debug This?**
-
-I was working on a large collaborative project with 20+ developers and I got weary of debugging leftover debug code.
-I wanted a way to surface the data we needed without having to hardcode debugging code. Debug This keeps assurances that no debug code makes it up to a production environment.
+Yes! Visit the [Extend section](https://wordpress.org/plugins/debug-this/other_notes/) to find out how you can thoroughly extend Debug This for your own needs.
 
 == Screenshots ==
 
-1. This shows the modes navigation menu
-2. Example mode - Attachments
-3. Example mode - WP_DEBUG mode
-4. Example mode - Queried Object
-5. Example mode - bloginfo()
+1. The current query, for example.
+2. Enhanced display when a Kint debugger plugin is installed (see Description).
 
 == Extend ==
 
@@ -144,7 +162,6 @@ There are a few filters you can use to customize Debug This to your needs:
 * `debug_this_default_mode`  - receives $mode arg - Alters the mode for the parent DT admin bar button link.
 * `debug_this_output` - receives $output, $mode args - Filter debug content before it's rendered
 
-
 = JavaScript =
 
 To access the built-in Debug This JS functionality, enqueue your custom script with the dependency set to `debug-this`. Your script will inherit a jQuery dependency.
@@ -181,6 +198,17 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.5 - December 15, 2016 =
+* Update for WordPress 4.4+
+* Add error handling.
+* Add mode for unserialized options.
+* Add mode for active plugins.
+* Add `<pre>` tags conditionally (not every mode).
+* Compatible with Kint wrapper plugins.
+* Compatible with custom error logs.
+* Remove Bootstrap stylesheet.
+* Update POT file.
+
 = 0.4 - August 29, 2015 =
 * Fix display of global array variables.
 * Fix display of current template.
@@ -190,13 +218,11 @@ There are three included functions to help you work with files.
 * Improve SAVEQUERIES check.
 
 = 0.3.1 - March 17, 2015 =
-
 * Fix non-static method call. Thanks [Daniele "Mte90" Scasciafratte](https://wordpress.org/support/profile/mte90).
 * Fix output for TwentyFifteen theme.
 * Replace close button "X" with Dashicon.
 
 = 0.3 =
-
 * Added advanced remote fetch for buffer
 * Added real saved queries and execution time from original URL - can now be accessed as static properties $queries and $execution_time
 * Added `get_current_debug_url()` method - exposes current URL with debug query
@@ -207,17 +233,14 @@ There are three included functions to help you work with files.
 * Added reset debug log functionality with debug header link for wp-debug mode
 
 = 0.2.2 =
-
 * Added backwards compatibility to 3.3.
 * Added support for no pretty permalinks.
 
 = 0.2.1 =
-
 * Critical fix for PHP <= 5.2 Removed anonymous functions.
 * Fixed undefined $debug notices for all versions.
 
 = 0.02 =
-
 * Added new debug modes: Apache modules, PHP loaded extensions, file permissions, php.ini, $_SERVER, and execution time.
 * Added three functions for getting file ownership and permissions
 	* `debug_this_get_file_ownership($file)`
@@ -225,9 +248,8 @@ There are three included functions to help you work with files.
 	* `debug_this_convert_perms_to_rwx($perms)`
 
 = 0.01 =
-
 * Debug This Creation
 
 == Upgrade notice ==
 
-Fix display of global array variables. Fix display of current template. Fix use of a deprecated function.
+Add error handling. Now compatible with Kint.

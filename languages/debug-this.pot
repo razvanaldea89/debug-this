@@ -1,797 +1,826 @@
+# Copyright (C) 2016 Debug This
+# This file is distributed under the same license as the Debug This package.
 msgid ""
 msgstr ""
-"Project-Id-Version: Debug This\n"
-"POT-Creation-Date: 2013-01-01 23:21-0600\n"
-"PO-Revision-Date: 2013-01-01 23:21-0600\n"
-"Last-Translator: Brian Fegter <Brian Fegter>\n"
-"Language-Team: Brian Fegter (misternifty) <brian@fegter.com>\n"
+"Project-Id-Version: Debug This 0.5\n"
+"Report-Msgid-Bugs-To: http://wordpress.org/tag/debug-this\n"
+"POT-Creation-Date: 2016-12-15 14:36:13+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.4\n"
-"X-Poedit-KeywordsList: __;_e\n"
-"X-Poedit-Basepath: .\n"
-"X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-SearchPath-0: ..\n"
+"PO-Revision-Date: 2016-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 
-#: ../debug-this.php:221
+#: debug-this.php:241
 msgid "A debug extension could not be found."
 msgstr ""
 
-#: ../debug-this.php:230
+#: debug-this.php:250
 msgid "Debug This Mode"
 msgstr ""
 
-#: ../debug-this.php:241
+#: debug-this.php:258
 msgid "Example Debug Extension"
 msgstr ""
 
-#: ../debug-this.php:256 ../_inc/debug-template.php:9
+#. #-#-#-#-#  debug-this.pot (Debug This 0.5)  #-#-#-#-#
+#. Plugin Name of the plugin/theme
+#: debug-this.php:276 inc/debug-template.php:9
 msgid "Debug This"
 msgstr ""
 
-#: ../_inc/extensions.php:7
+#: inc/extensions.php:11
 msgid "Actions"
 msgstr ""
 
-#: ../_inc/extensions.php:7
+#: inc/extensions.php:11
 msgid "$wp_actions contains all active registered actions"
 msgstr ""
 
-#: ../_inc/extensions.php:8
+#: inc/extensions.php:16
 msgid "Apache Information"
 msgstr ""
 
-#: ../_inc/extensions.php:8
+#: inc/extensions.php:16
 msgid "Apache version and list of modules"
 msgstr ""
 
-#: ../_inc/extensions.php:9
+#: inc/extensions.php:21
 msgid "Attachments"
 msgstr ""
 
-#: ../_inc/extensions.php:9
+#: inc/extensions.php:21
 msgid "List of post attachments"
 msgstr ""
 
-#: ../_inc/extensions.php:10
+#: inc/extensions.php:26
 msgid "Post Author"
 msgstr ""
 
-#: ../_inc/extensions.php:10
+#: inc/extensions.php:26
 msgid "Current author data"
 msgstr ""
 
-#: ../_inc/extensions.php:11
+#: inc/extensions.php:31
 msgid "Backtrace"
 msgstr ""
 
-#: ../_inc/extensions.php:11
+#: inc/extensions.php:31
 msgid "PHP Backtrace"
 msgstr ""
 
-#: ../_inc/extensions.php:12
+#: inc/extensions.php:36
 msgid "Blog Info"
 msgstr ""
 
-#: ../_inc/extensions.php:12
+#: inc/extensions.php:36
 msgid "Key/Values for get_bloginfo() or bloginfo()"
 msgstr ""
 
-#: ../_inc/extensions.php:13
+#: inc/extensions.php:41
 msgid "Classes"
 msgstr ""
 
-#: ../_inc/extensions.php:13
+#: inc/extensions.php:41
 msgid "Declared Classes"
 msgstr ""
 
-#: ../_inc/extensions.php:14
+#: inc/extensions.php:46
 msgid "Object Cache"
 msgstr ""
 
-#: ../_inc/extensions.php:14
+#: inc/extensions.php:46
 msgid "Object Cache stats"
 msgstr ""
 
-#: ../_inc/extensions.php:15
+#: inc/extensions.php:51
 msgid "Constants"
 msgstr ""
 
-#: ../_inc/extensions.php:15 ../_inc/extensions.php:211
+#: inc/extensions.php:51 inc/extensions.php:665
 msgid "Defined Constants"
 msgstr ""
 
-#: ../_inc/extensions.php:16
+#: inc/extensions.php:56
 msgid "Constants (WordPress)"
 msgstr ""
 
-#: ../_inc/extensions.php:16
+#: inc/extensions.php:56
 msgid "Defined WordPress Constants"
 msgstr ""
 
-#: ../_inc/extensions.php:17
+#: inc/extensions.php:61
 msgid "Content Width"
 msgstr ""
 
-#: ../_inc/extensions.php:17
+#: inc/extensions.php:61
 msgid "global $content_width"
 msgstr ""
 
-#: ../_inc/extensions.php:18
+#: inc/extensions.php:66
 msgid "Context"
 msgstr ""
 
-#: ../_inc/extensions.php:18
+#: inc/extensions.php:66
 msgid "Conditional Context Tags"
 msgstr ""
 
-#: ../_inc/extensions.php:19
+#: inc/extensions.php:71
 msgid "WP Cron Schedules"
 msgstr ""
 
-#: ../_inc/extensions.php:20
+#: inc/extensions.php:76
 msgid "WP Cron Jobs"
 msgstr ""
 
-#: ../_inc/extensions.php:21
+#: inc/extensions.php:81
 msgid "CSS"
 msgstr ""
 
-#: ../_inc/extensions.php:21
+#: inc/extensions.php:81
 msgid "Rendered CSS"
 msgstr ""
 
-#: ../_inc/extensions.php:22
-msgid "Dropins"
-msgstr ""
-
-#: ../_inc/extensions.php:22
-msgid "List of all dropins that replace core WP functionality"
-msgstr ""
-
-#: ../_inc/extensions.php:23
+#: inc/extensions.php:86
 msgid "Extensions"
 msgstr ""
 
-#: ../_inc/extensions.php:23
+#: inc/extensions.php:86
 msgid "List of all loaded PHP extensions"
 msgstr ""
 
-#: ../_inc/extensions.php:24
+#: inc/extensions.php:91
 msgid "File Permissions"
 msgstr ""
 
-#: ../_inc/extensions.php:24
+#: inc/extensions.php:91
 msgid "Info about WP root, plugins and theme directories."
 msgstr ""
 
-#: ../_inc/extensions.php:25
+#: inc/extensions.php:96
 msgid "Files"
 msgstr ""
 
-#: ../_inc/extensions.php:25
+#: inc/extensions.php:96
 msgid "All required and included files"
 msgstr ""
 
-#: ../_inc/extensions.php:26
+#: inc/extensions.php:101
 msgid "Filters"
 msgstr ""
 
-#: ../_inc/extensions.php:26
-msgid ""
-"$wp_filter contains all registered filters. Callback functions are contained "
-"in parentheses"
+#: inc/extensions.php:101
+msgid "$wp_filter contains all registered filters"
 msgstr ""
 
-#: ../_inc/extensions.php:27
-msgid "Current"
+#: inc/extensions.php:106
+msgid "Current Log"
 msgstr ""
 
-#: ../_inc/extensions.php:27
+#: inc/extensions.php:106
 msgid "Current Filters and Actions"
 msgstr ""
 
-#: ../_inc/extensions.php:28
+#: inc/extensions.php:111
 msgid "Functions"
 msgstr ""
 
-#: ../_inc/extensions.php:28
+#: inc/extensions.php:111
 msgid "All defined user functions"
 msgstr ""
 
-#: ../_inc/extensions.php:29
+#: inc/extensions.php:116
 msgid "Images"
 msgstr ""
 
-#: ../_inc/extensions.php:29
+#: inc/extensions.php:116
 msgid "Rendered images on the current page/post"
 msgstr ""
 
-#: ../_inc/extensions.php:30
+#: inc/extensions.php:121
 msgid "Image Sizes"
 msgstr ""
 
-#: ../_inc/extensions.php:30
+#: inc/extensions.php:121
 msgid ""
 "All registered image sizes. Uses get_intermediate_image_sizes() & global "
 "$_wp_additional_image_sizes"
 msgstr ""
 
-#: ../_inc/extensions.php:31
+#: inc/extensions.php:126
 msgid "JavaScript"
 msgstr ""
 
-#: ../_inc/extensions.php:31
+#: inc/extensions.php:126
 msgid "Rendered JS"
 msgstr ""
 
-#: ../_inc/extensions.php:32
+#: inc/extensions.php:131
 msgid "Load Time"
 msgstr ""
 
-#: ../_inc/extensions.php:32
+#: inc/extensions.php:131
 msgid "True page load time (sans Debug This)"
 msgstr ""
 
-#: ../_inc/extensions.php:33
+#: inc/extensions.php:136
 msgid "Registered Menus"
 msgstr ""
 
-#: ../_inc/extensions.php:33
+#: inc/extensions.php:136
 msgid "All registered menus"
 msgstr ""
 
-#: ../_inc/extensions.php:34 ../_inc/extensions.php:466
+#: inc/extensions.php:141 inc/extensions.php:972
 msgid "Dynamic Menus"
 msgstr ""
 
-#: ../_inc/extensions.php:34
+#: inc/extensions.php:141
 msgid "Dynamic Menus and Locations"
 msgstr ""
 
-#: ../_inc/extensions.php:35
+#: inc/extensions.php:146
 msgid "oEmbed"
 msgstr ""
 
-#: ../_inc/extensions.php:35
+#: inc/extensions.php:146
 msgid "Registered oEmbed providers"
 msgstr ""
 
-#: ../_inc/extensions.php:36
+#: inc/extensions.php:151
 msgid "Options"
 msgstr ""
 
-#: ../_inc/extensions.php:36
+#: inc/extensions.php:151
 msgid "A list of all autoloaded options"
 msgstr ""
 
-#: ../_inc/extensions.php:37
+#: inc/extensions.php:156
+msgid "Options (unserialized)"
+msgstr ""
+
+#: inc/extensions.php:156
+msgid "A list of all autoloaded options (unserialized)"
+msgstr ""
+
+#: inc/extensions.php:161
 msgid "phpinfo()"
 msgstr ""
 
-#: ../_inc/extensions.php:38
+#: inc/extensions.php:166
 msgid "php.ini"
 msgstr ""
 
-#: ../_inc/extensions.php:38
+#: inc/extensions.php:166
 msgid "php.ini configuration"
 msgstr ""
 
-#: ../_inc/extensions.php:39
-msgid "Plugins"
+#: inc/extensions.php:175
+msgid "Installed Plugins"
 msgstr ""
 
-#: ../_inc/extensions.php:39
-msgid "A list of all plugins"
+#: inc/extensions.php:175
+msgid "A list of installed plugins"
 msgstr ""
 
-#: ../_inc/extensions.php:40
+#: inc/extensions.php:180
+msgid "Active Plugins"
+msgstr ""
+
+#: inc/extensions.php:180
+msgid "A list of active plugins"
+msgstr ""
+
+#: inc/extensions.php:185
+msgid "Must-Use Plugins"
+msgstr ""
+
+#: inc/extensions.php:185
+msgid "A list of all must-use plugins"
+msgstr ""
+
+#: inc/extensions.php:190
+msgid "Dropins"
+msgstr ""
+
+#: inc/extensions.php:190
+msgid "List of all dropins that replace core WP functionality"
+msgstr ""
+
+#: inc/extensions.php:195
 msgid "Post"
 msgstr ""
 
-#: ../_inc/extensions.php:40
+#: inc/extensions.php:195
 msgid "Single post object"
 msgstr ""
 
-#: ../_inc/extensions.php:41
+#: inc/extensions.php:200
 msgid "Post Meta"
 msgstr ""
 
-#: ../_inc/extensions.php:41
+#: inc/extensions.php:200
 msgid "Post meta for the queried object."
 msgstr ""
 
-#: ../_inc/extensions.php:42
+#: inc/extensions.php:205
 msgid "Post Objects"
 msgstr ""
 
-#: ../_inc/extensions.php:42
+#: inc/extensions.php:205
 msgid "Archive post objects"
 msgstr ""
 
-#: ../_inc/extensions.php:43
+#: inc/extensions.php:210
 msgid "All Post Types"
 msgstr ""
 
-#: ../_inc/extensions.php:43
+#: inc/extensions.php:210
 msgid "Lists all registered post types in WordPress"
 msgstr ""
 
-#: ../_inc/extensions.php:44
+#: inc/extensions.php:215
 msgid "Current Post Type"
 msgstr ""
 
-#: ../_inc/extensions.php:44
+#: inc/extensions.php:215
 msgid "Post type for the queried object"
 msgstr ""
 
-#: ../_inc/extensions.php:45
+#: inc/extensions.php:220
 msgid "Saved Queries"
 msgstr ""
 
-#: ../_inc/extensions.php:45
+#: inc/extensions.php:220
 msgid "All queries run on the current page load (sans Debug This)"
 msgstr ""
 
-#: ../_inc/extensions.php:46
+#: inc/extensions.php:225
 msgid "Request"
 msgstr ""
 
-#: ../_inc/extensions.php:46
+#: inc/extensions.php:225
 msgid "Current request"
 msgstr ""
 
-#: ../_inc/extensions.php:47
+#: inc/extensions.php:230
 msgid "Rewrites"
 msgstr ""
 
-#: ../_inc/extensions.php:47
+#: inc/extensions.php:230
 msgid ""
 "A list of all cached rewrites. To refresh the cache, visit Settings-"
 ">Permalinks"
 msgstr ""
 
-#: ../_inc/extensions.php:48
+#: inc/extensions.php:235
 msgid "Scripts"
 msgstr ""
 
-#: ../_inc/extensions.php:48
+#: inc/extensions.php:235
 msgid "List of registered scripts. Uses $wp_scripts"
 msgstr ""
 
-#: ../_inc/extensions.php:49
+#: inc/extensions.php:240
 msgid "$_SERVER"
 msgstr ""
 
-#: ../_inc/extensions.php:49
+#: inc/extensions.php:240
 msgid "$_SERVER information"
 msgstr ""
 
-#: ../_inc/extensions.php:50
+#: inc/extensions.php:245
 msgid "Shortcodes"
 msgstr ""
 
-#: ../_inc/extensions.php:50
+#: inc/extensions.php:245
 msgid "List of all registered shortcodes"
 msgstr ""
 
-#: ../_inc/extensions.php:51
+#: inc/extensions.php:250
 msgid "Shortcodes Regex"
 msgstr ""
 
-#: ../_inc/extensions.php:51
+#: inc/extensions.php:250
 msgid "Dynamically generated shortcode regex - get_shortcode_regex()"
 msgstr ""
 
-#: ../_inc/extensions.php:52
+#: inc/extensions.php:255
 msgid "Current Sidebars"
 msgstr ""
 
-#: ../_inc/extensions.php:52
+#: inc/extensions.php:255
 msgid ""
 "All instances of get_sidebar() and dynamic_sidebar() in the current template"
 msgstr ""
 
-#: ../_inc/extensions.php:53 ../_inc/extensions.php:650
+#: inc/extensions.php:260 inc/extensions.php:1216
 msgid "Registered Sidebars"
 msgstr ""
 
-#: ../_inc/extensions.php:53
+#: inc/extensions.php:260
 msgid "All registered sidebars. Uses $wp_registered_sidebars"
 msgstr ""
 
-#: ../_inc/extensions.php:54
+#: inc/extensions.php:265
 msgid "Styles"
 msgstr ""
 
-#: ../_inc/extensions.php:54
+#: inc/extensions.php:265
 msgid "List of rendered and registered styles"
 msgstr ""
 
-#: ../_inc/extensions.php:55
+#: inc/extensions.php:270
 msgid "Taxonomies"
 msgstr ""
 
-#: ../_inc/extensions.php:55
+#: inc/extensions.php:270
 msgid "Lists all registered taxonomies in WordPress"
 msgstr ""
 
-#: ../_inc/extensions.php:56
+#: inc/extensions.php:275
 msgid "Current Template"
 msgstr ""
 
-#: ../_inc/extensions.php:56
+#: inc/extensions.php:275
 msgid "Current template file"
 msgstr ""
 
-#: ../_inc/extensions.php:57
+#: inc/extensions.php:280
 msgid "Post Terms"
 msgstr ""
 
-#: ../_inc/extensions.php:57
+#: inc/extensions.php:280
 msgid "All terms for the current single post/page"
 msgstr ""
 
-#: ../_inc/extensions.php:58
+#: inc/extensions.php:285
 msgid "All Terms"
 msgstr ""
 
-#: ../_inc/extensions.php:58
+#: inc/extensions.php:285
 msgid "A list of all terms"
 msgstr ""
 
-#: ../_inc/extensions.php:60 ../_inc/extensions.php:704
+#: inc/extensions.php:291 inc/extensions.php:1281
 msgid "Themes"
 msgstr ""
 
-#: ../_inc/extensions.php:60
+#: inc/extensions.php:291
 msgid "List of all WP_Theme objects"
 msgstr ""
 
-#: ../_inc/extensions.php:61
+#: inc/extensions.php:297
 msgid "All Users"
 msgstr ""
 
-#: ../_inc/extensions.php:61
+#: inc/extensions.php:297
 msgid "List of all users"
 msgstr ""
 
-#: ../_inc/extensions.php:62
+#: inc/extensions.php:302
 msgid "Variables"
 msgstr ""
 
-#: ../_inc/extensions.php:62
+#: inc/extensions.php:302
 msgid "List of all defined variables"
 msgstr ""
 
-#: ../_inc/extensions.php:63
+#: inc/extensions.php:307
 msgid "Widgets"
 msgstr ""
 
-#: ../_inc/extensions.php:63
+#: inc/extensions.php:307
 msgid "All registered widgets - uses $wp_widget_factor->widgets"
 msgstr ""
 
-#: ../_inc/extensions.php:64
-msgid "WP Debug"
+#: inc/extensions.php:312
+msgid "WP Debug Log"
 msgstr ""
 
-#: ../_inc/extensions.php:64
+#: inc/extensions.php:312
 msgid "Displays a list of notices rendered by WP_DEBUG mode"
 msgstr ""
 
-#: ../_inc/extensions.php:65
+#: inc/extensions.php:317
 msgid "WP_Query"
 msgstr ""
 
-#: ../_inc/extensions.php:65
+#: inc/extensions.php:317
 msgid "Current WP_Query object - global $wp_query"
 msgstr ""
 
-#: ../_inc/extensions.php:66
+#: inc/extensions.php:322
 msgid "Debug This Menu"
 msgstr ""
 
-#: ../_inc/extensions.php:66
+#: inc/extensions.php:322
 msgid "Modes Navigation"
 msgstr ""
 
-#: ../_inc/extensions.php:86
+#: inc/extensions.php:381
 msgid "No Title"
 msgstr ""
 
-#: ../_inc/extensions.php:88
-#, php-format
+#: inc/extensions.php:385
 msgid "ID: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:89
-#, php-format
+#: inc/extensions.php:386
 msgid "Mime Type: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:91
+#: inc/extensions.php:388
 msgid "URL: "
 msgstr ""
 
-#: ../_inc/extensions.php:93
-#, php-format
+#: inc/extensions.php:390
 msgid "Description: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:98
+#: inc/extensions.php:396
 msgid "No attachments found."
 msgstr ""
 
-#: ../_inc/extensions.php:105
+#: inc/extensions.php:404
 msgid "This extension only works on Apache."
 msgstr ""
 
-#: ../_inc/extensions.php:107
+#: inc/extensions.php:407
 msgid "Version"
 msgstr ""
 
-#: ../_inc/extensions.php:109
+#: inc/extensions.php:409
 msgid "Modules"
 msgstr ""
 
-#: ../_inc/extensions.php:112
+#: inc/extensions.php:412
 msgid "No modules were found. This could be a symptom of running PHP as CGI."
 msgstr ""
 
-#: ../_inc/extensions.php:118
+#: inc/extensions.php:420
 msgid "This mode can only be used on a single post/page."
 msgstr ""
 
-#: ../_inc/extensions.php:128
+#: inc/extensions.php:433
 msgid "Backtrace Summary"
 msgstr ""
 
-#: ../_inc/extensions.php:131
+#: inc/extensions.php:436
 msgid "debug_backtrace()"
 msgstr ""
 
-#: ../_inc/extensions.php:183 ../_inc/extensions.php:203
+#: inc/extensions.php:493 inc/extensions.php:655
 msgid "false"
 msgstr ""
 
-#: ../_inc/extensions.php:185 ../_inc/extensions.php:205
+#: inc/extensions.php:495 inc/extensions.php:657
 msgid "empty string"
 msgstr ""
 
-#: ../_inc/extensions.php:213
+#: inc/extensions.php:667
 msgid "Undefined Constants"
 msgstr ""
 
-#: ../_inc/extensions.php:234
+#: inc/extensions.php:692
 msgid "No cron jobs found."
 msgstr ""
 
-#: ../_inc/extensions.php:283 ../_inc/extensions.php:441
-#: ../_inc/extensions.php:452
-#, php-format
+#: inc/extensions.php:746 inc/extensions.php:941 inc/extensions.php:955
 msgid "Template: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:284 ../_inc/extensions.php:442
-#: ../_inc/extensions.php:453
-#, php-format
+#: inc/extensions.php:747 inc/extensions.php:942 inc/extensions.php:956
 msgid "URL: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:285
+#: inc/extensions.php:749
 msgid "Stylesheets"
 msgstr ""
 
-#: ../_inc/extensions.php:297
-#, php-format
-msgid "No dropins found. To learn more, please see: %s"
+#: inc/extensions.php:763
+msgid "No dropins found. <a href=\"%s\">Click here to learn more</a>."
 msgstr ""
 
-#: ../_inc/extensions.php:309
+#: inc/extensions.php:779
 msgid "This extension has only been tested on Apache."
 msgstr ""
 
-#: ../_inc/extensions.php:318
-#, php-format
+#: inc/extensions.php:789
 msgid "%s %s Recommended: %s - To change, run: chmod %s %s"
 msgstr ""
 
-#: ../_inc/extensions.php:320
-#, php-format
+#: inc/extensions.php:792
 msgid "Permissions: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:338
+#: inc/extensions.php:812
 msgid "The current WordPress user might not have access to this file/folder."
 msgstr ""
 
-#: ../_inc/extensions.php:340
-#, php-format
+#: inc/extensions.php:815
 msgid "Owner/Group: %s:%s"
 msgstr ""
 
-#: ../_inc/extensions.php:346
+#: inc/extensions.php:821
 msgid "access"
 msgstr ""
 
-#: ../_inc/extensions.php:346
+#: inc/extensions.php:821
 msgid "no access"
 msgstr ""
 
-#: ../_inc/extensions.php:347
-#, php-format
+#: inc/extensions.php:822
 msgid "Rubric: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:353
+#: inc/extensions.php:832
 msgid "WordPress User"
 msgstr ""
 
-#: ../_inc/extensions.php:354
-#, php-format
+#: inc/extensions.php:833
 msgid "User: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:355
-#, php-format
+#: inc/extensions.php:834
 msgid "Group: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:374
+#: inc/extensions.php:855
 msgid "Couldn't find wp-config.php!"
 msgstr ""
 
-#: ../_inc/extensions.php:387
+#: inc/extensions.php:869
 msgid "Required Files"
 msgstr ""
 
-#: ../_inc/extensions.php:389
+#: inc/extensions.php:871
 msgid "Included Files"
 msgstr ""
 
-#: ../_inc/extensions.php:431
-msgid "Registered Sizes Names"
+#: inc/extensions.php:929
+msgid "Registered Size Names"
 msgstr ""
 
-#: ../_inc/extensions.php:433
+#: inc/extensions.php:931
 msgid "Registered Size Definitions"
 msgstr ""
 
-#: ../_inc/extensions.php:443
+#: inc/extensions.php:944
 msgid "JavaScript Files"
 msgstr ""
 
-#: ../_inc/extensions.php:454
-#, php-format
+#: inc/extensions.php:957
 msgid "Execution Time: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:454
+#: inc/extensions.php:957
 msgid "seconds"
 msgstr ""
 
-#: ../_inc/extensions.php:464
+#: inc/extensions.php:970
 msgid "Dynamic Menu Locations"
 msgstr ""
 
-#: ../_inc/extensions.php:511 ../_inc/extensions.php:529
+#: inc/extensions.php:1055 inc/extensions.php:1076
 msgid "This mode only works for single posts/pages"
 msgstr ""
 
-#: ../_inc/extensions.php:519
-#, php-format
-msgid "Number of Posts: %d"
-msgstr ""
-
-#: ../_inc/extensions.php:523
+#: inc/extensions.php:1063
 msgid "This mode only works for archive/home pages"
 msgstr ""
 
-#: ../_inc/extensions.php:556
+#: inc/extensions.php:1068
+msgid "Number of Posts: %d"
+msgstr ""
+
+#: inc/extensions.php:1108
 msgid ""
 "Please set define(\"SAVEQUERIES\", true); in wp-config.php to see saved "
 "queries. Please disable when completed as this can be a large performance "
 "hit."
 msgstr ""
 
-#: ../_inc/extensions.php:572
+#: inc/extensions.php:1110
+msgid "No queries found."
+msgstr ""
+
+#: inc/extensions.php:1129
 msgid ""
 "Pretty permalinks must be enabled to use this mode. To set a permalink "
 "structure, go to Settings->Permalinks in wp-admin."
 msgstr ""
 
-#: ../_inc/extensions.php:574
+#: inc/extensions.php:1132
 msgid "Current Rewrite"
 msgstr ""
 
-#: ../_inc/extensions.php:575
+#: inc/extensions.php:1133
 msgid "Matched Rule"
 msgstr ""
 
-#: ../_inc/extensions.php:576
+#: inc/extensions.php:1134
 msgid "Matched Query"
 msgstr ""
 
-#: ../_inc/extensions.php:577
+#: inc/extensions.php:1135
 msgid "Query String"
 msgstr ""
 
-#: ../_inc/extensions.php:578
+#: inc/extensions.php:1136
 msgid "Rewrite Rules"
 msgstr ""
 
-#: ../_inc/extensions.php:582
+#: inc/extensions.php:1140
 msgid "Rule"
 msgstr ""
 
-#: ../_inc/extensions.php:582
+#: inc/extensions.php:1140
 msgid "Rewrite"
 msgstr ""
 
-#: ../_inc/extensions.php:591
+#: inc/extensions.php:1148
 msgid "No rules defined."
 msgstr ""
 
-#: ../_inc/extensions.php:631
-#, php-format
+#: inc/extensions.php:1195
 msgid "Dynamic Sidebar: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:634
-#, php-format
+#: inc/extensions.php:1198
 msgid "Missing sidebar template for %s.php"
 msgstr ""
 
-#: ../_inc/extensions.php:640
-#, php-format
+#: inc/extensions.php:1204
 msgid "Current Template: %s"
 msgstr ""
 
-#: ../_inc/extensions.php:644
+#: inc/extensions.php:1208
 msgid "No sidebars were found in this template."
 msgstr ""
 
-#: ../_inc/extensions.php:689
-#, php-format
+#: inc/extensions.php:1239
+msgid ""
+"For more information, consider this plugin: <a href=\"%s\">What The File</a>"
+msgstr ""
+
+#: inc/extensions.php:1264
 msgid "Term ID #%s - %s - %s"
 msgstr ""
 
-#: ../_inc/extensions.php:696
+#: inc/extensions.php:1272
 msgid "This mode only works on single pages/posts."
 msgstr ""
 
-#: ../_inc/extensions.php:701
+#: inc/extensions.php:1279
 msgid "Current Theme"
 msgstr ""
 
-#: ../_inc/extensions.php:748
+#: inc/extensions.php:1330
 msgid "Reset log file"
 msgstr ""
 
-#: ../_inc/extensions.php:751
+#: inc/extensions.php:1333
 msgid "Debug log was successfully cleared."
 msgstr ""
 
-#: ../_inc/extensions.php:753
+#: inc/extensions.php:1335
 msgid "Debug log could not be reset. Please try again"
 msgstr ""
 
-#: ../_inc/extensions.php:757 ../_inc/extensions.php:760
+#: inc/extensions.php:1340 inc/extensions.php:1343
 msgid "Looking good! No notices were logged."
 msgstr ""
 
-#: ../_inc/extensions.php:762
+#: inc/extensions.php:1346
 msgid ""
 "Could not open debug.log. Please make sure your wp-content folder is "
 "writeable by the web server user."
 msgstr ""
 
-#: ../_inc/extensions.php:766
+#: inc/extensions.php:1351
 msgid ""
 "Please add the following to wp-config.php to use this mode.\n"
 "define('WP_DEBUG', true);\n"
 "define('WP_DEBUG_LOG', true);\n"
 "define('WP_DEBUG_DISPLAY', false);"
+msgstr ""
+
+#. Plugin URI of the plugin/theme
+msgid "http://coderrr.com/debug-this-wordpress-plugin"
+msgstr ""
+
+#. Description of the plugin/theme
+msgid ""
+"Gives super admins the ability to easily view a variety of debug outputs on "
+"front-facing pages"
+msgstr ""
+
+#. Author of the plugin/theme
+msgid "Brian Fegter, Chris Dillon"
+msgstr ""
+
+#. Author URI of the plugin/theme
+msgid "http://coderrr.com"
 msgstr ""

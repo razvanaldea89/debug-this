@@ -4,259 +4,373 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 class Debug_This_Extensions {
+
 	public function __construct() {
 		$version = get_bloginfo( 'version' );
+
 		add_debug_extension( 'actions', __( 'Actions', 'debug-this' ), __( '$wp_actions contains all active registered actions', 'debug-this' ), array(
 			$this,
 			'actions'
 		), 'Filters And Actions' );
+
 		add_debug_extension( 'apache', __( 'Apache Information', 'debug-this' ), __( 'Apache version and list of modules', 'debug-this' ), array(
 			$this,
 			'apache'
 		), 'Server' );
+
 		add_debug_extension( 'attachments', __( 'Attachments', 'debug-this' ), __( 'List of post attachments', 'debug-this' ), array(
 			$this,
 			'attachments'
 		), 'Media' );
+
 		add_debug_extension( 'author', __( 'Post Author', 'debug-this' ), __( 'Current author data', 'debug-this' ), array(
 			$this,
 			'author'
 		), 'Users' );
+
 		add_debug_extension( 'backtrace', __( 'Backtrace', 'debug-this' ), __( 'PHP Backtrace', 'debug-this' ), array(
 			$this,
 			'backtrace'
 		), 'PHP' );
+
 		add_debug_extension( 'bloginfo', __( 'Blog Info', 'debug-this' ), __( 'Key/Values for get_bloginfo() or bloginfo()', 'debug-this' ), array(
 			$this,
 			'bloginfo'
 		) );
+
 		add_debug_extension( 'classes', __( 'Classes', 'debug-this' ), __( 'Declared Classes', 'debug-this' ), array(
 			$this,
 			'classes'
 		), 'PHP' );
+
 		add_debug_extension( 'cache', __( 'Object Cache', 'debug-this' ), __( 'Object Cache stats', 'debug-this' ), array(
 			$this,
 			'cache'
 		), 'Cache' );
+
 		add_debug_extension( 'constants', __( 'Constants', 'debug-this' ), __( 'Defined Constants', 'debug-this' ), array(
 			$this,
 			'constants'
 		), 'PHP' );
+
 		add_debug_extension( 'constants-wp', __( 'Constants (WordPress)', 'debug-this' ), __( 'Defined WordPress Constants', 'debug-this' ), array(
 			$this,
 			'constants_wordpress'
 		), 'PHP' );
+
 		add_debug_extension( 'content-width', __( 'Content Width', 'debug-this' ), __( 'global $content_width', 'debug-this' ), array(
 			$this,
 			'content_width'
 		), 'Themes' );
+
 		add_debug_extension( 'context', __( 'Context', 'debug-this' ), __( 'Conditional Context Tags', 'debug-this' ), array(
 			$this,
 			'context'
 		), 'Query' );
+
 		add_debug_extension( 'cron-schedules', __( 'WP Cron Schedules', 'debug-this' ), __( 'WP Cron Schedules', 'debug-this' ), array(
 			$this,
 			'cron_schedules'
 		), 'Cron' );
+
 		add_debug_extension( 'cron-jobs', __( 'WP Cron Jobs', 'debug-this' ), __( 'WP Cron Jobs', 'debug-this' ), array(
 			$this,
 			'cron_jobs'
 		), 'Cron' );
+
 		add_debug_extension( 'css', __( 'CSS', 'debug-this' ), __( 'Rendered CSS', 'debug-this' ), array(
 			$this,
 			'css'
 		), 'Rendered HTML' );
-		add_debug_extension( 'dropins', __( 'Dropins', 'debug-this' ), __( 'List of all dropins that replace core WP functionality', 'debug-this' ), array(
-			$this,
-			'dropins'
-		), 'Plugins' );
+
 		add_debug_extension( 'php-extensions', __( 'Extensions', 'debug-this' ), __( 'List of all loaded PHP extensions', 'debug-this' ), array(
 			$this,
 			'extensions'
 		), 'PHP' );
+
 		add_debug_extension( 'file-permissions', __( 'File Permissions', 'debug-this' ), __( 'Info about WP root, plugins and theme directories.', 'debug-this' ), array(
 			$this,
 			'file_permissions'
 		), 'Server' );
+
 		add_debug_extension( 'files', __( 'Files', 'debug-this' ), __( 'All required and included files', 'debug-this' ), array(
 			$this,
 			'files'
 		), 'PHP' );
-		add_debug_extension( 'filters', __( 'Filters', 'debug-this' ), __( '$wp_filter contains all registered filters. Callback functions are contained in parentheses', 'debug-this' ), array(
+
+		add_debug_extension( 'filters', __( 'Filters', 'debug-this' ), __( '$wp_filter contains all registered filters', 'debug-this' ), array(
 			$this,
 			'filters'
 		), 'Filters And Actions' );
-		add_debug_extension( 'filters-current', __( 'Current', 'debug-this' ), __( 'Current Filters and Actions', 'debug-this' ), array(
+
+		add_debug_extension( 'filters-current', __( 'Current Log', 'debug-this' ), __( 'Current Filters and Actions', 'debug-this' ), array(
 			$this,
 			'filters_current'
 		), 'Filters And Actions' );
+
 		add_debug_extension( 'functions', __( 'Functions', 'debug-this' ), __( 'All defined user functions', 'debug-this' ), array(
 			$this,
 			'functions'
 		), 'PHP' );
+
 		add_debug_extension( 'images', __( 'Images', 'debug-this' ), __( 'Rendered images on the current page/post', 'debug-this' ), array(
 			$this,
 			'images'
 		), 'Rendered HTML' );
+
 		add_debug_extension( 'imagesizes', __( 'Image Sizes', 'debug-this' ), __( 'All registered image sizes. Uses get_intermediate_image_sizes() & global $_wp_additional_image_sizes', 'debug-this' ), array(
 			$this,
 			'imagesizes'
 		), 'Media' );
+
 		add_debug_extension( 'js', __( 'JavaScript', 'debug-this' ), __( 'Rendered JS', 'debug-this' ), array(
 			$this,
 			'js'
 		), 'Rendered HTML' );
+
 		add_debug_extension( 'load-time', __( 'Load Time', 'debug-this' ), __( 'True page load time (sans Debug This)', 'debug-this' ), array(
 			$this,
 			'load_time'
 		), 'Rendered HTML' );
+
 		add_debug_extension( 'menus', __( 'Registered Menus', 'debug-this' ), __( 'All registered menus', 'debug-this' ), array(
 			$this,
 			'menus'
 		), 'Menus' );
+
 		add_debug_extension( 'menus_dynamic', __( 'Dynamic Menus', 'debug-this' ), __( 'Dynamic Menus and Locations', 'debug-this' ), array(
 			$this,
 			'menus_dynamic'
 		), 'Menus' );
+
 		add_debug_extension( 'oembed', __( 'oEmbed', 'debug-this' ), __( 'Registered oEmbed providers', 'debug-this' ), array(
 			$this,
 			'oembed'
 		), 'Media' );
+
 		add_debug_extension( 'options', __( 'Options', 'debug-this' ), __( 'A list of all autoloaded options', 'debug-this' ), array(
 			$this,
 			'options'
 		) );
+
+		add_debug_extension( 'options_unserialized', __( 'Options (unserialized)', 'debug-this' ), __( 'A list of all autoloaded options (unserialized)', 'debug-this' ), array(
+			$this,
+			'options_unserialized'
+		) );
+
 		add_debug_extension( 'phpinfo', __( 'phpinfo()', 'debug-this' ), __( 'phpinfo()', 'debug-this' ), array(
 			$this,
 			'phpinfo'
 		), 'PHP' );
+
 		add_debug_extension( 'phpini', __( 'php.ini', 'debug-this' ), __( 'php.ini configuration', 'debug-this' ), array(
 			$this,
 			'phpini'
 		), 'PHP' );
-		add_debug_extension( 'plugins', __( 'Plugins', 'debug-this' ), __( 'A list of all plugins', 'debug-this' ), array(
+
+		/**
+		 * Plugins
+		 */
+
+		add_debug_extension( 'plugins', __( 'Installed Plugins', 'debug-this' ), __( 'A list of installed plugins', 'debug-this' ), array(
 			$this,
 			'plugins'
 		), 'Plugins' );
+
+		add_debug_extension( 'active_plugins', __( 'Active Plugins', 'debug-this' ), __( 'A list of active plugins', 'debug-this' ), array(
+			$this,
+			'active_plugins'
+		), 'Plugins' );
+
+		add_debug_extension( 'mu_plugins', __( 'Must-Use Plugins', 'debug-this' ), __( 'A list of all must-use plugins', 'debug-this' ), array(
+			$this,
+			'mu_plugins'
+		), 'Plugins' );
+
+		add_debug_extension( 'dropins', __( 'Dropins', 'debug-this' ), __( 'List of all dropins that replace core WP functionality', 'debug-this' ), array(
+			$this,
+			'dropins'
+		), 'Plugins' );
+
 		add_debug_extension( 'post', __( 'Post', 'debug-this' ), __( 'Single post object', 'debug-this' ), array(
 			$this,
 			'post'
 		), 'Queried Object' );
+
 		add_debug_extension( 'post-meta', __( 'Post Meta', 'debug-this' ), __( 'Post meta for the queried object.', 'debug-this' ), array(
 			$this,
 			'post_meta'
 		), 'Queried Object' );
+
 		add_debug_extension( 'posts', __( 'Post Objects', 'debug-this' ), __( 'Archive post objects', 'debug-this' ), array(
 			$this,
 			'posts'
 		), 'Query' );
+
 		add_debug_extension( 'post-types', __( 'All Post Types', 'debug-this' ), __( 'Lists all registered post types in WordPress', 'debug-this' ), array(
 			$this,
 			'posttypes'
 		), 'Post Types' );
+
 		add_debug_extension( 'post-type-current', __( 'Current Post Type', 'debug-this' ), __( 'Post type for the queried object', 'debug-this' ), array(
 			$this,
 			'posttype_current'
 		), 'Post Types' );
+
 		add_debug_extension( 'queries', __( 'Saved Queries', 'debug-this' ), __( 'All queries run on the current page load (sans Debug This)', 'debug-this' ), array(
 			$this,
 			'queries'
 		), 'Query' );
+
 		add_debug_extension( 'request', __( 'Request', 'debug-this' ), __( 'Current request', 'debug-this' ), array(
 			$this,
 			'request'
 		), 'Query' );
+
 		add_debug_extension( 'rewrites', __( 'Rewrites', 'debug-this' ), __( 'A list of all cached rewrites. To refresh the cache, visit Settings->Permalinks', 'debug-this' ), array(
 			$this,
 			'rewrites'
 		), 'Query' );
+
 		add_debug_extension( 'scripts', __( 'Scripts', 'debug-this' ), __( 'List of registered scripts. Uses $wp_scripts', 'debug-this' ), array(
 			$this,
 			'scripts'
 		), 'Enqueue' );
+
 		add_debug_extension( 'server', __( '$_SERVER', 'debug-this' ), __( '$_SERVER information', 'debug-this' ), array(
 			$this,
 			'server'
 		), 'Server' );
+
 		add_debug_extension( 'shortcodes', __( 'Shortcodes', 'debug-this' ), __( 'List of all registered shortcodes', 'debug-this' ), array(
 			$this,
 			'shortcodes'
 		), 'Shortcodes' );
+
 		add_debug_extension( 'shortcodes-regex', __( 'Shortcodes Regex', 'debug-this' ), __( 'Dynamically generated shortcode regex - get_shortcode_regex()', 'debug-this' ), array(
 			$this,
 			'shortcodes_regex'
 		), 'Shortcodes' );
+
 		add_debug_extension( 'sidebars-current', __( 'Current Sidebars', 'debug-this' ), __( 'All instances of get_sidebar() and dynamic_sidebar() in the current template', 'debug-this' ), array(
 			$this,
 			'sidebars_rendered'
 		), 'Sidebar' );
+
 		add_debug_extension( 'sidebars', __( 'Registered Sidebars', 'debug-this' ), __( 'All registered sidebars. Uses $wp_registered_sidebars', 'debug-this' ), array(
 			$this,
 			'sidebars_registered'
 		), 'Sidebar' );
+
 		add_debug_extension( 'styles', __( 'Styles', 'debug-this' ), __( 'List of rendered and registered styles', 'debug-this' ), array(
 			$this,
 			'styles'
 		), 'Enqueue' );
+
 		add_debug_extension( 'taxonomies', __( 'Taxonomies', 'debug-this' ), __( 'Lists all registered taxonomies in WordPress', 'debug-this' ), array(
 			$this,
 			'taxonomies'
 		), 'Taxonomy' );
+
 		add_debug_extension( 'template', __( 'Current Template', 'debug-this' ), __( 'Current template file', 'debug-this' ), array(
 			$this,
 			'template'
 		), 'Themes' );
+
 		add_debug_extension( 'terms', __( 'Post Terms', 'debug-this' ), __( 'All terms for the current single post/page', 'debug-this' ), array(
 			$this,
 			'terms'
 		), 'Taxonomy' );
+
 		add_debug_extension( 'terms-all', __( 'All Terms', 'debug-this' ), __( 'A list of all terms', 'debug-this' ), array(
 			$this,
 			'terms_all'
 		), 'Taxonomy' );
+
 		if ( $version >= 3.4 ) {
 			add_debug_extension( 'themes', __( 'Themes', 'debug-this' ), __( 'List of all WP_Theme objects', 'debug-this' ), array(
 				$this,
 				'themes'
 			), 'Themes' );
 		}
+
 		add_debug_extension( 'users', __( 'All Users', 'debug-this' ), __( 'List of all users', 'debug-this' ), array(
 			$this,
 			'users'
 		), 'Users' );
+
 		add_debug_extension( 'variables', __( 'Variables', 'debug-this' ), __( 'List of all defined variables', 'debug-this' ), array(
 			$this,
 			'variables'
 		), 'PHP' );
+
 		add_debug_extension( 'widgets', __( 'Widgets' ), __( 'All registered widgets - uses $wp_widget_factor->widgets', 'debug-this' ), array(
 			$this,
 			'widgets'
 		), 'Sidebar' );
-		add_debug_extension( 'wp-debug', __( 'WP Debug' ), __( 'Displays a list of notices rendered by WP_DEBUG mode', 'debug-this' ), array(
+
+		add_debug_extension( 'wp-debug', __( 'WP Debug Log' ), __( 'Displays a list of notices rendered by WP_DEBUG mode', 'debug-this' ), array(
 			$this,
 			'wp_debug'
 		), 'PHP' );
+
 		add_debug_extension( 'wp_query', __( 'WP_Query' ), __( 'Current WP_Query object - global $wp_query', 'debug-this' ), array(
 			$this,
 			'wp_query'
 		), 'Query' );
+
 		add_debug_extension( 'help', __( 'Debug This Menu', 'debug-this' ), __( 'Modes Navigation', 'debug-this' ), array(
 			$this,
 			'help'
 		) );
 	}
 
+	/**
+	 * Our array printer
+	 *
+	 * @param $array
+	 * @param $htmlentities
+	 * @param $force_plain
+	 *
+	 * @return string
+	 */
+	public function printer( $array, $htmlentities = false, $force_plain = false ) {
+		$no_pre = Debug_This::get_no_pre();
+		ob_start();
+		if ( class_exists( 'Kint' ) && ! $force_plain ) {
+			echo d( $array );
+		}
+		else {
+			if ( ! $no_pre ) {
+				echo '<pre>';
+			}
+			if ( $htmlentities ) {
+				echo htmlentities( print_r( $array, true ) );
+			} else {
+				echo print_r( $array, true );
+			}
+			if ( ! $no_pre ) {
+				echo '</pre>';
+			}
+		}
+		$return = ob_get_contents();
+		ob_end_clean();
+
+		return $return;
+	}
+
 	public function actions() {
 		global $wp_actions;
 		$wp_actions['shutdown'] = 1;
-		$debug                  = print_r( $wp_actions, true );
+		$debug                  = $this->printer( $wp_actions, true );
 
 		return $debug;
 	}
 
 	public function attachments() {
 		global $post;
-		$args        = array(
+		$debug = '';
+		$args  = array(
 			'post_type'      => 'attachment',
 			'post_parent'    => $post->ID,
 			'posts_per_page' => - 1
@@ -265,7 +379,9 @@ class Debug_This_Extensions {
 		if ( $attachments ) {
 			foreach ( $attachments as $attachment ) {
 				$title = $attachment->post_title ? $attachment->post_title : __( 'No Title', 'debug-this' );
-				$debug .= "<h3 class='emphasize'>$title</h3><ul>";
+				$debug .= "<h3 class='emphasize'>$title</h3>";
+				$debug .= '<pre>';
+				$debug .= '<ul>';
 				$debug .= '<li>' . sprintf( __( 'ID: %s', 'debug-this' ), $attachment->ID ) . '</li>';
 				$debug .= '<li>' . sprintf( __( 'Mime Type: %s', 'debug-this' ), $attachment->post_mime_type ) . '</li>';
 				$url = wp_get_attachment_url( $attachment->ID );
@@ -274,6 +390,7 @@ class Debug_This_Extensions {
 					$debug .= '<li>' . sprintf( __( 'Description: %s', 'debug-this' ), $attachment->post_content );
 				}
 				$debug .= '</ul>';
+				$debug .= '</pre>';
 			}
 		} else {
 			$debug = __( 'No attachments found.', 'debug-this' );
@@ -288,11 +405,11 @@ class Debug_This_Extensions {
 		}
 
 		$debug = '<h3 class="emphasize">' . __( 'Version', 'debug-this' ) . '</h3>';
-		$debug .= apache_get_version();
+		$debug .= '<pre>' . apache_get_version() . '</pre>';
 		$debug .= '<h3 class="emphasize">' . __( 'Modules', 'debug-this' ) . '</h3>';
-		$debug .= print_r( apache_get_modules(), true );
+		$debug .= $this->printer( apache_get_modules(), true );
 		if ( ! $debug ) {
-			$debug = __( "No modules were found. This could be a symptom of running PHP as CGI.", 'debug-this' );
+			$debug = __( 'No modules were found. This could be a symptom of running PHP as CGI.', 'debug-this' );
 		}
 
 		return $debug;
@@ -304,48 +421,48 @@ class Debug_This_Extensions {
 		}
 		global $post, $authordata;
 		setup_postdata( $post );
-		$debug = print_r( $authordata, true );
+		$debug = $this->printer( $authordata, true );
 
 		return $debug;
 	}
 
 	public function backtrace() {
 		$version = get_bloginfo( 'version' );
+		$debug = '';
 		if ( $version >= 3.4 ) {
 			$debug = '<h3>' . __( 'Backtrace Summary', 'debug-this' ) . '</h3>';
-			$debug .= print_r( explode( ', ', wp_debug_backtrace_summary() ), true );
+			$debug .= $this->printer( explode( ', ', wp_debug_backtrace_summary() ), true );
 		}
 		$debug .= '<h3>' . __( 'debug_backtrace()', 'debug-this' ) . '</h3>';
-		$debug .= htmlentities( print_r( debug_backtrace(), true ) );
+		$debug .= $this->printer( debug_backtrace(), true );
 
 		return $debug;
 	}
 
 	public function bloginfo() {
-		global $wp_version;
 		$bloginfo = array(
-			'url'                  => get_bloginfo( 'url' ),
-			'wpurl'                => get_bloginfo( 'wpurl' ),
+			'name'                 => get_bloginfo( 'name' ),
 			'description'          => get_bloginfo( 'description' ),
+			'wpurl'                => get_bloginfo( 'wpurl' ),
+			'url'                  => get_bloginfo( 'url' ),
+			'admin_email'          => get_bloginfo( 'admin_email' ),
+			'charset'              => get_bloginfo( 'charset' ),
+			'version'              => get_bloginfo( 'version' ),
+			'html_type'            => get_bloginfo( 'html_type' ),
+			'language'             => get_bloginfo( 'language' ),
+			'stylesheet_url'       => get_bloginfo( 'stylesheet_url' ),
+			'stylesheet_directory' => get_bloginfo( 'stylesheet_directory' ),
+			'template_url'         => get_bloginfo( 'template_url' ),
+			'template_directory'   => get_bloginfo( 'template_directory' ),
+			'pingback_url'         => get_bloginfo( 'pingback_url' ),
+			'atom_url'             => get_bloginfo( 'atom_url' ),
 			'rdf_url'              => get_bloginfo( 'rdf_url' ),
 			'rss_url'              => get_bloginfo( 'rss_url' ),
 			'rss2_url'             => get_bloginfo( 'rss2_url' ),
-			'atom_url'             => get_bloginfo( 'atom_url' ),
 			'comments_atom_url'    => get_bloginfo( 'comments_atom_url' ),
 			'comments_rss2_url'    => get_bloginfo( 'comments_rss2_url' ),
-			'pingback_url'         => get_bloginfo( 'pingback_url' ),
-			'stylesheet_url'       => get_bloginfo( 'stylesheet_url' ),
-			'stylesheet_directory' => get_bloginfo( 'stylesheet_directory' ),
-			'template_directory'   => get_bloginfo( 'template_directory' ),
-			'template_url'         => get_bloginfo( 'template_url' ),
-			'admin_email'          => get_bloginfo( 'admin_email' ),
-			'charset'              => get_bloginfo( 'charset' ),
-			'html_type'            => get_bloginfo( 'html_type' ),
-			'version'              => get_bloginfo( 'version' ),
-			'language'             => get_bloginfo( 'language' ),
-			'name'                 => get_bloginfo( 'name' )
 		);
-		$debug    = print_r( $bloginfo, true );
+		$debug = $this->printer( $bloginfo );
 
 		return $debug;
 	}
@@ -354,7 +471,9 @@ class Debug_This_Extensions {
 		# Appropriated from WP Debug Bar Plugin - class-debug-bar-object-cache.php
 		global $wp_object_cache;
 		ob_start();
+		echo '<pre>';
 		$wp_object_cache->stats();
+		echo '</pre>';
 		$debug = ob_get_contents();
 		ob_end_clean();
 
@@ -362,7 +481,7 @@ class Debug_This_Extensions {
 	}
 
 	public function classes() {
-		$debug = print_r( get_declared_classes(), true );
+		$debug = $this->printer( get_declared_classes() );
 
 		return $debug;
 	}
@@ -376,7 +495,7 @@ class Debug_This_Extensions {
 				$constants[ $constant ] = '<span class="error">' . __( 'empty string', 'debug-this' ) . '</span>';
 			}
 		}
-		$debug = print_r( $constants, true );
+		$debug = $this->printer( $constants );
 
 		return $debug;
 	}
@@ -541,24 +660,26 @@ class Debug_This_Extensions {
 				}
 			}
 		}
-		ksort( $undefined_constants );
+		ksort( $defined_constants );
+		sort( $undefined_constants );
 		$debug = '<h3 class="emphasize">' . __( 'Defined Constants', 'debug-this' ) . '</h3>';
-		$debug .= print_r( $defined_constants, true );
+		$debug .= $this->printer( $defined_constants );
 		$debug .= '<h3 class="emphasize">' . __( 'Undefined Constants', 'debug-this' ) . '</h3>';
-		$debug .= print_r( $undefined_constants, true );
+		$debug .= $this->printer( $undefined_constants );
 
 		return $debug;
 	}
 
 	public function content_width() {
 		global $content_width;
+		$debug = "<pre>$content_width</pre>";
 
-		return $content_width;
+		return $debug;
 	}
 
 	public function cron_schedules() {
 		$schedules = wp_get_schedules();
-		$debug     = print_r( $schedules, true );
+		$debug     = $this->printer( $schedules );
 
 		return $debug;
 	}
@@ -566,7 +687,7 @@ class Debug_This_Extensions {
 	public function cron_jobs() {
 		$jobs = _get_cron_array();
 		if ( $jobs ) {
-			$debug = print_r( $jobs, true );
+			$debug = $this->printer( $jobs );
 		} else {
 			$debug = __( 'No cron jobs found.', 'debug-this' );
 		}
@@ -597,7 +718,7 @@ class Debug_This_Extensions {
 			'is_trackback',
 			'is_home',
 			'is_404',
-			'is_comments_popup',
+			'is_embed',
 			'is_paged',
 			'is_admin',
 			'is_attachment',
@@ -606,13 +727,13 @@ class Debug_This_Extensions {
 			'is_posts_page',
 			'is_post_type_archive'
 		);
-		$debug        = "<ul>";
+		$debug  = '<pre><ul>';
 		foreach ( $conditionals as $conditional ) {
 			if ( $wp_query->$conditional ) {
 				$debug .= "<li>$conditional</li>";
 			}
 		}
-		$debug .= "</ul>";
+		$debug .= '</ul></pre>';
 		$debug = apply_filters( 'debug_context', $debug );
 
 		return $debug;
@@ -621,11 +742,13 @@ class Debug_This_Extensions {
 	public function css( $buffer, $template ) {
 		//Make backwards compatible for no pretty permalinks
 		global $wp;
-		$debug = sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
-		$debug .= sprintf( __( 'URL: %s', 'debug-this' ), get_bloginfo( 'url' ) . '/' . $wp->request ) . "\n";
+		$debug = '<pre>';
+		$debug .= sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
+		$debug .= sprintf( __( 'URL: %s', 'debug-this' ), get_bloginfo( 'url' ) . '/' . $wp->request );
+		$debug .= '</pre>';
 		$debug .= '<h3 class="emphasize">' . __( 'Stylesheets', 'debug-this' ) . '</h3>';
 		preg_match_all( '/(http.+\.css)/', $buffer, $matches );
-		$debug .= print_r( $matches[0], true );
+		$debug .= $this->printer( $matches[0] );
 
 		return $debug;
 	}
@@ -634,16 +757,18 @@ class Debug_This_Extensions {
 		include_once ABSPATH . '/wp-admin/includes/plugin.php';
 		$dropins = get_dropins();
 		if ( $dropins ) {
-			$debug = print_r( $dropins, true );
+			$debug = $this->printer( $dropins );
 		} else {
-			$debug = sprintf( __( "No dropins found. To learn more, please see: %s", 'debug-this' ), "<a href='http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/'>http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/</a>" );
+			$url = 'http://hakre.wordpress.com/2010/05/01/must-use-and-drop-ins-plugins/';
+			$link = sprintf( wp_kses( __( 'No dropins found. <a href="%s">Click here to learn more</a>.', 'debug-this' ), array( 'a' => array( 'href' => array(), 'target' => array(), 'class' => array() ) ) ), esc_url( $url ) );
+			$debug = '<pre>' . $link . '</pre>';
 		}
 
 		return $debug;
 	}
 
 	public function extensions() {
-		$debug = print_r( get_loaded_extensions(), true );
+		$debug = $this->printer( get_loaded_extensions() );
 
 		return $debug;
 	}
@@ -696,6 +821,10 @@ class Debug_This_Extensions {
 		$legend = '<span class="okay">' . __( 'access', 'debug-this' ) . '</span> - <span class="error">' . __( 'no access', 'debug-this' ) . "</span>";
 		$debug  = sprintf( __( 'Rubric: %s', 'debug-this' ), $legend );
 
+		if ( ! function_exists( 'posix_getpwuid' ) || ! function_exists( 'posix_getgrgid' ) ) {
+			return '<span class="error">POSIX missing</span>';
+		}
+
 		$user         = posix_getpwuid( getmyuid() );
 		$group        = posix_getgrgid( getmygid() );
 		$current_user = compact( 'user', 'group' );
@@ -738,40 +867,50 @@ class Debug_This_Extensions {
 
 	public function files() {
 		$debug = '<h3 class="emphasize">' . __( 'Required Files', 'debug-this' ) . '</h3>';
-		$debug .= print_r( get_required_files(), true );
+		$debug .= $this->printer( get_required_files() );
 		$debug .= '<h3 class="emphasize">' . __( 'Included Files', 'debug-this' ) . '</h3>';
-		$debug .= print_r( get_included_files(), true );
+		$debug .= $this->printer( get_included_files() );
 
 		return $debug;
 	}
 
 	public function filters() {
 		global $wp_filter;
-		$debug = '';
+
+		$filters_array = array();
 		foreach ( $wp_filter as $id => $groups ) {
-			$debug .= "<h3 class='emphasize'>$id</h3>\n<ul>";
-			foreach ( $groups as $filters ) {
+			if ( 'debug_this' == $id ) {
+				continue;
+			}
+			foreach ( $groups as $priority => $filters ) {
+				if ( 90210 == $priority ) {
+					continue;
+				}
 				foreach ( $filters as $filter => $values ) {
-					$callback = is_string( $values['function'] ) ? $values['function'] : '(object)';
-					$debug .= "<li>$filter ({$callback})</li>\n";
+					if ( is_string( $values['function'] ) ) {
+						$callback = $values['function'];
+					} else {
+						$callback = get_class( $values['function'][0] ) . '->' . $values['function'][1];
+					}
+					$filters_array[ $id ][ $priority ][ $filter ] = $callback;
 				}
 			}
-			$debug .= '</ul>';
 		}
+		$debug = $this->printer( $filters_array );
 
 		return $debug;
 	}
 
 	public function filters_current() {
 		global $debug_this_current_filter;
-		$debug = print_r( $debug_this_current_filter, true );
+		$debug = $this->printer( $debug_this_current_filter, false, true );
 
 		return $debug;
 	}
 
 	public function functions() {
 		$functions = get_defined_functions();
-		$debug     = print_r( $functions['user'], true );
+		$debug     = $this->printer( $functions['user'] );
 
 		return $debug;
 	}
@@ -779,7 +918,7 @@ class Debug_This_Extensions {
 	public function images( $buffer ) {
 		;
 		preg_match_all( '/src=[\'"](http.+\.(jpg|jpeg|png|svg))\'?"?/', $buffer, $matches );
-		$debug = print_r( $matches[1], true );
+		$debug = $this->printer( $matches[1] );
 
 		return $debug;
 	}
@@ -787,10 +926,10 @@ class Debug_This_Extensions {
 	public function imagesizes() {
 		global $_wp_additional_image_sizes;
 		$sizes = get_intermediate_image_sizes();
-		$debug = '<h3>' . __( 'Registered Sizes Names', 'debug-this' ) . '</h3>';
-		$debug .= print_r( $sizes, true );
+		$debug = '<h3>' . __( 'Registered Size Names', 'debug-this' ) . '</h3>';
+		$debug .= $this->printer( $sizes );
 		$debug .= '<h3>' . __( 'Registered Size Definitions', 'debug-this' ) . '</h3>';
-		$debug .= print_r( $_wp_additional_image_sizes, true );
+		$debug .= $this->printer( $_wp_additional_image_sizes );
 
 		return $debug;
 	}
@@ -798,11 +937,13 @@ class Debug_This_Extensions {
 	public function js( $buffer, $template ) {
 		//make backwards compatible for no permalinks
 		global $wp;
-		$debug = sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
-		$debug .= sprintf( __( 'URL: %s', 'debug-this' ), get_bloginfo( 'url' ) . '/' . $wp->request ) . "\n";
+		$debug = '<pre>';
+		$debug .= sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
+		$debug .= sprintf( __( 'URL: %s', 'debug-this' ), get_bloginfo( 'url' ) . '/' . $wp->request );
+		$debug .= '</pre>';
 		$debug .= '<h3 class="emphasize">' . __( 'JavaScript Files', 'debug-this' ) . '</h3>';
 		preg_match_all( '/(http.+\.js)/', $buffer, $matches );
-		$debug .= print_r( $matches[0], true );
+		$debug .= $this->printer( $matches[0] );
 
 		return $debug;
 	}
@@ -810,41 +951,54 @@ class Debug_This_Extensions {
 	public function load_time( $buffer, $template ) {
 		//make backwards compatible for no permalinks
 		global $wp;
-		$debug = sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
+		$debug = '<pre>';
+		$debug .= sprintf( __( 'Template: %s', 'debug-this' ), $template ) . "\n";
 		$debug .= sprintf( __( 'URL: %s', 'debug-this' ), get_bloginfo( 'url' ) . '/' . $wp->request ) . "\n";
 		$debug .= sprintf( __( 'Execution Time: %s', 'debug-this' ), Debug_This::$execution_time . ' ' . __( 'seconds', 'debug-this' ) );
+		$debug .= '</pre>';
 
 		return $debug;
 	}
 
 	public function menus() {
-		$debug = print_r( get_registered_nav_menus(), true );
+		$debug = $this->printer( get_registered_nav_menus() );
 
 		return $debug;
 	}
 
 	public function menus_dynamic() {
 		$debug = '<h3>' . __( 'Dynamic Menu Locations', 'debug-this' ) . '</h3>';
-		$debug .= print_r( get_nav_menu_locations(), true );
+		$debug .= $this->printer( get_nav_menu_locations() );
 		$debug .= '<h3>' . __( 'Dynamic Menus', 'debug-this' ) . '</h3>';
 		$menus = wp_get_nav_menus( array( 'orderby' => 'name' ) );
 		foreach ( $menus as $id => $menu ) {
 			$menus[ $id ]->items = wp_get_nav_menu_items( $menu->term_id );
 		}
-		$debug .= print_r( $menus, true );
+		$debug .= $this->printer( $menus );
 
 		return $debug;
 	}
 
 	public function oembed() {
 		include_once ABSPATH . '/wp-includes/class-oembed.php';
-		$debug = print_r( _wp_oembed_get_object(), true );
+		$debug = $this->printer( _wp_oembed_get_object() );
 
 		return $debug;
 	}
 
 	public function options() {
-		$debug = htmlentities( print_r( wp_load_alloptions(), true ) );
+		$debug = $this->printer( wp_load_alloptions(), true );
+
+		return $debug;
+	}
+
+	public function options_unserialized() {
+		$options = wp_load_alloptions();
+		$options_array = array();
+		foreach ( $options as $key => $value ) {
+			$options_array[ $key ] = maybe_unserialize( $value );
+		}
+		$debug = $this->printer( $options_array, true );
 
 		return $debug;
 	}
@@ -860,14 +1014,35 @@ class Debug_This_Extensions {
 	}
 
 	public function phpini() {
-		$debug = print_r( ini_get_all(), true );
+		$debug = $this->printer( ini_get_all() );
 
 		return $debug;
 	}
 
 	public function plugins() {
 		include_once ABSPATH . '/wp-admin/includes/plugin.php';
-		$debug = htmlentities( print_r( get_plugins(), true ) );
+		$debug = $this->printer( get_plugins(), true );
+
+		return $debug;
+	}
+
+	public function active_plugins() {
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
+		$plugins = get_plugins();
+		$active_plugins = array();
+		foreach ( $plugins as $plugin => $info ) {
+			if ( is_plugin_active( $plugin ) ) {
+				$active_plugins[ $plugin ] = $info;
+			}
+		}
+		$debug = $this->printer( $active_plugins, true );
+
+		return $debug;
+	}
+
+	public function mu_plugins() {
+		include_once ABSPATH . '/wp-admin/includes/plugin.php';
+		$debug = $this->printer( get_mu_plugins(), true );
 
 		return $debug;
 	}
@@ -875,7 +1050,7 @@ class Debug_This_Extensions {
 	public function post() {
 		if ( is_singular() ) {
 			global $post;
-			$debug = htmlentities( print_r( $post, true ) );
+			$debug = $this->printer( $post, true );
 		} else {
 			$debug = __( 'This mode only works for single posts/pages', 'debug-this' );
 		}
@@ -884,14 +1059,14 @@ class Debug_This_Extensions {
 	}
 
 	public function posts() {
-		if ( ! is_singular() ) {
-			global $wp_query;
-			$posts_count = count( $wp_query->posts );
-			$debug       = sprintf( __( 'Number of Posts: %d' ), $posts_count ) . "\n\n";
-			$debug .= htmlentities( print_r( $wp_query->posts, true ) );
-		} else {
-			$debug = __( 'This mode only works for archive/home pages', 'debug-this' );
+		if ( is_singular() ) {
+			return __( 'This mode only works for archive/home pages', 'debug-this' );
 		}
+
+		global $wp_query;
+		$posts_count = count( $wp_query->posts );
+		$debug = '<h3>' . sprintf( __( 'Number of Posts: %d' ), $posts_count ) . '</h3>';
+		$debug .= $this->printer( $wp_query->posts, true );
 
 		return $debug;
 	}
@@ -902,7 +1077,7 @@ class Debug_This_Extensions {
 		}
 
 		global $post;
-		$debug = print_r( get_post_custom( $post->ID ), true );
+		$debug = $this->printer( get_post_custom( $post->ID ) );
 
 		return $debug;
 	}
@@ -910,7 +1085,7 @@ class Debug_This_Extensions {
 	public function posttypes() {
 		global $post;
 		$post_types = get_post_types( '', 'objects' );
-		$debug      = print_r( $post_types, true );
+		$debug      = $this->printer( $post_types );
 
 		return $debug;
 	}
@@ -921,14 +1096,14 @@ class Debug_This_Extensions {
 			$post = $wp_query->queried_object;
 		}
 		$post_types = get_post_types( '', 'objects' );
-		$debug      = print_r( array( $post->post_type => $post_types[ $post->post_type ] ), true ) . "\n\n";
+		$debug      = $this->printer( array( $post->post_type => $post_types[ $post->post_type ] ) ) . "\n\n";
 
 		return $debug;
 	}
 
 	public function queries() {
 		if ( Debug_This::$queries ) {
-			$debug = print_r( Debug_This::$queries, true );
+			$debug = $this->printer( Debug_This::$queries );
 		} elseif ( ! defined( 'SAVEQUERIES' ) ) {
 			$debug = '<span class="error">' . __( 'Please set define("SAVEQUERIES", true); in wp-config.php to see saved queries. Please disable when completed as this can be a large performance hit.', 'debug-this' ) . '</span>';
 		} else {
@@ -941,7 +1116,7 @@ class Debug_This_Extensions {
 	public function request() {
 		global $wp;
 		$wp->matched_rule = "<a href='?debug=rewrites'>$wp->matched_rule</a>";
-		$debug            = print_r( $wp, true );
+		$debug            = $this->printer( $wp );
 
 		return $debug;
 	}
@@ -978,27 +1153,28 @@ class Debug_This_Extensions {
 
 	public function scripts() {
 		global $wp_scripts;
-		$debug = print_r( $wp_scripts->registered, true );
+		$debug = $this->printer( $wp_scripts->registered );
 
 		return $debug;
 	}
 
 	public function server() {
-		$debug = print_r( $_SERVER, true );
+		$debug = $this->printer( $_SERVER );
 
 		return $debug;
 	}
 
 	public function shortcodes() {
 		global $shortcode_tags;
-		$debug = htmlentities( print_r( $shortcode_tags, true ) );
+		$debug = $this->printer( $shortcode_tags, true );
 
 		return $debug;
 	}
 
 	public function shortcodes_regex() {
 		$regex = get_shortcode_regex();
-		$debug = htmlentities( print_r( $regex, true ) );
+		//$debug = $this->printer( $regex, true );
+		$debug = htmlentities( $regex );
 
 		return $debug;
 	}
@@ -1025,11 +1201,11 @@ class Debug_This_Extensions {
 				}
 			}
 		}
-		$debug = sprintf( __( 'Current Template: %s', 'debug-this' ), $template ) . "\n\n";
+		$debug = '<pre>' . sprintf( __( 'Current Template: %s', 'debug-this' ), wp_normalize_path( $template ) ) . '</pre>';
 		if ( $sidebars ) {
-			$debug .= htmlentities( print_r( $sidebars, true ) ) . "\n";
+			$debug .= $this->printer( $sidebars, true ) . "\n";
 		} else {
-			$debug .= __( 'No sidebars were found in this template.', 'debug-this' );
+			$debug .= '<p>' . __( 'No sidebars were found in this template.', 'debug-this' ) . '</p>' ;
 		}
 
 		return $debug;
@@ -1038,36 +1214,37 @@ class Debug_This_Extensions {
 	public function sidebars_registered() {
 		global $wp_registered_sidebars;
 		$debug = '<h3>' . __( 'Registered Sidebars', 'debug-this' ) . '</h3>';
-		$debug .= htmlentities( print_r( $wp_registered_sidebars, true ) );
+		$debug .= $this->printer( $wp_registered_sidebars, true );
 
 		return $debug;
 	}
 
 	public function styles() {
 		global $wp_styles;
-		$debug = print_r( $wp_styles->registered, true );
+		$debug = $this->printer( $wp_styles->registered );
 
 		return $debug;
 	}
 
 	public function taxonomies() {
-		$debug = print_r( get_taxonomies( '', 'objects' ), true );
+		$debug = $this->printer( get_taxonomies( '', 'objects' ) );
 
 		return $debug;
 	}
 
 	public function template() {
-		$debug = Debug_This::$template_included;
-		$debug .= "\n\nFor more information, consider these plugins: \n";
-		$debug .= "<a href=\"https://wordpress.org/plugins/show-current-template/\">Show Current Template</a>\n";
-		$debug .= "<a href=\"https://wordpress.org/plugins/which-template/\">Which Template</a>";
+		$debug = '<pre>';
+		$debug .= wp_normalize_path( Debug_This::$template_included ) . "\n\n";
+		$url = 'https://wordpress.org/plugins/what-the-file/';
+		$debug .= sprintf( wp_kses( __( 'For more information, consider this plugin: <a href="%s">What The File</a>', 'debug-this' ), array( 'a' => array( 'href' => array(), 'target' => array(), 'class' => array() ) ) ), esc_url( $url ) );
+		$debug .= '</pre>';
 
 		return $debug;
 	}
 
 	public function terms_all() {
 		$taxonomies = get_taxonomies( '', 'names' );
-		$debug      = print_r( get_terms( $taxonomies ), true );
+		$debug      = $this->printer( get_terms( $taxonomies ) );
 
 		return $debug;
 	}
@@ -1080,11 +1257,14 @@ class Debug_This_Extensions {
 			foreach ( $taxonomies as $taxonomy ) {
 				$terms = wp_get_post_terms( $post->ID, $taxonomy );
 				if ( $terms ) {
-					$debug .= "<h3 class='emphasize'>$taxonomy</h3><ul>";
+					$debug .= "<h3 class='emphasize'>$taxonomy</h3>";
+					$debug .= '<pre>';
+					$debug .= '<ul>';
 					foreach ( $terms as $term ) {
 						$debug .= '<li>' . sprintf( __( 'Term ID #%s - %s - %s', 'debug-this' ), $term->term_id, $term->slug, $term->name ) . '</li>';
 					}
 					$debug .= '</ul>';
+					$debug .= '</pre>';
 				}
 			}
 
@@ -1096,11 +1276,10 @@ class Debug_This_Extensions {
 	}
 
 	public function themes() {
-		$debug = '<h3>' . __( 'Current Theme', 'debug-this' ) . '</h3>';
-		$debug .= print_r( wp_get_theme(), true ) . "\n\n";
-		$themes = wp_get_themes();
-		$debug .= '<h3>' . __( 'Themes', 'debug-this' ) . '</h3>';
-		$debug .= print_r( wp_get_themes(), true );
+		$debug = '<h3 class="emphasize">' . __( 'Current Theme', 'debug-this' ) . '</h3>';
+		$debug .= $this->printer( wp_get_theme() ) . "\n\n";
+		$debug .= '<h3 class="emphasize">' . __( 'Themes', 'debug-this' ) . '</h3>';
+		$debug .= $this->printer( wp_get_themes() );
 
 		return $debug;
 	}
@@ -1111,7 +1290,7 @@ class Debug_This_Extensions {
 		foreach ( $users as $user ) {
 			$login = property_exists( $user, 'data' ) ? $user->data->user_login : $user->user_login;
 			$debug .= "<h3 class='emphasize'>{$login}</h3>";
-			$debug .= print_r( $user, true );
+			$debug .= $this->printer( $user );
 		}
 
 		return $debug;
@@ -1125,8 +1304,7 @@ class Debug_This_Extensions {
 			}
 			if ( is_array( $values ) && ! empty( $values ) ) {
 				$debug .= "<h3>$id</h3>";
-				//$debug .= htmlentities(print_r(array_keys($values), true));
-				$debug .= htmlentities( print_r( $values, true ) );
+				$debug .= $this->printer( $values, true );
 			} elseif ( is_string( $values ) ) {
 				$debug .= "<h3>$id</h3>";
 				$debug .= htmlentities( "$values\n\n" );
@@ -1138,14 +1316,15 @@ class Debug_This_Extensions {
 
 	public function widgets() {
 		global $wp_widget_factory;
-		$debug = print_r( $wp_widget_factory->widgets, true );
+		$debug = $this->printer( $wp_widget_factory->widgets );
 
 		return $debug;
 	}
 
 	public function wp_debug() {
 		if ( defined( 'WP_DEBUG' ) && WP_DEBUG === true && defined( 'WP_DEBUG_LOG' ) && WP_DEBUG_LOG === true ) {
-			$path  = WP_CONTENT_DIR . '/debug.log';
+
+			$path = ini_get('error_log');
 			$debug = '';
 			if ( file_exists( $path ) && is_writeable( $path ) ) {
 				add_debug_header_link( Debug_This::get_current_debug_url() . '&clear-debug-log=true', __( 'Reset log file', 'debug-this' ) );
@@ -1156,31 +1335,32 @@ class Debug_This_Extensions {
 						$debug .= __( 'Debug log could not be reset. Please try again', 'debug-this' );
 					}
 				}
-				$debug .= file_get_contents( $path );
+				$debug .= $this->printer( file_get_contents( $path ), true, true );
 				if ( ! $debug ) {
 					$debug .= __( 'Looking good! No notices were logged.', 'debug-this' );
 				}
 			} elseif ( touch( $path ) ) {
 				$debug = __( 'Looking good! No notices were logged.', 'debug-this' );
-			} #Better reporting. If nothing was found, it's not a file perms error.
+			}
 			else {
 				$debug = __( 'Could not open debug.log. Please make sure your wp-content folder is writeable by the web server user.', 'debug-this' );
 			}
 
-			return $debug;
 		} else {
+
 			$debug = __( "Please add the following to wp-config.php to use this mode.\ndefine('WP_DEBUG', true);\ndefine('WP_DEBUG_LOG', true);\ndefine('WP_DEBUG_DISPLAY', false);", 'debug-this' );
 
-			return $debug;
 		}
+			return $debug;
 	}
 
 	public function wp_query() {
 		global $wp_query;
-		$debug = htmlentities( print_r( $wp_query, true ) );
+		$debug = $this->printer( $wp_query, true );
 
 		return $debug;
 	}
+
 }
 
 new Debug_This_Extensions;
