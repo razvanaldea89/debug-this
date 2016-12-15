@@ -1,28 +1,28 @@
 <?php
-/*
-Plugin Name: Debug This
-Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
-Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
-Version: 0.4
-Author: Brian Fegter, Chris Dillon
-Author URI: http://coderrr.com
-License: GPLv3 or Later
-
-Copyright 2012-2015 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)
-
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License, version 2, as
-published by the Free Software Foundation.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+/**
+ * Plugin Name: Debug This
+ * Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
+ * Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
+ * Version: 0.5
+ * Author: Brian Fegter, Chris Dillon
+ * Author URI: http://coderrr.com
+ * License: GPLv3 or Later
+ *
+ * Copyright 2012-2017 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License, version 2, as
+ * published by the Free Software Foundation.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
+ */
 
 defined( 'ABSPATH' ) || die();
 
@@ -46,7 +46,7 @@ class Debug_This {
 			$this->is_user_permitted()
 			&& ! is_admin()
 		) {
-			include_once dirname( __FILE__ ) . '/_inc/extensions.php';
+			include_once dirname( __FILE__ ) . '/inc/extensions.php';
 			add_filter( 'query_vars', array( $this, 'add_query_var' ), 90210 );
 			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ), 90210 );
@@ -55,6 +55,7 @@ class Debug_This {
 
 			add_filter( 'template_include', array( $this, 'template_include_filter' ), 1000 );
 		}
+
 		if (
 			$this->is_user_permitted()
 			&& $this->is_debug()
@@ -73,11 +74,10 @@ class Debug_This {
 
 	public function enqueue() {
 		if ( $this->is_debug() ) {
-			wp_enqueue_style( 'bootstrap', plugins_url( '_inc/css/bootstrap.css', __FILE__ ) );
-			wp_enqueue_style( 'debug-this', plugins_url( '_inc/css/debug-this.css', __FILE__ ) );
+			wp_enqueue_style( 'debug-this', plugins_url( 'inc/css/debug-this.css', __FILE__ ) );
 		}
 		wp_enqueue_script( 'jquery' );
-		wp_enqueue_script( 'debug-this', plugins_url( '_inc/js/debug-this.js', __FILE__ ), array( 'jquery' ) );
+		wp_enqueue_script( 'debug-this', plugins_url( 'inc/js/debug-this.js', __FILE__ ), array( 'jquery' ) );
 		$l10n = array(
 			'mode'        => self::$mode,
 			'defaultMode' => $this->default_mode,
@@ -85,7 +85,7 @@ class Debug_This {
 			'queryVar'    => self::$query_var
 		);
 		wp_localize_script( 'debug-this', 'debugThis', $l10n );
-		wp_enqueue_script( 'debug-this-trigger', plugins_url( '_inc/js/debug-this-trigger.js', __FILE__ ), array( 'debug-this' ), '', true );
+		wp_enqueue_script( 'debug-this-trigger', plugins_url( 'inc/js/debug-this-trigger.js', __FILE__ ), array( 'debug-this' ), '', true );
 	}
 
 	public function add_query_var( $vars ) {
@@ -100,7 +100,7 @@ class Debug_This {
 
 	public function template_include( $template ) {
 		$this->original_template = $template;
-		$template                = dirname( __FILE__ ) . '/_inc/debug-template.php';
+		$template                = dirname( __FILE__ ) . '/inc/debug-template.php';
 		$template                = apply_filters( 'debug_this_template', $template );
 
 		return $template;
@@ -192,8 +192,11 @@ class Debug_This {
 
 		$http     = new WP_Http;
 		$response = $http->request( $url, array( 'method' => 'GET', 'headers' => $headers ) );
-		$buffer   = $response['body'];
-
+		if ( is_wp_error( $response ) ) {
+			$buffer = $response->get_error_message();
+		} else {
+			$buffer = $response['body'];
+		}
 		preg_match( '/%DEBUG_TIME%(.+)%\/DEBUG_TIME%/', $buffer, $matches );
 		self::$execution_time = $matches[1];
 
@@ -204,7 +207,6 @@ class Debug_This {
 		}
 
 		$this->buffer = preg_replace( '/%DEBUG_THIS%.+%\/DEBUG_THIS%/', '', $buffer );
-
 	}
 
 	protected function is_debug() {
@@ -221,6 +223,10 @@ class Debug_This {
 
 	protected function is_domain_permitted() {
 		return preg_match( '/(stage|dev|local)/', $_SERVER['SERVER_NAME'] );
+	}
+
+	public static function get_no_pre() {
+		return self::$no_pre;
 	}
 
 	public function debug() {
@@ -241,17 +247,13 @@ class Debug_This {
 
 	protected function _render() {
 		$description = $this->description ? ' - ' . $this->description : '';
-		echo '<p>' . __( 'Debug This Mode', 'debug_this' ) . ': ' . self::$mode . $description . '</p>';
+		echo '<p>' . __( 'Debug This Mode', 'debug-this' ) . ': <strong>' . self::$mode . '</strong>' . $description . '</p>';
 		echo '<ul class="header-links">' . self::$debug_header . '</ul>';
-		if ( self::$no_pre ) {
-			echo $this->debug;
-		} else {
-			echo "<pre>$this->debug</pre>";
-		}
+		echo $this->debug;
 	}
 
 	protected function include_example_extension() {
-		$output = file_get_contents( dirname( __FILE__ ) . '/_inc/example-extension.txt' );
+		$output = file_get_contents( dirname( __FILE__ ) . '/inc/example-extension.txt' );
 		$output = htmlentities( str_replace( '$mode', self::$mode, $output ) );
 		$output = '<p>' . __( 'Example Debug Extension', 'debug-this' ) . '</p>' . $output;
 
@@ -259,7 +261,7 @@ class Debug_This {
 	}
 
 	public function admin_bar() {
-		global $wp_admin_bar, $_debugger_extensions, $wp;
+		global $wp_admin_bar, $wp;
 		if ( ! is_super_admin() || ! is_admin_bar_showing() ) {
 			return;
 		}
