@@ -409,7 +409,7 @@ class Debug_This_Extensions {
 		$debug .= '<h3 class="emphasize">' . __( 'Modules', 'debug-this' ) . '</h3>';
 		$debug .= $this->printer( apache_get_modules(), true );
 		if ( ! $debug ) {
-			$debug = __( "No modules were found. This could be a symptom of running PHP as CGI.", 'debug-this' );
+			$debug = __( 'No modules were found. This could be a symptom of running PHP as CGI.', 'debug-this' );
 		}
 
 		return $debug;
