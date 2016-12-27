@@ -3,7 +3,7 @@ Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hook
 Contributors: misternifty, cdillon27
 Tested up to: 4.7
 Requires at least: 3.3
-Stable Tag: 0.5
+Stable Tag: 0.5.1
 License: GPLv2 or later
 
 Peek under the hood with sixty debugging reports just one click away.
@@ -198,6 +198,9 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.5.1 - December 27, 2016 =
+* Prevent conflict with Kint Debugger when Debug Bar is active.
+
 = 0.5 - December 15, 2016 =
 * Update for WordPress 4.4+
 * Add error handling.
@@ -252,4 +255,4 @@ There are three included functions to help you work with files.
 
 == Upgrade notice ==
 
-Add error handling. Now compatible with Kint.
+Prevent conflict with Kint Debugger when Debug Bar is active.

@@ -338,7 +338,9 @@ class Debug_This_Extensions {
 		$no_pre = Debug_This::get_no_pre();
 		ob_start();
 		if ( class_exists( 'Kint' ) && ! $force_plain ) {
-			echo d( $array );
+			// Don't use d() because Kint Debugger plugin overrides it
+			// to use an output buffer when Debug Bar is installed.
+			echo Kint::dump( $array );
 		}
 		else {
 			if ( ! $no_pre ) {
@@ -1083,7 +1085,6 @@ class Debug_This_Extensions {
 	}
 
 	public function posttypes() {
-		global $post;
 		$post_types = get_post_types( '', 'objects' );
 		$debug      = $this->printer( $post_types );
 
