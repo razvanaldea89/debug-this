@@ -1,14 +1,17 @@
 <?php
 /**
  * Plugin Name: Debug This
- * Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
- * Description: Gives super admins the ability to easily view a variety of debug outputs on front-facing pages
- * Version: 0.5
+ * Plugin URI: https://www.wpmission.com/downloads/debug-this
+ * Description: Peek under the hood with sixty debugging reports just one click away.
+ * Version: 0.5.1
  * Author: Brian Fegter, Chris Dillon
- * Author URI: http://coderrr.com
+ * Author URI: https://www.wpmission.com
  * License: GPLv3 or Later
  *
  * Copyright 2012-2017 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)
+ *
+ * Original Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
+ * Original Author URI: http://coderrr.com
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 2, as
