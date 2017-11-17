@@ -51,7 +51,6 @@ class Debug_This {
 		) {
 			include_once dirname( __FILE__ ) . '/inc/extensions.php';
 			add_filter( 'query_vars', array( $this, 'add_query_var' ), 90210 );
-			add_action( 'plugins_loaded', array( $this, 'load_textdomain' ) );
 			add_action( 'wp_enqueue_scripts', array( $this, 'enqueue' ), 90210 );
 			add_action( 'admin_bar_menu', array( $this, 'admin_bar' ), 90210 );
 			add_action( 'shutdown', array( $this, 'render_fetch_data' ), 90210 );
@@ -69,10 +68,6 @@ class Debug_This {
 			add_filter( 'template_redirect', array( $this, 'buffer_page' ), 90210 );
 			add_action( 'debug_this', array( $this, 'debug' ), self::$mode, 5 );
 		}
-	}
-
-	public function load_textdomain() {
-		load_plugin_textdomain( 'debug-this', false, plugin_basename( __FILE__ ) . '/languages/' );
 	}
 
 	public function enqueue() {
