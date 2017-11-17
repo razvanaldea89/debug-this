@@ -1,14 +1,14 @@
 <?php
 /**
  * Plugin Name: Debug This
- * Plugin URI: https://www.wpmission.com/downloads/debug-this
+ * Plugin URI: https://strongplugins.com/plugins/debug-this
  * Description: Peek under the hood with sixty debugging reports just one click away.
- * Version: 0.5.1
+ * Version: 0.5.2
  * Author: Brian Fegter, Chris Dillon
- * Author URI: https://www.wpmission.com
+ * Author URI: https://strongplugins.com
  * License: GPLv3 or Later
  *
- * Copyright 2012-2017 Brian Fegter (brian@fegter.com), Chris Dillon (chris@wpmission.com)
+ * Copyright 2012-2017 Brian Fegter (brian@fegter.com), Chris Dillon (chris@strongplugins.com)
  *
  * Original Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
  * Original Author URI: http://coderrr.com
@@ -200,8 +200,12 @@ class Debug_This {
 		} else {
 			$buffer = $response['body'];
 		}
-		preg_match( '/%DEBUG_TIME%(.+)%\/DEBUG_TIME%/', $buffer, $matches );
-		self::$execution_time = $matches[1];
+
+		if ( preg_match( '/%DEBUG_TIME%(.+)%\/DEBUG_TIME%/', $buffer, $matches ) ) {
+			if ( $matches[1] ) {
+				self::$execution_time = $matches[1];
+			}
+		}
 
 		if ( preg_match( '/%DEBUG_QUERIES%(.+)%\/DEBUG_QUERIES%/', $buffer, $matches ) ) {
 			if ( $matches[1] ) {
