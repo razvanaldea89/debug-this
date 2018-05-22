@@ -3,12 +3,12 @@
  * Plugin Name: Debug This
  * Plugin URI: https://strongplugins.com/plugins/debug-this
  * Description: Peek under the hood with sixty debugging reports just one click away.
- * Version: 0.5.2
+ * Version: 0.6
  * Author: Brian Fegter, Chris Dillon
  * Author URI: https://strongplugins.com
  * License: GPLv3 or Later
  *
- * Copyright 2012-2017 Brian Fegter (brian@fegter.com), Chris Dillon (chris@strongplugins.com)
+ * Copyright 2012-2018 Brian Fegter (brian@fegter.com), Chris Dillon (chris@strongplugins.com)
  *
  * Original Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
  * Original Author URI: http://coderrr.com

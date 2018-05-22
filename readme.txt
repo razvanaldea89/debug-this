@@ -3,7 +3,7 @@ Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hook
 Contributors: misternifty, cdillon27
 Tested up to: 4.9
 Requires at least: 3.3
-Stable Tag: 0.5.2
+Stable Tag: 0.6
 License: GPLv2 or later
 
 Peek under the hood with sixty debugging reports just one click away.
@@ -197,6 +197,9 @@ There are three included functions to help you work with files.
 
 
 == Changelog ==
+
+= 0.6 - May 22, 2018 =
+* Fix bug with static methods in Filters report.
 
 = 0.5.2 - November 17, 2017 =
 * Improve error handling.

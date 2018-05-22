@@ -890,11 +890,21 @@ class Debug_This_Extensions {
 				}
 				foreach ( $filters as $filter => $values ) {
 					if ( is_string( $values['function'] ) ) {
+						// A function in the global namespace
 						$callback = $values['function'];
-					} else {
+					} elseif ( is_object( $values['function'][0]) ) {
+						// An instantiated class
 						$callback = get_class( $values['function'][0] ) . '->' . $values['function'][1];
+					} elseif ( is_array( $values['function'] ) ) {
+						// A static method
+						$callback = $values['function'][0] . '->' . $values['function'][1];
+					} else {
+						$callback = '';
 					}
-					$filters_array[ $id ][ $priority ][ $filter ] = $callback;
+
+					if ( $callback ) {
+						$filters_array[ $id ][ $priority ][ $filter ] = $callback;
+					}
 				}
 			}
 		}
