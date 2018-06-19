@@ -892,6 +892,9 @@ class Debug_This_Extensions {
 					if ( is_string( $values['function'] ) ) {
 						// A function in the global namespace
 						$callback = $values['function'];
+					} elseif ( $values['function'] instanceof Closure ) {
+						// An anonymous function
+						$callback = 'anonymous function';
 					} elseif ( is_object( $values['function'][0]) ) {
 						// An instantiated class
 						$callback = get_class( $values['function'][0] ) . '->' . $values['function'][1];

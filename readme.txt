@@ -3,7 +3,7 @@ Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hook
 Contributors: misternifty, cdillon27
 Tested up to: 4.9
 Requires at least: 3.3
-Stable Tag: 0.6
+Stable Tag: 0.6.1
 License: GPLv2 or later
 
 Peek under the hood with sixty debugging reports just one click away.
@@ -198,6 +198,9 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.6.1 - June 19, 2018 =
+* Fix bug with anonymous functions in Filters report.
+
 = 0.6 - May 22, 2018 =
 * Fix bug with static methods in Filters report.
 
@@ -260,5 +263,3 @@ There are three included functions to help you work with files.
 * Debug This Creation
 
 == Upgrade notice ==
-
-Prevent conflict with Kint Debugger when Debug Bar is active.
