@@ -1,7 +1,7 @@
 === Debug This ===
 Tags: debug, debugger, developer, query, queries, objects, scripts, styles, hooks, filters, print_r, var_dump
 Contributors: misternifty, cdillon27
-Tested up to: 4.9
+Tested up to: 5.0
 Requires at least: 3.3
 Stable Tag: 0.6.1
 License: GPLv2 or later
