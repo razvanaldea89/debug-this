@@ -1,5 +1,5 @@
 === Debug This ===
-Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_dump, adopt-me
+Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_dump
 Contributors: misternifty, cdillon27
 Tested up to: 5.0
 Requires at least: 3.3
@@ -9,8 +9,6 @@ License: GPLv2 or later
 Peek under the hood with sixty debugging reports just one click away.
 
 == Description ==
-
-> This plugin is up for adoption.
 
 For admins, developers, and support staff, **Debug This** provides a ton of information about your WordPress installation, all from the front-end admin bar.
 
