@@ -1,20 +1,31 @@
 <?php
 /**
- * Plugin Name: Debug This
- * Plugin URI: https://strongplugins.com/plugins/debug-this
- * Description: Peek under the hood with sixty debugging reports just one click away.
- * Version: 0.6.1
- * Author: Brian Fegter, Chris Dillon
- * Author URI: https://strongplugins.com
- * License: GPLv3 or Later
+ * Plugin Name: 			Debug This
+ * Description: 			Peek under the hood with sixty debugging reports just one click away.
+ * Version: 				0.6.2
+ * Author: 					MachoThemes
+ * Author URI: 				https://www.machothemes.com/
+ * Requires: 				4.6 or higher
+ * License: 				GPLv3 or later
+ * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
+ * Requires PHP: 			5.6
+ * Tested up to:            5.2
  *
- * Copyright 2012-2018 Brian Fegter (brian@fegter.com), Chris Dillon (chris@strongplugins.com)
+ * Copyright 2012-2019 		Brian Fegter 		brian@fegter.com
+ * Copyright 2012-2019		Chris Dillon 		chris@strongplugins.com
+ * Copyright 2019 			MachoThemes 		office@machothemes.com
  *
- * Original Plugin URI: http://coderrr.com/debug-this-wordpress-plugin
- * Original Author URI: http://coderrr.com
+ * Original Plugin URI: 	https://strongplugins.com/plugins/debug-this
+ * Original Author URI: 	https://strongplugins.com
+ * Original Author: 		https://profiles.wordpress.org/cdillon27/
+ *
+ * NOTE:
+ * Chris Dillon transferred ownership rights on: 01/20/2019 06:58:54 PM when ownership was handed over to MachoThemes
+ * The MachoThemes ownership period started on: 01/20/2019 06:58:55 PM
+ * SVN commit proof of ownership transferral: https://plugins.trac.wordpress.org/changeset/2015928/debug-this
  *
  * This program is free software; you can redistribute it and/or modify
- * it under the terms of the GNU General Public License, version 2, as
+ * it under the terms of the GNU General Public License, version 3, as
  * published by the Free Software Foundation.
  *
  * This program is distributed in the hope that it will be useful,
@@ -26,6 +37,7 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
+
 
 defined( 'ABSPATH' ) || die();
 
@@ -56,6 +68,9 @@ class Debug_This {
 			add_action( 'shutdown', array( $this, 'render_fetch_data' ), 90210 );
 
 			add_filter( 'template_include', array( $this, 'template_include_filter' ), 1000 );
+
+            add_action( 'plugins_loaded', array($this,'load_textdomain' ));
+
 		}
 
 		if (
@@ -69,6 +84,10 @@ class Debug_This {
 			add_action( 'debug_this', array( $this, 'debug' ), self::$mode, 5 );
 		}
 	}
+
+	public function load_textdomain(){
+        load_plugin_textdomain( 'debug-this', false, basename( dirname( __FILE__ ) ) . '/languages' );
+    }
 
 	public function enqueue() {
 		if ( $this->is_debug() ) {
