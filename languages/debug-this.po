@@ -1,25 +1,28 @@
-#, fuzzy
+# Copyright (C) 2019 MachoThemes
+# This file is distributed under the GPLv3 or later.
 msgid ""
 msgstr ""
-"Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
-"Project-Id-Version: Debug This\n"
-"POT-Creation-Date: 2019-09-12 09:29+0300\n"
-"PO-Revision-Date: 2019-09-12 09:29+0300\n"
-"Last-Translator: \n"
-"Language-Team: \n"
+"Project-Id-Version: Debug This 0.6.3\n"
+"Report-Msgid-Bugs-To: https://wordpress.org/support/plugin/debug-this\n"
+"POT-Creation-Date: 2019-10-10 07:46:58+00:00\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.0.2\n"
-"X-Poedit-Basepath: ..\n"
-"X-Poedit-Flags-xgettext: --add-comments=translators:\n"
-"X-Poedit-WPHeader: debug-this.php\n"
+"PO-Revision-Date: 2019-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: en\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Poedit-Country: United States\n"
 "X-Poedit-SourceCharset: UTF-8\n"
-"X-Poedit-KeywordsList: __;_e;_n:1,2;_x:1,2c;_ex:1,2c;_nx:4c,1,2;esc_attr__;"
-"esc_attr_e;esc_attr_x:1,2c;esc_html__;esc_html_e;esc_html_x:1,2c;_n_noop:1,2;"
-"_nx_noop:3c,1,2;__ngettext_noop:1,2\n"
+"X-Poedit-KeywordsList: "
+"__;_e;_x:1,2c;_ex:1,2c;_n:1,2;_nx:1,2,4c;_n_noop:1,2;_nx_noop:1,2,3c;esc_"
+"attr__;esc_html__;esc_attr_e;esc_html_e;esc_attr_x:1,2c;esc_html_x:1,2c;\n"
+"X-Poedit-Basepath: ../\n"
 "X-Poedit-SearchPath-0: .\n"
-"X-Poedit-SearchPathExcluded-0: *.js\n"
+"X-Poedit-Bookmarks: \n"
+"X-Textdomain-Support: yes\n"
+"X-Generator: grunt-wp-i18n 1.0.3\n"
 
 #: debug-this.php:262
 msgid "A debug extension could not be found."
@@ -34,7 +37,6 @@ msgid "Example Debug Extension"
 msgstr ""
 
 #. Plugin Name of the plugin/theme
-#: debug-this.php:297 inc/debug-template.php:10
 msgid "Debug This"
 msgstr ""
 
@@ -378,8 +380,8 @@ msgstr ""
 
 #: inc/extensions.php:230
 msgid ""
-"A list of all cached rewrites. To refresh the cache, visit Settings-"
-">Permalinks"
+"A list of all cached rewrites. To refresh the cache, visit "
+"Settings->Permalinks"
 msgstr ""
 
 #: inc/extensions.php:235
@@ -419,8 +421,7 @@ msgid "Current Sidebars"
 msgstr ""
 
 #: inc/extensions.php:255
-msgid ""
-"All instances of get_sidebar() and dynamic_sidebar() in the current template"
+msgid "All instances of get_sidebar() and dynamic_sidebar() in the current template"
 msgstr ""
 
 #: inc/extensions.php:260 inc/extensions.php:1230
@@ -532,12 +533,10 @@ msgid "No Title"
 msgstr ""
 
 #: inc/extensions.php:387
-#, php-format
 msgid "ID: %s"
 msgstr ""
 
 #: inc/extensions.php:388
-#, php-format
 msgid "Mime Type: %s"
 msgstr ""
 
@@ -546,7 +545,6 @@ msgid "URL: "
 msgstr ""
 
 #: inc/extensions.php:392
-#, php-format
 msgid "Description: %s"
 msgstr ""
 
@@ -599,12 +597,10 @@ msgid "No cron jobs found."
 msgstr ""
 
 #: inc/extensions.php:748 inc/extensions.php:956 inc/extensions.php:970
-#, php-format
 msgid "Template: %s"
 msgstr ""
 
 #: inc/extensions.php:749 inc/extensions.php:957 inc/extensions.php:971
-#, php-format
 msgid "URL: %s"
 msgstr ""
 
@@ -613,7 +609,6 @@ msgid "Stylesheets"
 msgstr ""
 
 #: inc/extensions.php:765
-#, php-format
 msgid "No dropins found. <a href=\"%s\">Click here to learn more</a>."
 msgstr ""
 
@@ -622,12 +617,10 @@ msgid "This extension has only been tested on Apache."
 msgstr ""
 
 #: inc/extensions.php:791
-#, php-format
 msgid "%s %s Recommended: %s - To change, run: chmod %s %s"
 msgstr ""
 
 #: inc/extensions.php:794
-#, php-format
 msgid "Permissions: %s"
 msgstr ""
 
@@ -636,7 +629,6 @@ msgid "The current WordPress user might not have access to this file/folder."
 msgstr ""
 
 #: inc/extensions.php:817
-#, php-format
 msgid "Owner/Group: %s:%s"
 msgstr ""
 
@@ -649,7 +641,6 @@ msgid "no access"
 msgstr ""
 
 #: inc/extensions.php:824
-#, php-format
 msgid "Rubric: %s"
 msgstr ""
 
@@ -658,12 +649,10 @@ msgid "WordPress User"
 msgstr ""
 
 #: inc/extensions.php:835
-#, php-format
 msgid "User: %s"
 msgstr ""
 
 #: inc/extensions.php:836
-#, php-format
 msgid "Group: %s"
 msgstr ""
 
@@ -692,7 +681,6 @@ msgid "JavaScript Files"
 msgstr ""
 
 #: inc/extensions.php:972
-#, php-format
 msgid "Execution Time: %s"
 msgstr ""
 
@@ -713,7 +701,6 @@ msgid "This mode only works for archive/home pages"
 msgstr ""
 
 #: inc/extensions.php:1083
-#, php-format
 msgid "Number of Posts: %d"
 msgstr ""
 
@@ -767,17 +754,14 @@ msgid "No rules defined."
 msgstr ""
 
 #: inc/extensions.php:1209
-#, php-format
 msgid "Dynamic Sidebar: %s"
 msgstr ""
 
 #: inc/extensions.php:1212
-#, php-format
 msgid "Missing sidebar template for %s.php"
 msgstr ""
 
 #: inc/extensions.php:1218
-#, php-format
 msgid "Current Template: %s"
 msgstr ""
 
@@ -786,13 +770,10 @@ msgid "No sidebars were found in this template."
 msgstr ""
 
 #: inc/extensions.php:1253
-#, php-format
-msgid ""
-"For more information, consider this plugin: <a href=\"%s\">What The File</a>"
+msgid "For more information, consider this plugin: <a href=\"%s\">What The File</a>"
 msgstr ""
 
 #: inc/extensions.php:1278
-#, php-format
 msgid "Term ID #%s - %s - %s"
 msgstr ""
 

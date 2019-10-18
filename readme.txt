@@ -3,7 +3,7 @@ Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_d
 Contributors: misternifty,cdillon27,machothemes,silkalns
 Tested up to: 5.2
 Requires at least: 4.6
-Stable Tag: 0.6.2
+Stable Tag: 0.6.3
 Requires PHP: 5.6
 License: GPLv3 or later
 
@@ -199,6 +199,9 @@ There are three included functions to help you work with files.
 
 
 == Changelog ==
+
+= 0.6.3 - October 10, 2019 =
+* Translation file update
 
 = 0.6.2 - September 12, 2019 =
 * Translation ready
