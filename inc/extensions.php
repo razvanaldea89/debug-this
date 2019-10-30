@@ -349,7 +349,7 @@ class Debug_This_Extensions {
 			if ( $htmlentities ) {
 				echo htmlentities( print_r( $array, true ) );
 			} else {
-				echo print_r( $array, true );
+				echo esc_attr(print_r( $array, true ));
 			}
 			if ( ! $no_pre ) {
 				echo '</pre>';
