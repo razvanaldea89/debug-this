@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 			Debug This
  * Description: 			Peek under the hood with sixty debugging reports just one click away.
- * Version: 				0.6.3
+ * Version: 				0.6.4
  * Author: 					MachoThemes
  * Author URI: 				https://www.machothemes.com/
  * Requires: 				4.6 or higher
