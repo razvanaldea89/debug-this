@@ -232,8 +232,7 @@ class Debug_This {
 
 	protected function is_debug() {
 		if ( isset( $_GET[ self::$query_var ] ) ) {
-			self::$mode = $_GET[ self::$query_var ] ? $_GET[ self::$query_var ] : apply_filters( 'debug_this_default_mode', $this->default_mode );
-
+			self::$mode = $_GET[ self::$query_var ] ? sanitize_text_field( $_GET[ self::$query_var ] ) : apply_filters( 'debug_this_default_mode', $this->default_mode );
 			return true;
 		}
 	}
@@ -259,7 +258,7 @@ class Debug_This {
 			$this->description = $extension['description'];
 			$this->_render();
 		} else {
-			$debug = '<span class="error">' . __( 'A debug extension could not be found.', 'debug-this' ) . "</span>\n\n";
+			$debug = '<span class="error">' . esc_html__( 'A debug extension could not be found.', 'debug-this' ) . "</span>\n\n";
 			$debug .= $this->include_example_extension();
 			$this->debug = $debug;
 			$this->_render();
@@ -268,7 +267,7 @@ class Debug_This {
 
 	protected function _render() {
 		$description = $this->description ? ' - ' . $this->description : '';
-		echo '<p>' . __( 'Debug This Mode', 'debug-this' ) . ': <strong>' . self::$mode . '</strong>' . $description . '</p>';
+		echo '<p>' . esc_html__( 'Debug This Mode', 'debug-this' ) . ': <strong>' . self::$mode . '</strong>' . $description . '</p>';
 		echo '<ul class="header-links">' . self::$debug_header . '</ul>';
 		echo $this->debug;
 	}
@@ -276,7 +275,7 @@ class Debug_This {
 	protected function include_example_extension() {
 		$output = file_get_contents( dirname( __FILE__ ) . '/inc/example-extension.txt' );
 		$output = htmlentities( str_replace( '$mode', self::$mode, $output ) );
-		$output = '<p>' . __( 'Example Debug Extension', 'debug-this' ) . '</p>' . $output;
+		$output = '<p>' . esc_html__( 'Example Debug Extension', 'debug-this' ) . '</p>' . $output;
 
 		return $output;
 	}
@@ -294,7 +293,7 @@ class Debug_This {
 
 
 		$wp_admin_bar->add_menu( array( 'id'    => 'debug_this',
-		                                'title' => __( 'Debug This', 'debug-this' ),
+		                                'title' => esc_html__( 'Debug This', 'debug-this' ),
 		                                'href'  => "?$query_string"
 		) );
 		foreach ( $this->get_extensions_by_group() as $group => $extensions ) {
