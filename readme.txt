@@ -200,6 +200,9 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.6.5 - TBA =
+* Added: Sanitization and escapes
+
 = 0.6.4 - October 30, 2019 =
 * Display bug fix
 
