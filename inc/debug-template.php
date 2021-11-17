@@ -7,12 +7,12 @@ ob_start();?>
 <html>
 <head>
 	<meta charset="utf-8">
-	<title> <?php esc_html__e( 'Debug This', 'debug-this' ); ?></title>
+	<title> <?php esc_html_e( 'Debug This', 'debug-this' ); ?></title>
 	<?php wp_head(); ?>
 </head>
 <body>
 <div class='debug-this'>
-	<a href="/ <?php echo esc_attr( Debug_This::get_escape_url() ); ?>" class="escape"><span class="dashicons dashicons-dismiss"></span></a>
+	<a href="/ <?php echo esc_url( Debug_This::get_escape_url() ); ?>" class="escape"><span class="dashicons dashicons-dismiss"></span></a>
 	<div class='debug'>
 		%DEBUG%
 	</div>
@@ -50,4 +50,6 @@ ob_get_clean();
 
 // Output HTML with included $debug markup.
 $html = str_replace('%DEBUG%', $debug, $html);
-echo wp_kses_post( $html );
+
+//phpcs:ignore
+echo $html;
