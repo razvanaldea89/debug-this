@@ -9,7 +9,7 @@
  * License: 				GPLv3 or later
  * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP: 			5.6
- * Tested up to:            5.3
+ * Tested up to:            5.8
  *
  * Copyright 2012-2019 		Brian Fegter 		brian@fegter.com
  * Copyright 2012-2019		Chris Dillon 		chris@strongplugins.com
