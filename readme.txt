@@ -200,7 +200,7 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
-= 0.6.4 - TBA =
+= 0.6.4 - 07.01.2022 =
 * Display bug fix
 * Added: Sanitization and escapes
 
