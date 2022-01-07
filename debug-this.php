@@ -3,9 +3,9 @@
  * Plugin Name: 			Debug This
  * Description: 			Peek under the hood with sixty debugging reports just one click away.
  * Version: 				0.6.4
- * Author: 					MachoThemes
- * Author URI: 				https://www.machothemes.com/
- * Requires: 				4.6 or higher
+ * Author: 					WPChill
+ * Author URI: 				https://wpchill.com
+ * Requires: 				5.2 or higher
  * License: 				GPLv3 or later
  * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP: 			5.6
@@ -13,7 +13,8 @@
  *
  * Copyright 2012-2019 		Brian Fegter 		brian@fegter.com
  * Copyright 2012-2019		Chris Dillon 		chris@strongplugins.com
- * Copyright 2019 			MachoThemes 		office@machothemes.com
+ * Copyright 2019-2020 		MachoThemes 		office@machothemes.com
+ * Copyright 2019-2020 		WPChill 			heyyy@wpchill.com
  *
  * Original Plugin URI: 	https://strongplugins.com/plugins/debug-this
  * Original Author URI: 	https://strongplugins.com
@@ -23,6 +24,8 @@
  * Chris Dillon transferred ownership rights on: 01/20/2019 06:58:54 PM when ownership was handed over to MachoThemes
  * The MachoThemes ownership period started on: 01/20/2019 06:58:55 PM
  * SVN commit proof of ownership transferral: https://plugins.trac.wordpress.org/changeset/2015928/debug-this
+ *
+ * MachoThemes transferred owernship to WPChill on 5th of November, 2020.
  *
  * This program is free software; you can redistribute it and/or modify
  * it under the terms of the GNU General Public License, version 3, as
