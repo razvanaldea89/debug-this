@@ -1,9 +1,9 @@
 === Debug This ===
 Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_dump
 Contributors: misternifty,cdillon27,machothemes,silkalns
-Tested up to: 5.2
+Tested up to: 5.8
 Requires at least: 4.6
-Stable Tag: 0.6.3
+Stable Tag: 0.6.4
 Requires PHP: 5.6
 License: GPLv3 or later
 
@@ -199,6 +199,10 @@ There are three included functions to help you work with files.
 
 
 == Changelog ==
+
+= 0.6.4 - 07.01.2022 =
+* Display bug fix
+* Added: Sanitization and escapes
 
 = 0.6.3 - October 10, 2019 =
 * Translation file update
