@@ -1,7 +1,7 @@
 === Debug This ===
 Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_dump
 Contributors: wpchill,silkalns,misternifty,cdillon27
-Tested up to: 5.8
+Tested up to: 6.0
 Requires at least: 5.2
 Stable Tag: 0.6.4
 Requires PHP: 5.6
