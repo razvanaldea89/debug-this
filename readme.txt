@@ -1,7 +1,7 @@
 === Debug This ===
 Tags: debug, debugger, developer, query, queries, hooks, filters, print_r, var_dump
-Contributors: wpchill,silkalns,misternifty,cdillon27
-Tested up to: 6.0
+Contributors: wpchill,silkalns,misternifty,cdillon27,raldea89
+Tested up to: 6.3
 Requires at least: 5.2
 Stable Tag: 0.6.4
 Requires PHP: 5.6
@@ -10,8 +10,6 @@ License: GPLv3 or later
 Peek under the hood with sixty debugging reports just one click away.
 
 == Description ==
-
-**Debug This** is a standalone plugin built, maintained & operated by the friendly folks over at [MachoThemes](https://www.machothemes.com/)
 
 For admins, developers, and support staff, **Debug This** provides a ton of information about your WordPress installation, all from the front-end admin bar.
 
@@ -52,16 +50,6 @@ For example, when viewing a single post, you can see:
 * the author,
 * the terms,
 * and much more.
-
-
-= Now compatible with Kint! =
-
-Don't get lost in deep arrays and objects. Organize and isolate your debugging output by installing this great plugin:
-[Kint Debugger](https://wordpress.org/plugins/kint-debugger/)
-
-= Recommended Plugins =
-
-* [What The File](https://wordpress.org/plugins/what-the-file/) - Identify template files without fail.
 
 == Installation ==
 
