@@ -1,10 +1,10 @@
 {
   "name": "debug-this",
   "main": "Gruntfile.js",
-  "version": "1.2.0",
-  "author": "Macho Themes",
+  "version": "0.6.5",
+  "author": "Razvan Aldea",
   "license": "GPL v3",
-  "repository": "https://github.com/machothemes/debug-this.git",
+  "repository": "https://github.com/razvanaldea89/debug-this.git",
   "devDependencies": {
     "grunt": "^1.0.4",
     "grunt-checktextdomain": "^1.0.1",
