@@ -188,6 +188,9 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.6.5 - 28.01.2024 =
+* Update: Tested up to WP 6.7
+
 = 0.6.4 - 07.01.2022 =
 * Display bug fix
 * Added: Sanitization and escapes
