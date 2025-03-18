@@ -190,6 +190,7 @@ There are three included functions to help you work with files.
 
 = 0.6.6 - 18.03.2025 =
 * Fix: Fixed URL query vars
+
 = 0.6.5 - 28.01.2024 =
 * Update: Tested up to WP 6.7
 
