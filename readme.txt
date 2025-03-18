@@ -1,9 +1,9 @@
 === Debug This ===
-Tags: debug, debugger, developer, query, queries, hooks, filters
+Tags: debug, debugger, developer, query, hooks
 Contributors: raldea89
 Tested up to: 6.7
 Requires at least: 5.2
-Stable Tag: 0.6.5
+Stable Tag: 0.6.6
 Requires PHP: 5.6
 License: GPLv3 or later
 
@@ -188,6 +188,8 @@ There are three included functions to help you work with files.
 
 == Changelog ==
 
+= 0.6.6 - 18.03.2025 =
+* Fix: Fixed URL query vars
 = 0.6.5 - 28.01.2024 =
 * Update: Tested up to WP 6.7
 

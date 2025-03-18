@@ -2,7 +2,7 @@
 /**
  * Plugin Name: 			Debug This
  * Description: 			Peek under the hood with sixty debugging reports just one click away.
- * Version: 				0.6.5
+ * Version: 				0.6.6
  * Author: 					Razvan Aldea
  * Author URI: 				https://profiles.wordpress.org/raldea89/
  * Requires: 				5.2 or higher
@@ -364,7 +364,12 @@ class Debug_This {
 
 	public static function get_current_debug_url() {
 		$url = self::get_escape_url();
-		$url .= '&' . self::$query_var . '=' . self::$mode;
+       // Check to see if we need to attach & or ? to the URL
+        if ( false !== strpos( $url, '?' ) ) {
+            $url .= '&' . self::$query_var . '=' . self::$mode;
+        } else {
+            $url .= '?' . self::$query_var . '=' . self::$mode;
+        }
 
 		return $url;
 	}
