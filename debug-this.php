@@ -2,14 +2,14 @@
 /**
  * Plugin Name: 			Debug This
  * Description: 			Peek under the hood with sixty debugging reports just one click away.
- * Version: 				0.6.6
+ * Version: 				0.6.7
  * Author: 					Razvan Aldea
  * Author URI: 				https://profiles.wordpress.org/raldea89/
  * Requires: 				5.2 or higher
  * License: 				GPLv3 or later
  * License URI:       		http://www.gnu.org/licenses/gpl-3.0.html
  * Requires PHP: 			5.6
- * Tested up to:            6.7
+ * Tested up to:            6.8
  *
  * Copyright 2012-2019        Brian Fegter        brian@fegter.com
  * Copyright 2012-2019        Chris Dillon        chris@strongplugins.com
